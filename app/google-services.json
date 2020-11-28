@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "924234549224",
+    "firebase_url": "https://gene-detection-app.firebaseio.com",
+    "project_id": "gene-detection-app",
+    "storage_bucket": "gene-detection-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924234549224:android:4097526d422fba42d0865d",
+        "android_client_info": {
+          "package_name": "com.akshit.genedetectionapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924234549224-2uprnk5g2b19d1jbnn463vuj8kimessn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.akshit.genedetectionapp",
+            "certificate_hash": "30b6569c228787466e25c0e03f73582c8d716673"
+          }
+        },
+        {
+          "client_id": "924234549224-joi7pmui78ns9p994bnn6s95kjtadifq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.akshit.genedetectionapp",
+            "certificate_hash": "56ed2795aadb322f669452b308e80f2b8c18dc7f"
+          }
+        },
+        {
+          "client_id": "924234549224-27qhogk08o5tksoap0gts1tjb1oud6dv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSDh4lXqdHeU5sKUrplWSU1MpGNOtZrcM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924234549224-27qhogk08o5tksoap0gts1tjb1oud6dv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
