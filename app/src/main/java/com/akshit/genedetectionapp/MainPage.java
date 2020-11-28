@@ -19,11 +19,13 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+        //Fetching Id's of the UI Widgets.
         l1=findViewById(R.id.layout1);
         l2=findViewById(R.id.layout2);
         l3=findViewById(R.id.layout3);
         l4=findViewById(R.id.layout4);
         usersname=findViewById(R.id.tv1);
+
         Bundle b =getIntent().getExtras();
        String getname= b.getString("username");
        String firstname="";
