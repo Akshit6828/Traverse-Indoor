@@ -22,7 +22,7 @@ public class Usertree extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.treenode);
+        setContentView(R.layout.activity_familytree);
         tv = findViewById(R.id.textView);
        // graphView = findViewById(R.id.graph);
 

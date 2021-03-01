@@ -37,6 +37,8 @@ Button b1;
                 String phone=e2.getText().toString();
                 int age=Integer.parseInt(e3.getText().toString());
                 String bloodgroup=e4.getText().toString();
+
+                //Storing users details in DATABASE..
                 StoringUserDetails storingUserDetails = new StoringUserDetails();
                 storingUserDetails.setName(name);
                 storingUserDetails.setPhone_number(phone);
