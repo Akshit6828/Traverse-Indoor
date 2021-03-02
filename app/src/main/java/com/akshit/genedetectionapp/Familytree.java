@@ -12,12 +12,13 @@ public class Familytree extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_familytree);
-        mom=findViewById(R.id.imageButton);
+       /* mom=findViewById(R.id.imageButton);
         dad=findViewById(R.id.imageButton2);
         me=findViewById(R.id.imageButton3);
         mom.setImageResource(R.drawable.mother);
         dad.setImageResource(R.drawable.father);
-        me.setImageResource(R.drawable.child);
+        me.setImageResource(R.drawable.child);*/
+
 
     }
 }
