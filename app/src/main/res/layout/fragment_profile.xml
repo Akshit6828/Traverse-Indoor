@@ -23,7 +23,7 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/username"
             app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"/>
+            app:civ_border_color="#040303"/>
 
 
         <TextView
@@ -32,6 +32,8 @@
             android:layout_marginLeft="120dp"
             android:layout_marginTop="250dp"
             android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#070707"
             android:text="Name: "
             android:id="@+id/name"/>
 
@@ -41,6 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="250dp"
+            android:textStyle="bold"
+            android:textColor="#070707"
             android:layout_toRightOf="@id/name"
             android:textSize="25dp"
             android:text="None"/>
@@ -51,6 +55,8 @@
             android:layout_marginLeft="140dp"
             android:layout_marginTop="10dp"
             android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#070707"
             android:text="Age: "
             android:layout_below="@+id/name"
             android:id="@+id/age"/>
@@ -61,6 +67,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="#070707"
             android:layout_below="@+id/name_value"
             android:layout_toRightOf="@id/age"
             android:textSize="25dp"
@@ -72,6 +80,8 @@
             android:layout_marginLeft="120dp"
             android:layout_marginTop="10dp"
             android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#070707"
             android:text="Phone: "
             android:layout_below="@+id/age"
             android:id="@+id/phone"/>
@@ -82,6 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="#070707"
             android:layout_below="@+id/age_value"
             android:layout_toRightOf="@id/phone"
             android:textSize="25dp"
@@ -93,6 +105,8 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="10dp"
             android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#070707"
             android:text="Blood Group: "
             android:layout_below="@+id/phone"
             android:id="@+id/blood"/>
@@ -103,6 +117,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="#070707"
             android:layout_below="@+id/phone_value"
             android:layout_toRightOf="@id/blood"
             android:textSize="25dp"
