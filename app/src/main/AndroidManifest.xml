@@ -21,7 +21,8 @@
         <activity android:name=".GoogleSearchPage" />
         <activity android:name=".NucleotideBlast" />
         <activity android:name=".Register" />
-        <activity android:name=".MainPage" />
+        <activity android:name=".MainPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen">
             <intent-filter>
