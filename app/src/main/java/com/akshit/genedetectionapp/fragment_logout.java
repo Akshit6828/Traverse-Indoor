@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_about#newInstance} factory method to
+ * Use the {@link fragment_logout#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_about extends Fragment {
+public class fragment_logout extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,8 +24,7 @@ public class fragment_about extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
-    public fragment_about() {
+    public fragment_logout() {
         // Required empty public constructor
     }
 
@@ -35,11 +34,11 @@ public class fragment_about extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment_about.
+     * @return A new instance of fragment fragment_logout.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_about newInstance(String param1, String param2) {
-        fragment_about fragment = new fragment_about();
+    public static fragment_logout newInstance(String param1, String param2) {
+        fragment_logout fragment = new fragment_logout();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,6 +59,6 @@ public class fragment_about extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false);
+        return inflater.inflate(R.layout.fragment_logout, container, false);
     }
 }

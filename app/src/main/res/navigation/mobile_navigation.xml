@@ -17,4 +17,17 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 
+    <fragment
+        android:id="@+id/fragment_about"
+        android:name="com.akshit.genedetectionapp.fragment_about"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/fragment_logout"
+        android:name="com.akshit.genedetectionapp.fragment_logout"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_logout" />
+
+
 </navigation>

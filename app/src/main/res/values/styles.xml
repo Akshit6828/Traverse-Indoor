@@ -18,6 +18,12 @@
             <item name="spinBars">true</item>
             <item name="color">@android:color/white</item>
         </style>
+
+        <style name="Theme.NavigationDrawer.NoActionBar">
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+        </style>
+
         <style name="Theme.NavigationDrawer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <style name="Theme.NavigationDrawer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
