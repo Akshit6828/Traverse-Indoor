@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/fragment_dashboad">
+
+    <fragment
+        android:id="@+id/fragment_dashboad"
+        android:name="com.akshit.genedetectionapp.fragment_dashboad"
+        android:label="fragment_dashboad"
+        tools:layout="@layout/fragment_dashboad" />
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.akshit.genedetectionapp.fragment_profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/fragment_about"
+        android:name="com.akshit.genedetectionapp.fragment_about"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/fragment_logout"
+        android:name="com.akshit.genedetectionapp.fragment_logout"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_logout" />
+
+
+</navigation>
