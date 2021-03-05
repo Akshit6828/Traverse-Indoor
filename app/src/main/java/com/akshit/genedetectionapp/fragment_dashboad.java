@@ -73,6 +73,8 @@ public class fragment_dashboad extends Fragment {
         usersname=mylayout.findViewById(R.id.tv1);
 
        /* Bundle b =getIntent().getExtras();
+
+
        String getname= b.getString("username");
        String firstname="";
        for(int j=0;j<getname.length();j++)

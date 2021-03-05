@@ -1,9 +1,16 @@
 package com.akshit.genedetectionapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -52,40 +59,37 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                if (isConnected(Login.this)) {
 
-
-                if(e1.getText().toString().isEmpty())
-                   e1.setError("Field Required");
+                if (e1.getText().toString().isEmpty())
+                    e1.setError("Field Required");
                 else {
-                          //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);----
+                    //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);----
                     //startActivity(i);//--------------------
-                    phonenumber=e1.getText().toString();
+                    phonenumber = e1.getText().toString();
                     //************************************************************************Confirming phone number from Database****************************************
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for(DataSnapshot i:dataSnapshot.getChildren())
-                            {
-                                StoringUserDetails obj=i.getValue(StoringUserDetails.class);
-                                String phoneindb=obj.getPhone_number();
-                                if(phoneindb.equals(phonenumber))
-                                {
-                                    flag=1;
-                                    nameofuser=obj.getName();
+                            for (DataSnapshot i : dataSnapshot.getChildren()) {
+                                StoringUserDetails obj = i.getValue(StoringUserDetails.class);
+                                String phoneindb = obj.getPhone_number();
+                                if (phoneindb.equals(phonenumber)) {
+                                    flag = 1;
+                                    nameofuser = obj.getName();
                                     //Toast.makeText(Login.this, "User Confirmed and Name of User is "+nameofuser, Toast.LENGTH_SHORT).show();
                                     phonenumber = e1.getText().toString();
                                     progressBar.setVisibility(View.VISIBLE);
                                     sendVerificationCodeToUser(phonenumber);
-                                   // Intent ji=new Intent(Login.this,MainPage.class);
+                                    // Intent ji=new Intent(Login.this,MainPage.class);
                                     //ji.putExtra("username",nameofuser);
                                     //startActivity(ji);
                                 }
                             }
-                            if(flag==0)
-                            {
+                            if (flag == 0) {
                                 Toast.makeText(Login.this, "Number Not Registered..", Toast.LENGTH_SHORT).show();
-                              Intent intent= new Intent(Login.this,MainActivity.class);
-                              startActivity(intent);
+                                Intent intent = new Intent(Login.this, MainActivity.class);
+                                startActivity(intent);
                             }
                         }
 
@@ -96,6 +100,10 @@ public class Login extends AppCompatActivity {
                     });
                     //******************************************************************************
 
+                }
+            }
+                else{
+                    showCustomDialog();
                 }
             }
         });
@@ -110,7 +118,40 @@ public class Login extends AppCompatActivity {
 
     }
 
-   private String sendVerificationCodeToUser(String phonenumber) {
+    private void showCustomDialog() {
+        AlertDialog.Builder builder= new AlertDialog.Builder(Login.this);
+        builder.setMessage("Please Connect to Internet to Proceed Furthur!")
+                .setCancelable(true)
+                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Login.this,MainActivity.class));
+                    finish();
+                    }
+                });
+        builder.show();
+
+
+    }
+
+    private boolean isConnected(Login login) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) login.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wificonn=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileconn=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if(wificonn!=null&&wificonn.isConnected()||(mobileconn!=null&&mobileconn.isConnected()))
+            return true;
+        else
+            return  false;
+    }
+
+
+    private String sendVerificationCodeToUser(String phonenumber) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
               "+91" +phonenumber,        // Phone number to verify
                 60,                 // Timeout duration

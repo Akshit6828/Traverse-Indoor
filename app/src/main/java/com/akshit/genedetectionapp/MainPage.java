@@ -27,41 +27,43 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_main_page);
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        drawerLayout=findViewById(R.id.drawer_layout);
-        NavigationView navigationView=findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_dashboad()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_dashboad()).commit();
 
     }
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.nav_dashboad:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_dashboad()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_dashboad()).commit();
+                closeDrawer();
                 break;
             case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_profile()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_profile()).commit();
+                closeDrawer();
                 break;
             case R.id.nav_about:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_about()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_about()).commit();
+                closeDrawer();
                 break;
             case R.id.nav_logout:
-                builder=new AlertDialog.Builder(MainPage.this);
+                closeDrawer();
+                builder = new AlertDialog.Builder(MainPage.this);
                 builder.setTitle("Logout");
                 builder.setMessage("Are you sure, you want to logout?");
                 builder.setIcon(R.drawable.alert_info);
@@ -85,5 +87,11 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
                 break;
         }
         return true;
+    }
+
+    public void closeDrawer() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
     }
 }
