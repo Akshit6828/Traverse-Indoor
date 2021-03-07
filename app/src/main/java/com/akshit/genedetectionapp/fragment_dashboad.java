@@ -1,15 +1,19 @@
 package com.akshit.genedetectionapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +28,7 @@ public class fragment_dashboad extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     LinearLayout l1, l2, l3, l4;
     TextView usersname;
+    SharedPreferences preferences;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -71,21 +76,11 @@ public class fragment_dashboad extends Fragment {
         l3=mylayout.findViewById(R.id.layout3);
         l4=mylayout.findViewById(R.id.layout4);
         usersname=mylayout.findViewById(R.id.tv1);
+        preferences= this.getActivity().getSharedPreferences("Local_Details",0);
+       String getname=preferences.getString("username_in_sharedpreference","User");
 
-       /* Bundle b =getIntent().getExtras();
-
-
-       String getname= b.getString("username");
-       String firstname="";
-       for(int j=0;j<getname.length();j++)
-       {
-           if(getname.charAt(j)==' ')
-               break;
-           else
-               firstname+=getname.charAt(j);
-       }
-       usersname.setText("Welcome "+firstname+"!");*/
-        usersname.setText("Sample");
+       String[] firstname=getname.split(" ");
+       usersname.setText("Welcome "+firstname[0]+"!");
         l1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

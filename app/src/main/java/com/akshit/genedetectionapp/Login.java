@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -43,6 +44,8 @@ public class Login extends AppCompatActivity {
     DatabaseReference reference;
     String nameofuser="";
     int flag=0;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,8 @@ public class Login extends AppCompatActivity {
         database=FirebaseDatabase.getInstance();
         reference=database.getReference("Users_Database_1");
         progressBar=findViewById(R.id.progressbar);
+        preferences=getSharedPreferences("Local_Details",Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
+        editor=preferences.edit();
         b1=findViewById(R.id.b1);
         b2=findViewById(R.id.button2);
         e1=findViewById(R.id.e1);
@@ -201,7 +206,10 @@ public class Login extends AppCompatActivity {
                         {
                             Intent i = new Intent(Login.this,MainPage.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        i.putExtra("username",nameofuser);
+                        //i.putExtra("username",nameofuser);
+                        editor.putString("username_in_sharedpreference",nameofuser);
+                        editor.putString("userphone_in_sharedpreference",phonenumber);
+                        editor.commit();
                         startActivity(i);
                         }
                         else
