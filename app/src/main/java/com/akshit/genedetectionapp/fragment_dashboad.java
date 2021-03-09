@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -91,8 +93,11 @@ public class fragment_dashboad extends Fragment {
         l2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getActivity(),Familytree.class);
-                startActivity(i);
+               /* Intent i= new Intent(getActivity(),Familytree.class);
+                startActivity(i);*/
+                //Removing a fragment
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new PedigreeAnalysis()).commit();
 
             }
         });

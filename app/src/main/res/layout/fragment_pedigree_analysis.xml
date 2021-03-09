@@ -5,12 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".PedigreeAnalysis">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank fragment layout with TreeView or Widgets-->
     <de.blox.treeview.TreeView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/idTreeView">
 
     </de.blox.treeview.TreeView>
+
+
+
 
 </FrameLayout>

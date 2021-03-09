@@ -1,5 +1,6 @@
 package com.akshit.genedetectionapp;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -65,8 +66,13 @@ public class PedigreeAnalysis extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View mylayout= inflater.inflate(R.layout.fragment_pedigree_analysis, container, false);
+//............Write your code here for fragment.......................
 
-        TreeView treeView = mylayout.findViewById(R.id.idTreeView);
+
+     // TREE VIEW CODE USING NODE IMPLEMENTATION STARTS............
+
+      TreeView treeView = mylayout.findViewById(R.id.idTreeView);
+
         BaseTreeAdapter<Viewholder> adapter = new BaseTreeAdapter<Viewholder>(getActivity(),R.layout.tree_view_node) {
             @NonNull
             @Override
@@ -76,17 +82,42 @@ public class PedigreeAnalysis extends Fragment {
 
             @Override
             public void onBindViewHolder(Viewholder viewHolder, Object data, int position) {
-                viewHolder.textView.setText("Kannu..");
-                //viewHolder.imageView.setImageURI();------ Convert image to URI ......
+                viewHolder.textView.setText(data.toString());
+                Uri imgUri=Uri.parse("android.resource://com.akshit.genedetectionapp/"+R.drawable.ic_add);
+                viewHolder.imageView.setImageURI(null);
+                viewHolder.imageView.setImageURI(imgUri);
+                //viewHolder.imageView.setImageURI();//------ Convert image to URI ......
             }
         };
         treeView.setAdapter(adapter);
-        TreeNode root= new TreeNode("You");
-        TreeNode parent1= new TreeNode("Papa");
-        TreeNode parent2= new TreeNode("Mummy");
-        root.setParent(parent1);
-        root.setParent(parent2);
+        TreeNode root= new TreeNode("Grand\nAncestor");
+        TreeNode pgf= new TreeNode(" Paternal\nGrand Father");
+        TreeNode pgm= new TreeNode(" Paternal\nGrand Mother");
+        TreeNode mgf= new TreeNode(" Maternal\nGrand Father");
+        TreeNode mgm= new TreeNode("Maternal\n Grand Mother");
+        TreeNode father= new TreeNode("Father");
+        TreeNode mother= new TreeNode("Mother");
+        TreeNode me=new TreeNode("You");
+        TreeNode child1boy=new TreeNode("Child male");
+        TreeNode child2girl=new TreeNode("Child female");
+        root.addChildren(pgf,pgm,mgf,mgm);
+        //pgf.addChild(father);
+        pgm.addChild(father);
+
+        //root.addChild(child2girl);
+        //root.setParent(parent1);
+        //root.setParent(parent2);
+        //root.setParent(parent3);
+        //parent1.setParent(parent4);
+        //parent2.setParent(parent5);
+        //parent2.setParent(parent6);
+
         adapter.setRootNode(root);
+       // adapter.setRootNode(me);
+
+
+       //TREE VIEW CODE USING NODE XML ENDS............
+
         return mylayout;
 
     }
