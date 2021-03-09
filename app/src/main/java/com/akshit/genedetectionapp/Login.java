@@ -84,6 +84,8 @@ public class Login extends AppCompatActivity {
                                     // Intent ji=new Intent(Login.this,MainPage.class);
                                     //ji.putExtra("username",nameofuser);
                                     //startActivity(ji);
+                                   // Intent in=new Intent(Login.this,MainPage.class);
+                                  //  startActivity(in);
                                 }
                             }
                             if (flag == 0) {
@@ -151,7 +153,7 @@ public class Login extends AppCompatActivity {
     }
 
 
-    private String sendVerificationCodeToUser(String phonenumber) {
+   private String sendVerificationCodeToUser(String phonenumber) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
               "+91" +phonenumber,        // Phone number to verify
                 60,                 // Timeout duration
@@ -161,6 +163,8 @@ public class Login extends AppCompatActivity {
 
        return verificationCodeBySystem;
     }
+
+
     private  PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
