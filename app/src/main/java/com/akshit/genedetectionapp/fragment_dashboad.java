@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,7 +66,7 @@ public class fragment_dashboad extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View mylayout= inflater.inflate(R.layout.fragment_dashboad, container, false);
+        final View mylayout= inflater.inflate(R.layout.fragment_dashboad, container, false);
         l1=mylayout.findViewById(R.id.layout1);
         l2=mylayout.findViewById(R.id.layout2);
         l3=mylayout.findViewById(R.id.layout3);
@@ -86,6 +87,7 @@ public class fragment_dashboad extends Fragment {
        }
        usersname.setText("Welcome "+firstname+"!");*/
         usersname.setText("Sample");
+
         l1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,8 +114,8 @@ public class fragment_dashboad extends Fragment {
         l4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getActivity(),Versionupdates.class);
-                startActivity(i);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_set_reminder()).commit();
+
             }
         });
         return mylayout;

@@ -80,10 +80,10 @@ public class Login extends AppCompatActivity {
                                     //Toast.makeText(Login.this, "User Confirmed and Name of User is "+nameofuser, Toast.LENGTH_SHORT).show();
                                     phonenumber = e1.getText().toString();
                                     progressBar.setVisibility(View.VISIBLE);
-                                    sendVerificationCodeToUser(phonenumber);
-                                    // Intent ji=new Intent(Login.this,MainPage.class);
-                                    //ji.putExtra("username",nameofuser);
-                                    //startActivity(ji);
+                                   // sendVerificationCodeToUser(phonenumber);
+                                    Intent ji=new Intent(Login.this,MainPage.class);
+                                    ji.putExtra("username",nameofuser);
+                                    startActivity(ji);
                                    // Intent in=new Intent(Login.this,MainPage.class);
                                   //  startActivity(in);
                                 }

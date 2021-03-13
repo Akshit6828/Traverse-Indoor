@@ -5,4 +5,15 @@
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
+    <string-array name="relation">
+        <item>Choose relation</item>
+        <item>You</item>
+        <item>Father</item>
+        <item>Mother</item>
+        <item>Paternal Grandfather</item>
+        <item>Paternal Grandmother</item>
+        <item>Maternal Grandfather</item>
+        <item>Maternal Grandmother</item>
+    </string-array>
+
 </resources>
