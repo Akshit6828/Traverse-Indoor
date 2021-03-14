@@ -4,12 +4,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Viewholder {
+import de.blox.graphview.GraphView;
+
+public class Viewholder extends GraphView.ViewHolder {
     TextView textView;
     ImageView imageView;
 
-    Viewholder(View view) {
-        imageView=view.findViewById(R.id.idIvNode);
-        textView = view.findViewById(R.id.idTvNode);
+    Viewholder(View itemview) {
+        super(itemview);
+        imageView=itemview.findViewById(R.id.idIvNode);
+        textView = itemview.findViewById(R.id.idTvNode);
     }
 }

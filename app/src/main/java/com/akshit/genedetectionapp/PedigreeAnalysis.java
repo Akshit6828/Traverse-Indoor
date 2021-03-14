@@ -9,7 +9,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import org.jetbrains.annotations.NotNull;
+
+import de.blox.graphview.Graph;
+import de.blox.graphview.GraphAdapter;
+import de.blox.graphview.GraphView;
+import de.blox.graphview.Node;
+import de.blox.graphview.tree.BuchheimWalkerAlgorithm;
+import de.blox.graphview.tree.BuchheimWalkerConfiguration;
 import de.blox.treeview.BaseTreeAdapter;
 import de.blox.treeview.TreeNode;
 import de.blox.treeview.TreeView;
@@ -64,11 +74,15 @@ public class PedigreeAnalysis extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        GraphView graphView;
+
+        GraphAdapter<GraphView.ViewHolder> graphAdapter;
         // Inflate the layout for this fragment
         View mylayout= inflater.inflate(R.layout.fragment_pedigree_analysis, container, false);
 //............Write your code here for fragment.......................
 
-
+/*
      // TREE VIEW CODE USING NODE IMPLEMENTATION STARTS............
 
       TreeView treeView = mylayout.findViewById(R.id.idTreeView);
@@ -103,6 +117,10 @@ public class PedigreeAnalysis extends Fragment {
         root.addChildren(pgf,pgm,mgf,mgm);
         //pgf.addChild(father);
         pgm.addChild(father);
+        mgm.addChild(mother);
+        father.addChild(me);
+
+        me.addChildren(child1boy,child2girl);
 
         //root.addChild(child2girl);
         //root.setParent(parent1);
@@ -117,7 +135,64 @@ public class PedigreeAnalysis extends Fragment {
 
 
        //TREE VIEW CODE USING NODE XML ENDS............
+*/
+       /*graphView = mylayout.findViewById(R.id.idGraphView);
+        final Uri imageuri = Uri.parse("android.resource://com.akshit.genedetectionapp/drawable/ic_add");
+        final Graph graph = new Graph();
+        final Node node1 = new Node("You");
+        final Node node2 = new Node("Father");
+        final Node node3 = new Node("Mother");
+       // graph.addEdge(node1, node2);
+        //graph.addEdge(node1, node3);
+       // graph.addNode(node2);
+        //graph.addNode(node3);
+     //   graph.hasPredecessor(node1);
+        graph.addNodes(node1,node2,node3);
+        graph.addEdge(node1,node2);
+        graph.addEdge(node1,node3);
+        /*graph.predecessorsOf(node2);
+        graph.predecessorsOf(node3);
 
+       /* graphAdapter= new GraphAdapter<GraphView.ViewHolder>(graph) {
+            @NonNull
+            @NotNull
+            @Override
+            public GraphView.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup viewGroup, int i) {
+                final View view = LayoutInflater.from(getActivity()).inflate(R.layout.tree_view_node, viewGroup, false);
+                return new Viewholder(view);
+
+            }
+
+            @Override
+            public void onBindViewHolder(@NonNull @NotNull GraphView.ViewHolder viewHolder, @NotNull Object o, int i) {
+                ((Viewholder) viewHolder).textView.setText(o.toString());
+            //    ((Viewholder) viewHolder).imageView.setImageURI(imageuri);
+
+            }
+
+            @Override
+            public int getCount() {
+                return 0;
+            }
+
+            @Override
+            public Object getItem(int i) {
+                return null;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+        };
+        graphView.setAdapter(graphAdapter);
+        final BuchheimWalkerConfiguration configuration = new BuchheimWalkerConfiguration.Builder()
+                .setSiblingSeparation(100)
+                .setLevelSeparation(300)
+                .setSubtreeSeparation(300)
+                .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
+                .build();
+        graphView.setLayout(new BuchheimWalkerAlgorithm(configuration));*/
         return mylayout;
 
     }
