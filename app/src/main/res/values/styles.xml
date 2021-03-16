@@ -24,6 +24,9 @@
 
         <style name="Theme.NavigationDrawer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+        <style name="ApnaTheme" parent="android:Theme.Material">
+
+        </style>
 
 
 </resources>
