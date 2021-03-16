@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ public class PedigreeAnalysis extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ImageButton im1,im2,im3,im4,im5,im6,im7,im8,im9;
 
     public PedigreeAnalysis() {
         // Required empty public constructor
@@ -75,9 +77,6 @@ public class PedigreeAnalysis extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        GraphView graphView;
-
-        GraphAdapter<GraphView.ViewHolder> graphAdapter;
         // Inflate the layout for this fragment
         View mylayout= inflater.inflate(R.layout.fragment_pedigree_analysis, container, false);
 //............Write your code here for fragment.......................
@@ -193,6 +192,75 @@ public class PedigreeAnalysis extends Fragment {
                 .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
                 .build();
         graphView.setLayout(new BuchheimWalkerAlgorithm(configuration));*/
+
+        //Image button code goes here!...........
+        //Connecting UI and Backend!
+        im1=mylayout.findViewById(R.id.ib1);
+        im2=mylayout.findViewById(R.id.ib2);
+        im3=mylayout.findViewById(R.id.ib3);
+        im4=mylayout.findViewById(R.id.ib4);
+        im5=mylayout.findViewById(R.id.ib5);
+        im6=mylayout.findViewById(R.id.ib6);
+        im7=mylayout.findViewById(R.id.ib7);
+        im8=mylayout.findViewById(R.id.ib8);
+        im9=mylayout.findViewById(R.id.ib9);
+        im1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        im2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        im3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        im4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        im5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        im6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        im7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        im8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        im9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+
         return mylayout;
 
     }
