@@ -1,5 +1,8 @@
 package com.akshit.genedetectionapp;
 
+import android.app.Dialog;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,9 +12,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -41,6 +47,7 @@ public class PedigreeAnalysis extends Fragment {
     private String mParam1;
     private String mParam2;
     ImageButton im1,im2,im3,im4,im5,im6,im7,im8,im9;
+    SharedPreferences preferences;
 
     public PedigreeAnalysis() {
         // Required empty public constructor
@@ -79,7 +86,235 @@ public class PedigreeAnalysis extends Fragment {
 
         // Inflate the layout for this fragment
         View mylayout= inflater.inflate(R.layout.fragment_pedigree_analysis, container, false);
+
 //............Write your code here for fragment.......................
+
+        im1=mylayout.findViewById(R.id.ib1);
+        im2=mylayout.findViewById(R.id.ib2);
+        im3=mylayout.findViewById(R.id.ib3);
+        im4=mylayout.findViewById(R.id.ib4);
+        im5=mylayout.findViewById(R.id.ib5);
+        im6=mylayout.findViewById(R.id.ib6);
+        im7=mylayout.findViewById(R.id.ib7);
+        im8=mylayout.findViewById(R.id.ib8);
+        im9=mylayout.findViewById(R.id.ib9);
+        im1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable img=im1.getDrawable();
+                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
+                    showCustomDialog("No Name","Unknown","Unknown");
+                }
+                else {
+                    //Fetch DataBase Details:
+                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        im2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable img=im2.getDrawable();
+                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
+                    showCustomDialog("No Name","Unknown","Unknown");
+                }
+                else {
+                    //Fetch DataBase Details:
+                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        im3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable img=im3.getDrawable();
+                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
+                    showCustomDialog("No Name","Unknown","Unknown");
+                }
+                else {
+                    //Fetch DataBase Details:
+                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        im4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable img=im4.getDrawable();
+                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
+                    showCustomDialog("No Name","Unknown","Unknown");
+                }
+                else {
+                    //Fetch DataBase Details:
+                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        im5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable img=im5.getDrawable();
+                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
+                    showCustomDialog("No Name","Unknown","Unknown");
+                }
+                else {
+                    //Fetch DataBase Details:
+                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        im6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable img=im6.getDrawable();
+                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
+                    showCustomDialog("No Name","Unknown","Unknown");
+                }
+                else {
+                    //Fetch DataBase Details:
+                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        im7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                im7.setBackgroundResource(R.drawable.boyfather);
+                im7.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                preferences= getActivity().getSharedPreferences("Local_Details",0);
+                String getname=preferences.getString("username_in_sharedpreference","User");
+                showCustomDialog(getname,"Male","Self");
+
+            }
+        });
+        im8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable img=im8.getDrawable();
+                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
+                    showCustomDialog("No Name","Unknown","Unknown");
+                }
+                else {
+                    //Fetch DataBase Details:
+                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        im9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable img=im9.getDrawable();
+                if (img != null) {
+                if(img.equals(R.drawable.ic_add)){
+                    showCustomDialog("No Name","Unknown","Unknown");
+                }
+
+                }
+                else {
+                    //Fetch DataBase Details:
+                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+        return mylayout;
+
+    }
+
+    private void showCustomDialog(String name_of_current_profile,String gender_user,String relation_with_user) {
+        final Dialog dialog= new Dialog(getActivity());
+        dialog.setContentView(R.layout.cutom_dialog_profile);
+        final EditText name= dialog.findViewById(R.id.idname_custom_dialog);
+        final TextView gender= dialog.findViewById(R.id.idgender_custom_dialog);
+        final TextView relation= dialog.findViewById(R.id.idrelation_custom_dialog);
+        final TextView cross=dialog.findViewById(R.id.close);
+        LinearLayout l1,l2,l3;
+        l1=dialog.findViewById(R.id.setReminder);
+        l2=dialog.findViewById(R.id.match_symptoms);
+        l3=dialog.findViewById(R.id.preventive_measures);
+
+
+        name.setCursorVisible(false);
+        name.setLongClickable(false);
+        name.setClickable(false);
+        name.setFocusable(false);
+        name.setSelected(false);
+        name.setKeyListener(null);
+        name.setBackgroundResource(android.R.color.transparent);
+
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name.setClickable(true);
+                name.setCursorVisible(true);
+                name.setFocusable(true);
+
+            }
+        });
+
+
+        name.setText(name_of_current_profile);
+        gender.setText("Gender : "+gender_user);
+        relation.setText("Relation : "+relation_with_user);
+        dialog.show();
+
+        //Cross button listener
+        cross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        //Linear layout listeners.
+        l1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Code for Setting reminder fragment and dismissing the dialog.
+            }
+        });
+        l2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Code for Symptoms match fragment and dismissing the dialog.
+            }
+        });
+        l3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Code for Preventive Measures for fragment and dismissing the dialog.
+                dialog.dismiss();
+            }
+        });
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
      // TREE VIEW CODE USING NODE IMPLEMENTATION STARTS............
@@ -195,73 +430,5 @@ public class PedigreeAnalysis extends Fragment {
 
         //Image button code goes here!...........
         //Connecting UI and Backend!
-        im1=mylayout.findViewById(R.id.ib1);
-        im2=mylayout.findViewById(R.id.ib2);
-        im3=mylayout.findViewById(R.id.ib3);
-        im4=mylayout.findViewById(R.id.ib4);
-        im5=mylayout.findViewById(R.id.ib5);
-        im6=mylayout.findViewById(R.id.ib6);
-        im7=mylayout.findViewById(R.id.ib7);
-        im8=mylayout.findViewById(R.id.ib8);
-        im9=mylayout.findViewById(R.id.ib9);
-        im1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
-        im2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        im3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        im4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        im5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        im6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        im7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        im8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        im9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-
-
-        return mylayout;
-
-    }
 }
