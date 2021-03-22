@@ -53,6 +53,8 @@ public class Login extends AppCompatActivity {
         database=FirebaseDatabase.getInstance();
         reference=database.getReference("Users_Database_1");
         progressBar=findViewById(R.id.progressbar);
+
+        //Local Shared Preference Details.
         preferences=getSharedPreferences("Local_Details",Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
         editor=preferences.edit();
         b1=findViewById(R.id.b1);
@@ -104,6 +106,9 @@ public class Login extends AppCompatActivity {
                         }
                     });
                     //******************************************************************************
+
+                    if(!isConnected(Login.this))
+                        Toast.makeText(Login.this, "Please Wait a Little..", Toast.LENGTH_SHORT).show();
 
                 }
             }

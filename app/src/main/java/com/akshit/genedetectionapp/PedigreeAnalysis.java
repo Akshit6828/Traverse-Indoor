@@ -1,17 +1,22 @@
 package com.akshit.genedetectionapp;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,49 +24,39 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jetbrains.annotations.NotNull;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import de.blox.graphview.Graph;
-import de.blox.graphview.GraphAdapter;
-import de.blox.graphview.GraphView;
-import de.blox.graphview.Node;
-import de.blox.graphview.tree.BuchheimWalkerAlgorithm;
-import de.blox.graphview.tree.BuchheimWalkerConfiguration;
-import de.blox.treeview.BaseTreeAdapter;
-import de.blox.treeview.TreeNode;
-import de.blox.treeview.TreeView;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Objects;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PedigreeAnalysis#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class PedigreeAnalysis extends Fragment {
+public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.CustomDialogProfileListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ImageButton im1,im2,im3,im4,im5,im6,im7,im8,im9;
+    public static ImageButton im1,im2,im3,im4,im5,im6,im7,im8,im9;
+    ImageView userimage;
     SharedPreferences preferences;
+    Dialog dialog, dialog_input;
+//    EditText input_name, input_gender,input_DOB;
+//    String name,dob,gender;
+//    String final_dob,final_name,final_gender;
+    public static  String fetched_name,fetched_dob,fetched_relation,fetched_gender;
+   // int year,month,day;
+    FirebaseDatabase database;
+    DatabaseReference reference;
 
-    public PedigreeAnalysis() {
-        // Required empty public constructor
-    }
+    public PedigreeAnalysis() { }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PedigreeAnalysis.
-     */
-    // TODO: Rename and change types and number of parameters
     public static PedigreeAnalysis newInstance(String param1, String param2) {
         PedigreeAnalysis fragment = new PedigreeAnalysis();
         Bundle args = new Bundle();
@@ -98,30 +93,64 @@ public class PedigreeAnalysis extends Fragment {
         im7=mylayout.findViewById(R.id.ib7);
         im8=mylayout.findViewById(R.id.ib8);
         im9=mylayout.findViewById(R.id.ib9);
+
+        database=FirebaseDatabase.getInstance();
+        reference=database.getReference("Users Family Data");
+
+        dialog= new Dialog(getActivity());
+        dialog_input= new Dialog(getActivity());
         im1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable img=im1.getDrawable();
-                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
-                    showCustomDialog("No Name","Unknown","Unknown");
+                if(im1.getBackground().getConstantState()!= getResources().getDrawable(R.drawable.ic_add).getConstantState()) {
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot i : dataSnapshot.getChildren()) {
+                                StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
+                                String relation_with_user = obj.getRelation_with_user();
+                                if (relation_with_user != null) {
+                                    if (relation_with_user.equals("Paternal Grand Father")) {
+                                        fetched_name = obj.getName();
+                                        fetched_dob=obj.getDob();
+                                        fetched_gender=obj.getGender();
+                                        fetched_relation=relation_with_user;
+                                        showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
+                                        break;
+                                    }
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
-                else {
+                 else {
                     //Fetch DataBase Details:
-                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                    showInputCustomDialog("Paternal Grand Father");
+
                 }
+
+
+
+
 
             }
         });
         im2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable img=im2.getDrawable();
-                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
-                    showCustomDialog("No Name","Unknown","Unknown");
+                if(im2.getBackground().getConstantState()!= getResources().getDrawable(R.drawable.ic_add).getConstantState()){
+                    showCustomDialog(fetched_name,fetched_gender,fetched_relation,fetched_dob);
                 }
+
                 else {
                     //Fetch DataBase Details:
-                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                    showInputCustomDialog("Paternal Grand Mother");
                 }
 
             }
@@ -129,13 +158,14 @@ public class PedigreeAnalysis extends Fragment {
         im3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable img=im3.getDrawable();
-                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
-                    showCustomDialog("No Name","Unknown","Unknown");
+
+                if(im3.getBackground().getConstantState()!= getResources().getDrawable(R.drawable.ic_add).getConstantState()){
+                    showCustomDialog(fetched_name,fetched_gender,fetched_relation,fetched_dob);
                 }
+
                 else {
                     //Fetch DataBase Details:
-                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                    showInputCustomDialog("Maternal Grand Father");
                 }
 
             }
@@ -143,26 +173,29 @@ public class PedigreeAnalysis extends Fragment {
         im4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable img=im4.getDrawable();
-                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
-                    showCustomDialog("No Name","Unknown","Unknown");
+
+                if(im4.getBackground().getConstantState()!= getResources().getDrawable(R.drawable.ic_add).getConstantState()){
+                    showCustomDialog(fetched_name,fetched_gender,fetched_relation,fetched_dob);
                 }
+
                 else {
                     //Fetch DataBase Details:
-                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                    showInputCustomDialog("Maternal Grand Mother");
                 }
             }
         });
         im5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable img=im5.getDrawable();
-                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
-                    showCustomDialog("No Name","Unknown","Unknown");
+
+
+                if(im5.getBackground().getConstantState()!= getResources().getDrawable(R.drawable.ic_add).getConstantState()){
+                    showCustomDialog(fetched_name,fetched_gender,fetched_relation,fetched_dob);
                 }
+
                 else {
                     //Fetch DataBase Details:
-                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                    showInputCustomDialog("Father");
                 }
 
             }
@@ -171,13 +204,14 @@ public class PedigreeAnalysis extends Fragment {
         im6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable img=im6.getDrawable();
-                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
-                    showCustomDialog("No Name","Unknown","Unknown");
+
+                if(im6.getBackground().getConstantState()!= getResources().getDrawable(R.drawable.ic_add).getConstantState()){
+                    showCustomDialog(fetched_name,fetched_gender,fetched_relation,fetched_dob);
                 }
+
                 else {
                     //Fetch DataBase Details:
-                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                    showInputCustomDialog("Mother");
                 }
 
             }
@@ -185,40 +219,42 @@ public class PedigreeAnalysis extends Fragment {
         im7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                im7.setBackgroundResource(R.drawable.boyfather);
-                im7.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                preferences= getActivity().getSharedPreferences("Local_Details",0);
-                String getname=preferences.getString("username_in_sharedpreference","User");
-                showCustomDialog(getname,"Male","Self");
 
+                if(im7.getBackground().getConstantState()!= getResources().getDrawable(R.drawable.ic_add).getConstantState()){
+                    showCustomDialog(fetched_name,fetched_gender,fetched_relation,fetched_dob);
+                }
+
+                else {
+                    //Fetch DataBase Details:
+                    showInputCustomDialog("Self");
+                }
             }
         });
         im8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable img=im8.getDrawable();
-                if (img!=null&&img.toString().equals(R.drawable.ic_add)) {
-                    showCustomDialog("No Name","Unknown","Unknown");
+
+                if(im8.getBackground().getConstantState()!= getResources().getDrawable(R.drawable.ic_add).getConstantState()){
+                    showCustomDialog(fetched_name,fetched_gender,fetched_relation,fetched_dob);
                 }
+
                 else {
                     //Fetch DataBase Details:
-                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                    showInputCustomDialog("Child 1");
                 }
             }
         });
         im9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Drawable img=im9.getDrawable();
-                if (img != null) {
-                if(img.equals(R.drawable.ic_add)){
-                    showCustomDialog("No Name","Unknown","Unknown");
+
+                if(im9.getBackground().getConstantState()!= getResources().getDrawable(R.drawable.ic_add).getConstantState()){
+                    showCustomDialog(fetched_name,fetched_gender,fetched_relation,fetched_dob);
                 }
 
-                }
                 else {
                     //Fetch DataBase Details:
-                    Toast.makeText(getActivity(), "Diff Image", Toast.LENGTH_SHORT).show();
+                    showInputCustomDialog("Child 2");
                 }
             }
         });
@@ -229,42 +265,119 @@ public class PedigreeAnalysis extends Fragment {
 
     }
 
-    private void showCustomDialog(String name_of_current_profile,String gender_user,String relation_with_user) {
-        final Dialog dialog= new Dialog(getActivity());
+    //*********************INPUT DIALOG CODE GOES HERE***************************************
+
+    public void showInputCustomDialog(String relation) {
+
+        /*final ArrayList<String> data;
+        final int[] flag = {0};
+        data = new ArrayList<String>();
+        dialog_input.setContentView(R.layout.custom_dialog_profile_input);
+        dialog_input.setCancelable(false);
+        input_name=dialog_input.findViewById(R.id.id_input_name);
+        input_DOB=dialog_input.findViewById(R.id.id_input_dob);
+        input_gender=dialog_input.findViewById(R.id.id_input_gender);
+        final Button set_profile=dialog_input.findViewById(R.id.editbutton);
+        final TextView cross=dialog_input.findViewById(R.id.close_input);
+        cross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            dialog_input.dismiss();
+            }
+        });
+        input_DOB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar ca= Calendar.getInstance();
+              final int y=ca.get(Calendar.YEAR);
+                final  int m=ca.get(Calendar.MONTH);
+                final int d=ca.get(Calendar.DAY_OF_MONTH);
+                new DatePickerDialog(getActivity(),listener,year,month,day).show();
+            }
+        });
+        set_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                 final_name=input_name.getText().toString();
+               final_dob=input_DOB.getText().toString();
+             final_gender=input_gender.getText().toString();
+             flag[0] =1;
+             data.add(final_name);
+             data.add(final_dob);
+             data.add(final_gender);
+
+            }
+        });
+        dialog_input.show();*/
+     /*   FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        Fragment prev = getActivity().getSupportFragmentManager().findFragmentById(R.id.idinputFragment);
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        Bundle args = new Bundle();
+        args.putString("Relation", relation);
+        DialogFragment dialogFragment = new CustomDialogProfile();
+        dialogFragment.setArguments(args);
+        dialogFragment.show(getActivity().getSupportFragmentManager(),"Dialog");*/
+
+        //**********OPENING DIALOG USING CUSTOM_DIALOG_CLASS ----------
+        DialogFragment show_input = new CustomDialogProfile();
+        Bundle args = new Bundle();
+        args.putString("Relation", relation);
+        show_input.setArguments(args);
+        show_input.show(getActivity().getSupportFragmentManager(),"Opening Input Dialog");
+
+    }
+
+
+    //******************CUSTOM DIALOG PROFILE TO BE SHOWN*****************************
+
+    private void showCustomDialog(String name_of_current_profile,String gender_user,String relation_with_user,String dob) {
+
+      //  Toast.makeText(getActivity(), "ShowCustomCalled and name ="+name_of_current_profile+"\n gender ="+gender_user+"\nrelation= "+relation_with_user+"\ndob ="+dob, Toast.LENGTH_SHORT).show();
+
         dialog.setContentView(R.layout.cutom_dialog_profile);
-        final EditText name= dialog.findViewById(R.id.idname_custom_dialog);
+        final TextView name= dialog.findViewById(R.id.idname_custom_dialog);
+        userimage =dialog.findViewById(R.id.iduserimage);
         final TextView gender= dialog.findViewById(R.id.idgender_custom_dialog);
         final TextView relation= dialog.findViewById(R.id.idrelation_custom_dialog);
+        final TextView dobget= dialog.findViewById(R.id.iddob);
         final TextView cross=dialog.findViewById(R.id.close);
+        final Button edit_profile=dialog.findViewById(R.id.editbutton);
         LinearLayout l1,l2,l3;
         l1=dialog.findViewById(R.id.setReminder);
         l2=dialog.findViewById(R.id.match_symptoms);
         l3=dialog.findViewById(R.id.preventive_measures);
 
-
-        name.setCursorVisible(false);
-        name.setLongClickable(false);
-        name.setClickable(false);
-        name.setFocusable(false);
-        name.setSelected(false);
-        name.setKeyListener(null);
-        name.setBackgroundResource(android.R.color.transparent);
-
-        name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                name.setClickable(true);
-                name.setCursorVisible(true);
-                name.setFocusable(true);
-
+        if(gender_user!=null){
+            Uri imgUri;
+            if(gender.equals("Female")){
+                imgUri = Uri.parse("android.resource://com.akshit.genedetectionapp/" + R.drawable.femalepng);
             }
-        });
+            else{
+                imgUri = Uri.parse("android.resource://com.akshit.genedetectionapp/" + R.drawable.male);
+            }
+            userimage.setImageURI(imgUri);
 
+        }
 
         name.setText(name_of_current_profile);
+        dobget.setText("DOB : "+dob);
         gender.setText("Gender : "+gender_user);
         relation.setText("Relation : "+relation_with_user);
         dialog.show();
+
+
+        //Edit button listener
+        edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         //Cross button listener
         cross.setOnClickListener(new View.OnClickListener() {
@@ -297,24 +410,6 @@ public class PedigreeAnalysis extends Fragment {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
      // TREE VIEW CODE USING NODE IMPLEMENTATION STARTS............
@@ -431,4 +526,24 @@ public class PedigreeAnalysis extends Fragment {
         //Image button code goes here!...........
         //Connecting UI and Backend!
 
+
+//    DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+//        @Override
+//        public void onDateSet(DatePicker datePicker, int y, int m, int dOM) {
+//            input_DOB.setText(dOM+"-"+m+"-"+y);
+//            year=y;
+//            month=m;
+//            day=dOM;
+//        }
+//    };
+
+
+    @Override
+    public void applyTexts(String name, String dob, String gender, String relation) {
+        Toast.makeText(getActivity(), "Details fetched are :"+name+"\n"+dob+"\n"+gender+"\n"+relation, Toast.LENGTH_SHORT).show();
+       /* fetched_dob= dob;
+        fetched_gender=gender;
+        fetched_name=name;
+        fetched_relation=relation;*/
+    }
 }
