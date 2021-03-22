@@ -7,8 +7,10 @@ import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Calendar;
 
@@ -127,18 +132,15 @@ public class fragment_set_reminder extends Fragment {
                 set.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        int pos=r.getId();
-                        if(pos==0) {
-                            TextView errorText = (TextView)r.getSelectedView();
-                            errorText.setError("Invalid choice");
-                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("");//changes the selected item text to this
 
-                        }
-                        else
-                        {
-                            String item = r.getSelectedItem().toString();
-
+                        if (r.getSelectedItemPosition() > 0) {
+                          // get selected item value
+                            String itemvalue = String.valueOf(r.getSelectedItem());
+                        } else {
+                          // set error message on spinner
+                            TextView errorTextview = (TextView) r.getSelectedView();
+                            errorTextview.setText("Invalid Choice");
+                            errorTextview.setTextColor(Color.RED);
                         }
 
                     }

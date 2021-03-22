@@ -17,5 +17,7 @@
     <color name="t_end">#BBC182CC</color>
     <color name="fr_start">#CF746D</color>
     <color name="fr_end">#ECD1D1</color>
+
+    <color name="light_medium_gray">#f3f3f3</color>
 </resources>
 
