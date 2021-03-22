@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tree_view"
+    tools:context=".PedigreeAnalysis">
+
+    <!-- TODO: Update blank fragment layout with TreeView or Widgets
+    <de.blox.treeview.TreeView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/idTreeView">
+
+    </de.blox.treeview.TreeView>-->
+
+    <ImageButton
+        android:id="@+id/ib1"
+        android:layout_width="63dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/ic_add"
+        android:scaleType="fitCenter"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib2"
+        android:layout_width="63dp"
+        android:layout_height="67dp"
+
+        android:layout_marginStart="40dp"
+        android:background="@drawable/ic_add"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ib1"
+        app:layout_constraintStart_toEndOf="@+id/ib1"
+        app:layout_constraintTop_toTopOf="@+id/ib1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ib3"
+        android:layout_width="63dp"
+        android:layout_height="67dp"
+
+        android:layout_marginStart="32dp"
+        android:background="@drawable/ic_add"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ib2"
+        app:layout_constraintStart_toEndOf="@+id/ib2"
+        app:layout_constraintTop_toTopOf="@+id/ib2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ib4"
+        android:layout_width="63dp"
+        android:layout_height="67dp"
+
+        android:background="@drawable/ic_add"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ib3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toEndOf="@+id/ib3"
+        app:layout_constraintTop_toTopOf="@+id/ib3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ib5"
+        android:layout_width="63dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="228dp"
+        android:background="@drawable/ic_add"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/ib2"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib6"
+        android:layout_width="63dp"
+        android:layout_height="67dp"
+        android:layout_marginEnd="70dp"
+
+        android:background="@drawable/ic_add"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ib5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/ib3"
+        app:layout_constraintTop_toTopOf="@+id/ib5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ib7"
+        android:layout_width="63dp"
+        android:layout_height="67dp"
+        android:background="@drawable/ic_add"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ib6"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toEndOf="@+id/ib5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.652" />
+
+    <ImageButton
+        android:id="@+id/ib8"
+        android:layout_width="63dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="132dp"
+        android:background="@drawable/ic_add"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/ib9"
+        app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ib7" />
+
+    <ImageButton
+        android:id="@+id/ib9"
+        android:layout_width="63dp"
+        android:layout_height="67dp"
+        android:layout_marginEnd="68dp"
+        android:background="@drawable/ic_add"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ib8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ib8"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,13 +27,16 @@ public class Usertree extends AppCompatActivity {
        // graphView = findViewById(R.id.graph);
 
         // example tree
+
         final Graph graph = new Graph();
         final Node node1 = new Node("You");
         final Node node2 = new Node("Father");
         final Node node3 = new Node("Mother");
+        final Node node4 = new Node("Node4");
 
         graph.addEdge(node1, node2);
         graph.addEdge(node1, node3);
+        graph.addNode(node4);
         graphAdapter = new GraphAdapter<GraphView.ViewHolder>(graph) {
             @NonNull
             @Override

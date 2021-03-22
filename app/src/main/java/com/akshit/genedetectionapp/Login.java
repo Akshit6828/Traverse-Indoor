@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -44,6 +45,8 @@ public class Login extends AppCompatActivity {
     DatabaseReference reference;
     String nameofuser="";
     int flag=0;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,10 @@ public class Login extends AppCompatActivity {
         database=FirebaseDatabase.getInstance();
         reference=database.getReference("Users_Database_1");
         progressBar=findViewById(R.id.progressbar);
+
+        //Local Shared Preference Details.
+        preferences=getSharedPreferences("Local_Details",Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
+        editor=preferences.edit();
         b1=findViewById(R.id.b1);
         b2=findViewById(R.id.button2);
         e1=findViewById(R.id.e1);
@@ -81,12 +88,11 @@ public class Login extends AppCompatActivity {
                                     //Toast.makeText(Login.this, "User Confirmed and Name of User is "+nameofuser, Toast.LENGTH_SHORT).show();
                                     phonenumber = e1.getText().toString();
                                     progressBar.setVisibility(View.VISIBLE);
-                                   // sendVerificationCodeToUser(phonenumber);
-                                    Intent ji=new Intent(Login.this,MainPage.class);
+
+                                    //sendVerificationCodeToUser(phonenumber); ------- uncomment it to send sms verification .......
+                                     Intent ji=new Intent(Login.this,MainPage.class);
                                     ji.putExtra("username",nameofuser);
                                     startActivity(ji);
-                                   // Intent in=new Intent(Login.this,MainPage.class);
-                                  //  startActivity(in);
                                 }
                             }
                             if (flag == 0) {
@@ -102,6 +108,9 @@ public class Login extends AppCompatActivity {
                         }
                     });
                     //******************************************************************************
+
+                    if(!isConnected(Login.this))
+                        Toast.makeText(Login.this, "Please Wait a Little..", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -154,7 +163,8 @@ public class Login extends AppCompatActivity {
     }
 
 
-  /* private String sendVerificationCodeToUser(String phonenumber) {
+
+    private String sendVerificationCodeToUser(String phonenumber) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
               "+91" +phonenumber,        // Phone number to verify
                 60,                 // Timeout duration
@@ -163,9 +173,8 @@ public class Login extends AppCompatActivity {
                 mCallbacks);        // OnVerificationStateChangedCallbacks
 
        return verificationCodeBySystem;
-    }*/
 
-
+    }
     private  PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
@@ -206,7 +215,10 @@ public class Login extends AppCompatActivity {
                         {
                             Intent i = new Intent(Login.this,MainPage.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        i.putExtra("username",nameofuser);
+                        //i.putExtra("username",nameofuser);
+                        editor.putString("username_in_sharedpreference",nameofuser);
+                        editor.putString("userphone_in_sharedpreference",phonenumber);
+                        editor.commit();
                         startActivity(i);
                         }
                         else

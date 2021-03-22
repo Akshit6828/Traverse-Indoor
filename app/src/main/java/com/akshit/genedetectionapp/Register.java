@@ -56,6 +56,8 @@ Button b1;
                     String child_id = reference.push().getKey();
                     reference.child(child_id).setValue(storingUserDetails);
                     Toast.makeText(Register.this, "Registered Successfully...\n  Thankyou", Toast.LENGTH_SHORT).show();
+
+                   //Shifting of Activity back to MainActivity.
                     Intent i = new Intent(Register.this, MainActivity.class);
                     startActivity(i);
                     //Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_SHORT).show();

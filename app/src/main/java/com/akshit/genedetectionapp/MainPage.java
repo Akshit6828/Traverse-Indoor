@@ -12,11 +12,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CustomDialogProfile.CustomDialogProfileListener {
     private DrawerLayout drawerLayout;
     AlertDialog.Builder builder;
 
@@ -93,5 +94,14 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
+    }
+
+    @Override
+    public void applyTexts(String name, String dob, String gender, String relation) {
+     //   Toast.makeText(this, "MainPage applyText called..with name is "+name+"rel ="+relation+"dob is "+dob, Toast.LENGTH_SHORT).show();
+       /* PedigreeAnalysis.fetched_name=name;
+        PedigreeAnalysis.fetched_dob=dob;
+        PedigreeAnalysis.fetched_gender=gender;
+        PedigreeAnalysis.fetched_relation=relation;*/
     }
 }

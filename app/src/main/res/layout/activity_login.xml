@@ -44,8 +44,8 @@
 
     <EditText
         android:id="@+id/e2"
-        android:layout_width="200dp"
-        android:layout_height="42dp"
+        android:layout_width="280dp"
+        android:layout_height="41dp"
         android:ems="10"
         android:hint="Enter OTP"
         android:textColor="#070000"
@@ -53,7 +53,7 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.449" />
@@ -63,17 +63,16 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="150dp"
         android:layout_height="49dp"
+        android:layout_marginStart="72dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/vesper_libre_medium"
         android:text="Get OTP"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585" />
+        app:layout_constraintTop_toBottomOf="@+id/e2"
+        app:layout_constraintVertical_bias="0.145" />
 
     <ProgressBar
         android:id="@+id/progressbar"
@@ -89,19 +88,6 @@
 
     </ProgressBar>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="388dp"
-        android:layout_height="257dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.993"
-        app:srcCompat="@drawable/lowerlogin" />
-
     <Button
         android:id="@+id/button2"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -111,9 +97,10 @@
         android:fontFamily="@font/vesper_libre_medium"
         android:text="Verify OTP"
         android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/b1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toEndOf="@+id/b1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585" />
+        app:layout_constraintTop_toBottomOf="@+id/progressbar"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
