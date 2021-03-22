@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/relation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relation: "
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/relation_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="None "
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:layout_toEndOf="@+id/relation"/>
+
+    <TextView
+        android:id="@+id/contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact: "
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:layout_below="@+id/relation"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/contact_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="None "
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/relation_value"
+        android:layout_toEndOf="@+id/contact"/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: "
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:layout_below="@+id/contact"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/date_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="None "
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/contact_value"
+        android:layout_toEndOf="@+id/contact"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time: "
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:layout_below="@+id/date"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/time_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="None "
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/date_value"
+        android:layout_toEndOf="@+id/contact"/>
+
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mesaage: "
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:layout_below="@+id/time"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/msg_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="None "
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/time_value"
+        android:layout_toEndOf="@+id/msg"/>
+
+</RelativeLayout>
