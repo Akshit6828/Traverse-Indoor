@@ -106,8 +106,9 @@ public class fragment_dashboad extends Fragment {
         l3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getActivity(),GoogleSearchPage.class);
-                startActivity(i);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_medication()).commit();
+                //Intent i= new Intent(getActivity(),GoogleSearchPage.class);
+                //startActivity(i);
 
             }
         });
