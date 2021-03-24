@@ -1,2 +1,5 @@
-# Traverse-Indoor
-This repository contains the Gene Reader App Codebase fr App
+This repository contains the Gene Reader App Codebase.
+
+About this APP:
+An Android App that reads the sequenced DNA of all biological species and detects the imprints of the the nucleotides present in it i.e Detecting the genetic mutational change from of a sequenced DNA. It acts as a mini feasible tool for the genetic researchers and for the biotech field. It also helps to analyze the probability of disease in the next generation based on the concept of pedigree analysis(Predictive Gene Analysis)  with better UI Illustrations even for non- bio backgrounds. This gives the detailed information even in the bar graph to check and compare quantity of the proteins present in ones DNA Also with this it will be more helpful for the people to understand the implications and probability of the diseases especially in the embryonic condition through which technologies like GENE THERAPY could be implemented at the right time. Even after the birth the Implications of the Disease could be minimized having known the prior.
+
