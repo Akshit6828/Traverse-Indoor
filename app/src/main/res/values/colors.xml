@@ -18,7 +18,7 @@
     <color name="fr_start">#CF746D</color>
     <color name="fr_end">#ECD1D1</color>
 
-    <color name="light_medium_gray">#f3f3f3</color>
+    <color name="light_medium_gray">#f3f3f3f3</color>
 
     <!--- Custom Dialog Profile Colours-->
     <color name="bluedark">#2f333f</color>
