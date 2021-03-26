@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view_disease"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="10dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/pic_disease"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="4dp"
+            android:padding="5dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="7dp"
+            app:srcCompat="@drawable/asthma1" />
+
+        <TextView
+            android:id="@+id/text_disease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="35dp"
+            android:textColor="#000000"
+            android:text="Asthma | Breathing Problem"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:id="@+id/type_disease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="67dp"
+            android:textColor="#000000"
+            android:layout_marginBottom="32dp"
+            android:text="Type: Genetic"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="@+id/text_disease" />
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
