@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -88,7 +87,6 @@ public class Login extends AppCompatActivity {
                                     //Toast.makeText(Login.this, "User Confirmed and Name of User is "+nameofuser, Toast.LENGTH_SHORT).show();
                                     phonenumber = e1.getText().toString();
                                     progressBar.setVisibility(View.VISIBLE);
-
                                     //sendVerificationCodeToUser(phonenumber); ------- uncomment it to send sms verification .......
                                      Intent ji=new Intent(Login.this,MainPage.class);
                                     ji.putExtra("username",nameofuser);
@@ -163,17 +161,15 @@ public class Login extends AppCompatActivity {
     }
 
 
-
     private String sendVerificationCodeToUser(String phonenumber) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
               "+91" +phonenumber,        // Phone number to verify
                 60,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
-                (Activity) TaskExecutors.MAIN_THREAD,               // Activity (for callback binding)
+                TaskExecutors.MAIN_THREAD,               // Activity (for callback binding)
                 mCallbacks);        // OnVerificationStateChangedCallbacks
 
        return verificationCodeBySystem;
-
     }
     private  PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
