@@ -78,9 +78,13 @@
     <string name="Citrus_fruits">Citrus fruits, including grapefruit, oranges, and lemons, may have powerful blood-pressure-lowering effects.It may help keep your heart healthy by reducing heart disease risk factors.</string>
     <string name="fatty_fish">Fatty fish are an excellent source of omega-3 fats, which have significant heart health benefits.It may help reduce blood pressure levels by reducing inflammation.</string>
     <string name="Swiss">Swiss chard is a leafy green that’s packed with blood-pressure-regulating nutrients, including potassium and magnesium. </string>
-    <string name="Pumpkin"></string>
+    <string name="Pumpkin">Pumpkin seeds are concentrated source of nutrients important for blood pressure control.It  essential for blood vessel relaxation and blood pressure reduction.</string>
+    <string name="Broccoli_blood">Broccoli may help lower blood pressure by enhancing blood vessel function and increasing nitric oxide levels in your body.</string>
+    <string name="Greek_yogurt">Greek yogurt is a nutrient-dense dairy product that’s packed with minerals that help regulate blood pressure.</string>
 
-
+    <!--High Blood Pressure don'ts-->
+    <string name="Frozen_pizza">Frozen pizza are high in sugar, saturated fat, and sodium.Frozen pizza can have especially high levels of sodium.</string>
+    <string name="Pickles">The longer vegetables sit in canning and preserving liquids, the more sodium they pick up.</string>
 
     <string-array name="relation">
         <item>Choose relation</item>
