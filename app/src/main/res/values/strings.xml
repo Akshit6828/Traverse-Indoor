@@ -6,4 +6,91 @@
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
     <string name="my_node">Node</string>
 
+    <!--Do's Asthma-->
+    <string name="caffeine">It works similarly to the popular asthma medication theophylline, which opens up the airways.Drink hot tea/coffee to breathe better.</string>
+    <string name="garlic">Garlic is suitable in the early stages of asthma as it can quickly clear congestion in the lungs.Put garlic in your food.</string>
+    <string name="ginger">Recent studies encourage the use of ginger for asthma sufferers as it has shown to improve symptoms.</string>
+    <string name="Omega">Omega-3 acid is naturally found in oily fish and helps to reduce airway inflammation and also helps to enhance lung function.</string>
+    <string name="LemonJuice">Drinking lemon juice reduces the symptoms associated with asthma, as lemons are rich in Vitamin C.</string>
+
+    <!--Don'ts Asthma-->
+    <string name="allergens"> Asthma sufferers should be careful about avoiding foods they’re sensitive to.Some of the foods that may cause an allergic reaction are eggs,peanuts,tree nuts,shellfish,wheat etc </string>
+    <string name="Sulfites">Sulfites can possibly trigger asthma symptoms.They are often used to preserve food and can be found in:Red Wine/Beer,Pickled Foods,Dried Fruits,Bottled Lemon/Lime Juice,Maraschino Cherries.</string>
+    <string name="gas">Eating large meals or foods that cause gas will put pressure on your diaphragm and may cause chest tightness and trigger asthma flares.These foods include:fried foods,carbonated drinks,onions etc.</string>
+
+
+    <!--Medication asthma-->
+    <string name="medicine_asthma">\n1) Bronchodilators tablets\n2) Steroid tablets\n3) Anti-inflammatory\n4) Quick-relief inhalers containing albuterol.\n5)Oral corticosteroids </string>
+
+    <!--Do's cold and flu-->
+    <string name="gingerTea">Ginger’s potent anti-inflammtory properties were key in the root’s powers to combat a cold or flu.It boost your immunity.</string>
+    <string name="water">Water can be one of the most helpful drinks to sip. Staying hydrated can help loosen trapped mucus.Drinking at least  eight glasses of water a day.</string>
+    <string name="broccoli">Broccoli help boost immunity.It combat free radicals in your body and prevent you from getting sick.</string>
+    <string name="Spinach">Spinach is a major superfood that is great for your overall health.It contains vitamin C that help reduce symptoms of sickness.</string>
+    <string name="apple">"An apple a day keeps the doctor away". These antioxidants help boost immunity and reduce the risk of chronic diseases.</string>
+
+    
+    <!--don'ts cold and flu-->
+    <string name="Caffeine">Caffeinated drinks should be avoided as they are dehydrating. They include coffee, cola drinks, energy drinks and tea.</string>
+    <string name="alcohol">Alcohol is also dehydrating and should be avoided.It affects the functioning of the immune system and makes you more likely to get an infection.</string>
+    <string name="jagged_foods">Hard or jagged foods like crunchy crackers, chips, and foods with similar textures can aggravate a cough and sore throat.</string>
+    <string name="Fatty_foods">Greasy foods tend to make you feel worse, as it can increase inflammation</string>
+    <string name="SourOrPickled">Sour, pickled, or brined foods  contain vinegar and or salt, so they can increase inflammation in a sore throat.</string>
+
+    <string name="medicine_cold">\n1)COLDARIN ALL IN 1®(containing Paracetamol, Diphenhydramine, Phenylephrine)\n2)Cetirizine\n3)Oseltamivir (Tamiflu®)</string>
+        
+    <!--depression dos-->
+    <string name="protine">Foods like turkey, tuna, and chicken have an amino acid called tryptophan, which may help you make serotonin.Which need to clear your mind and boost your energy.</string>
+    <string name="vitamin">Depression is higher in people with low levels of vitamin D.People with seasonal affective disorder,tended to get better when the amount of vitamin D in their bodies went up.</string>
+    <string name="Selenium">Studies have reported a link between lowNuts selenium and poor moods.It is probably best to focus on foods:Beans and legumes,whole grains,nuts/seeds.</string>
+    <string name="Omega3">People that do not eat enough omega-3s may have higher rates of major depressive disorder.</string>
+    
+    
+    <!--deression dont-->
+    <string name="Alcohol">Alcohol even a little can mess up your sleep. Not enough rest can raise anxiety and cause depression.</string>
+    <string name="Soy_Sauce">This one is only for people who are sensitive to gluten.It can cause anxiety/depression and make you feel sluggish and not at your best.</string>
+    <string name="fried_food">If you eat lots of processed meat,fried food,refined cereals,candy,and high-fat dairy products, you’re more likely to be anxious and depressed.</string>
+    <string name="Toast">White bread is highly processed white flour that can quickly turns to blood sugar after you eat it and can cause energy spikes and crashes that can be bad for anxiety and depression.</string>
+    <string name="soda">It has all of the blood-spiking sugar that have a direct link to depression.Too much of the caffeine that many sodas have can be bad for anxiety, too.</string>
+
+    <!--medictaion depression-->
+    <string name="antidepressant">Antidepressant:-\n1)Selective serotonin reuptake inhibitors(SSRIs)\n2)Serotonin and norepinephrine reuptake inhibitors(SNRIs)\n3)Tricyclic antidepressants(TCAs)\n4)Monoamine oxidase inhibitors(MAOIs)</string>
+
+    <!--diabetics do's-->
+    <string name="leafy_green">Leafy green vegetables are extremely nutritious and low in calories.They’re also very low in digestible carbs,so they won’t significantly affect blood sugar levels.</string>
+    <string name="Avocados">Avocados have less than 1 gram of sugar, few carbohydrates, a high fiber content, and healthy fats,so you don’t have to worry about them raising your blood sugar levels.</string>
+    <string name="Chia_Seeds">Chia seeds are a wonderful food for people with diabetes.Chia seeds may also help maintain glycemic management in individuals with diabetes.</string>
+    <string name="Greek_Yogurt">Greek Yogurt is a great dairy choice for people with diabetes.Yogurt consumption may be associated with lower levels of blood glucose and insulin resistance.</string>
+    <string name="Nuts">All types of nuts contain fiber and are low in net carbs.Regular consumption may reduce inflammation and lower blood sugar,cholesterol levels.</string>
+    <string name="Broccoli">Broccoli may also help manage your blood sugar levels.Consuming broccoli sprouts led to a 10% reduction in blood glucose in people with diabetes.</string>
+
+
+    <!--diabetics don'ts-->
+    <string name="beverages">Sugary beverages are the worst drink choice for someone with diabetes.It may increase the risk of diabetes-related conditions like fatty liver disease.</string>
+    <string name="White_bread">Eating bread, bagels, and other refined-flour foods has been shown to significantly increase blood sugar levels in people.</string>
+    <string name="flavored_yogurt">Flavored yogurts are typically made from nonfat or low fat milk and loaded with carbs and may contain almost 31 grams of sugar.</string>
+    <string name="rice">Rice contains gluten which raise blood sugar.High carb foods not only raised blood sugar but also decreased brain function.</string>
+
+    <!--medication diabetes-->
+    <string name="med_diabetes">Type 1 diabetes medication:\n1)Insulin\n2)Amylinomimetic drug\n\nType 2 diabetes medication:\n1)Alpha-glucosidase inhibitors\n2)Biguanides\n3)DPP-4 inhibitors\n4)Thiazolidinediones.</string>
+
+    <!--High Blood Pressure does-->
+    <string name="Citrus_fruits">Citrus fruits, including grapefruit, oranges, and lemons, may have powerful blood-pressure-lowering effects.It may help keep your heart healthy by reducing heart disease risk factors.</string>
+    <string name="fatty_fish">Fatty fish are an excellent source of omega-3 fats, which have significant heart health benefits.It may help reduce blood pressure levels by reducing inflammation.</string>
+    <string name="Swiss">Swiss chard is a leafy green that’s packed with blood-pressure-regulating nutrients, including potassium and magnesium. </string>
+    <string name="Pumpkin"></string>
+
+
+
+    <string-array name="relation">
+        <item>Choose relation</item>
+        <item>You</item>
+        <item>Father</item>
+        <item>Mother</item>
+        <item>Paternal Grandfather</item>
+        <item>Paternal Grandmother</item>
+        <item>Maternal Grandfather</item>
+        <item>Maternal Grandmother</item>
+    </string-array>
+
 </resources>

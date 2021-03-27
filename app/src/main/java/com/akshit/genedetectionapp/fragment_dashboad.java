@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
 import androidx.fragment.app.FragmentTransaction;
 
 import android.preference.PreferenceManager;
@@ -72,7 +73,7 @@ public class fragment_dashboad extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View mylayout= inflater.inflate(R.layout.fragment_dashboad, container, false);
+        final View mylayout= inflater.inflate(R.layout.fragment_dashboad, container, false);
         l1=mylayout.findViewById(R.id.layout1);
         l2=mylayout.findViewById(R.id.layout2);
         l3=mylayout.findViewById(R.id.layout3);
@@ -80,6 +81,7 @@ public class fragment_dashboad extends Fragment {
         usersname=mylayout.findViewById(R.id.tv1);
         preferences= this.getActivity().getSharedPreferences("Local_Details",0);
        String getname=preferences.getString("username_in_sharedpreference","User");
+
 
        String[] firstname=getname.split(" ");
        usersname.setText("Welcome "+firstname[0]+"!");
@@ -104,16 +106,17 @@ public class fragment_dashboad extends Fragment {
         l3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getActivity(),GoogleSearchPage.class);
-                startActivity(i);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_medication()).commit();
+                //Intent i= new Intent(getActivity(),GoogleSearchPage.class);
+                //startActivity(i);
 
             }
         });
         l4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getActivity(),Versionupdates.class);
-                startActivity(i);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_set_reminder()).commit();
+
             }
         });
         return mylayout;

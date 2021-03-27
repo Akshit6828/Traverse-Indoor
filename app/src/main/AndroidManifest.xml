@@ -15,15 +15,17 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name="MainActivity" />
+        <activity android:name=".Illness_Remedies"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Familytree" />
         <activity android:name=".Versionupdates" />
         <activity android:name=".Usertree" />
         <activity android:name=".GoogleSearchPage" />
         <activity android:name=".NucleotideBlast" />
         <activity android:name=".Register" />
-        <activity android:name=".MainPage"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".MainPage"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen">
             <intent-filter>
