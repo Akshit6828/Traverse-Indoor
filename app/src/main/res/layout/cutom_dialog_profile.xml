@@ -9,13 +9,12 @@
     android:padding="5dp"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:layout_height="475dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/close"
         android:layout_width="30dp"
         android:layout_height="30dp"
-
         android:layout_gravity="end"
         android:layout_marginTop="4dp"
         android:gravity="center"
@@ -31,87 +30,84 @@
         app:layout_constraintVertical_bias="0.461">
 
     </TextView>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-        
-        
-                <ImageView
-                    android:layout_marginTop="15dp"
-                    android:id="@+id/iduserimage"
-                    android:layout_width="255dp"
-                    android:layout_height="141dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/boyfather"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23">
-        
-                </ImageView>
-                <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-                    android:background="@null"
-                    android:id="@+id/idname_custom_dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:text="Akshit Mangotra"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
-        
-                </TextView>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_marginStart="10dp"
-                        android:id="@+id/idrelation_custom_dialog"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:gravity="center"
-                        android:text="Relation: Self"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold">
-                    </TextView>
 
-                    <TextView
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="40dp"
-                        android:id="@+id/iddob"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="DOB: 23-08-2000"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold">
-                    </TextView>
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:id="@+id/iduserimage_custom_dialog"
+            android:layout_width="255dp"
+            android:layout_height="141dp"
+            android:layout_gravity="center"
+            android:src="@drawable/boyfather"
+            app:layout_constraintTop_toBottomOf="@+id/textView23">
 
-                </LinearLayout>
+        </ImageView>
+        <TextView
 
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/idgender_custom_dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="22dp"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:text="Gender: Male"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.422"
-                    app:layout_constraintStart_toEndOf="@+id/imageView4"
-                    tools:layout_editor_absoluteY="144dp">
-                </TextView>
-            </LinearLayout>
+            android:background="@null"
+            android:id="@+id/idname_custom_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="Akshit Mangotra"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold">
+
+        </TextView>
+        <TextView
+
+            android:background="@null"
+            android:id="@+id/idrelation_custom_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="Relation: "
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/iddob_custom_dialog"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="DOB: "
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold">
+        </TextView>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/idgender_custom_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="Gender:"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.422"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            tools:layout_editor_absoluteY="144dp">
+        </TextView>
+    </LinearLayout>
     <LinearLayout
         android:gravity="center_horizontal"
         android:layout_marginTop="15dp"
@@ -133,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Set\nReminder"
-               android:textStyle="bold"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="18sp">
 
@@ -193,7 +189,7 @@
 
         <Button
             android:layout_marginTop="10dp"
-            android:id="@+id/editbutton"
+            android:id="@+id/editbuttonoutput"
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:textSize="16sp"
