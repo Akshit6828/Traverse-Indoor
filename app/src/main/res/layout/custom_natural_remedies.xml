@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/asthma_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="10dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/pic_cure"
+            android:layout_width="150dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="4dp"
+            android:padding="5dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="13dp"
+            app:srcCompat="@drawable/allergens" />
+
+        <TextView
+            android:id="@+id/title_cure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:text="Allergens | Allergic food"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:id="@+id/text_cure"
+            android:layout_width="212dp"
+            android:layout_height="118dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/allergens"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="@+id/text_disease" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

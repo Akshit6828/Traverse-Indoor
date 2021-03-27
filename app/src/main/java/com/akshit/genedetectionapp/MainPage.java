@@ -99,7 +99,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public void applyTexts(String name, String dob, String gender, String relation) {
      //   Toast.makeText(this, "MainPage applyText called..with name is "+name+"rel ="+relation+"dob is "+dob, Toast.LENGTH_SHORT).show();
-      /*  PedigreeAnalysis.fetched_name=name;
+       /* PedigreeAnalysis.fetched_name=name;
         PedigreeAnalysis.fetched_dob=dob;
         PedigreeAnalysis.fetched_gender=gender;
         PedigreeAnalysis.fetched_relation=relation;*/

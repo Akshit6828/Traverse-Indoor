@@ -1,5 +1,7 @@
 package com.akshit.genedetectionapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,11 @@ public class Medicine_Fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    TextView textView1,textView2;
+    ImageView doc,med;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+    String choice;
 
     public Medicine_Fragment() {
         // Required empty public constructor
@@ -59,6 +68,31 @@ public class Medicine_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_medicine_, container, false);
+        View mylayout= inflater.inflate(R.layout.fragment_medicine_, container, false);
+        textView1=mylayout.findViewById(R.id.data);
+        textView2=mylayout.findViewById(R.id.textView28);
+        doc=mylayout.findViewById(R.id.imageView5);
+        med=mylayout.findViewById(R.id.imageView7);
+        preferences=getActivity().getSharedPreferences("Local_Details", Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
+        editor=preferences.edit();
+        choice= preferences.getString("Choice",null);
+        if(choice!=null) {
+            // String choice=bundle.getString("CHOICE_KEY2");
+            if (choice.equals("asthma")) {
+               textView1.setText(R.string.medicine_asthma);
+            }
+            else if(choice.equals("cold")){
+                textView1.setText(R.string.medicine_cold);
+            }
+            else if(choice.equals("depression")){
+                textView1.setText(R.string.antidepressant);
+            }
+            else if(choice.equals("diabetes")){
+                textView1.setText(R.string.med_diabetes);
+
+            }
+        }
+
+        return mylayout;
     }
 }
