@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +59,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
     FirebaseDatabase database;
     DatabaseReference reference,relation_Reference;
     ArrayList<String> stringArrayList;
-    boolean i1,i2,i3,i4,i5,i6,i7,i8,i9;
+    boolean lay1,lay2,lay3;
     DatabaseReference ref1,ref2,ref3,ref4,ref5,ref6,ref7,ref8,ref9;
     public PedigreeAnalysis() {
         // mStackLevel=0;
@@ -77,14 +78,6 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        i1=true;
-//        i2=true;
-//        i3=true;
-//        i4=true;
-//        i5=true;
-//        i6=true;
-//        i7=true;
-//        i9=true;
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -108,7 +101,6 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
         // Inflate the layout for this fragment
         View mylayout= inflater.inflate(R.layout.fragment_pedigree_analysis, container, false);
-        //PedigreeAnalysis fragment= new PedigreeAnalysis();
 
 //............Write your code here for fragment.......................
 
@@ -123,11 +115,8 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         im9=mylayout.findViewById(R.id.ib9);
 
         database=FirebaseDatabase.getInstance();
-
         reference=database.getReference("Users Family Data");
-
         stringArrayList  = new ArrayList<String>();
-
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -136,8 +125,44 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
                     StoringUserFamilyData obj= i.getValue(StoringUserFamilyData.class);
                     String fetched_result=obj.getRelation_with_user();
-                    Toast.makeText(getActivity(), "=>"+fetched_result, Toast.LENGTH_SHORT).show();
-                    stringArrayList.add(fetched_result);
+                    switch (fetched_result){
+                        case "Paternal Grand Father":
+                            im1.setBackground(null);
+                            im1.setBackgroundResource(R.drawable.male);
+                            break;
+                        case "Paternal Grand Mother":
+                            im2.setBackground(null);
+                            im2.setBackgroundResource(R.drawable.femalepng);
+                            break;
+                        case "Maternal Grand Father":
+                            im3.setBackground(null);
+                            im3.setBackgroundResource(R.drawable.male);
+                            break;
+                        case"Maternal Grand Mother":
+                            im4.setBackground(null);
+                            im4.setBackgroundResource(R.drawable.femalepng);
+                            break;
+                        case"Father":
+                            im5.setBackground(null);
+                            im5.setBackgroundResource(R.drawable.male);
+                            break;
+                        case"Mother":
+                            im6.setBackground(null);
+                            im6.setBackgroundResource(R.drawable.femalepng);
+                            break;
+                        case"Self":
+                            im7.setBackground(null);
+                            im7.setBackgroundResource(R.drawable.male);
+                            break;
+                        case"Child 1 Female":
+                            im8.setBackground(null);
+                            im8.setBackgroundResource(R.drawable.femalepng);
+                            break;
+                        case"Child 2 Male":
+                            im9.setBackground(null);
+                            im9.setBackgroundResource(R.drawable.male);
+                            break;
+                    }
                 }
             }
 
@@ -146,59 +171,11 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
             }
         });
-        Toast.makeText(getActivity(), "Outer Toast", Toast.LENGTH_SHORT).show();
 
-        for(int index=0;index<stringArrayList.size();index++){
-            String  s=stringArrayList.get(index);
-            Toast.makeText(getActivity(), "--->"+s, Toast.LENGTH_LONG).show();
-
-            switch (s) {
-                case "Paternal Grand Father":
-                    im1.setBackground(null);
-                    im1.setBackgroundResource(R.drawable.male);
-                    break;
-                case "Paternal Grand Mother":
-                    im2.setBackground(null);
-                    im2.setBackgroundResource(R.drawable.femalepng);
-                    break;
-                case "Maternal Grand Father":
-                    im3.setBackground(null);
-                    im3.setBackgroundResource(R.drawable.male);
-                    break;
-                case"Maternal Grand Mother":
-                    im4.setBackground(null);
-                    im4.setBackgroundResource(R.drawable.femalepng);
-                    break;
-                case"Father":
-                    im5.setBackground(null);
-                    im5.setBackgroundResource(R.drawable.male);
-                    break;
-                case"Mother":
-                    im6.setBackground(null);
-                    im6.setBackgroundResource(R.drawable.femalepng);
-                    break;
-                case"Self":
-                    im7.setBackground(null);
-                    im7.setBackgroundResource(R.drawable.femalepng);
-                    break;
-                case"Child 1 Female":
-                    im8.setBackground(null);
-                    im8.setBackgroundResource(R.drawable.femalepng);
-                    break;
-                case"Child 2 Male":
-                    im9.setBackground(null);
-                    im9.setBackgroundResource(R.drawable.male);
-                    break;
-
-            }
-        }
         im1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ans=false;
-                //boolean check=checkReferencePresentInFirebase("Paternal Grand Father");
                 flag=0;
-
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -236,47 +213,6 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
                     }
                 });
-
-
-
-                /*if(check) {
-
-                    im1.setBackground(null);
-                    im1.setBackgroundResource(R.drawable.male);
-
-                   reference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for (DataSnapshot i : dataSnapshot.getChildren()) {
-                                    StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                                    String relation_with_user = obj.getRelation_with_user();
-                                  //  Toast.makeText(getActivity(), "relatoion fetched is " + relation_with_user, Toast.LENGTH_SHORT).show();
-                                    if (relation_with_user != null) {
-                                       // Toast.makeText(getActivity(), "RLT = NOt Null " + relation_with_user, Toast.LENGTH_SHORT).show();
-                                        if (relation_with_user.equals("Paternal Grand Father")) {
-                                            fetched_name = obj.getName();
-                                            fetched_dob = obj.getDob();
-                                            fetched_gender = obj.getGender();
-                                            fetched_relation = relation_with_user;
-                                            showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Toast.makeText(getActivity(), "onCancelled Called", Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-
-
-                }
-                else {
-                    showInputCustomDialog("Paternal Grand Father");
-                }*/
             }
         });
         im2.setOnClickListener(new View.OnClickListener() {
@@ -302,6 +238,10 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                                         fetched_relation = relation_with_user;
 
                                         showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
+                                        if(lay2){
+                                            Toast.makeText(getActivity(), "LAy2 Called", Toast.LENGTH_SHORT).show();
+                                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_pedigree_analysis,new Match_Symptoms()).commit();
+                                        }
                                         break;
                                     }
 
@@ -341,7 +281,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                                 if (relation_with_user != null) {
                                     if (relation_with_user.equals("Maternal Grand Father")) {
                                         im3.setBackground(null);
-                                        im3.setBackgroundResource(R.drawable.femalepng);
+                                        im3.setBackgroundResource(R.drawable.male);
                                         fetched_name = obj.getName();
                                         flag=1;
                                         fetched_dob = obj.getDob();
@@ -374,29 +314,36 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         im4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                flag=0;
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot i : dataSnapshot.getChildren()) {
                             StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                            String relation_with_user = obj.getRelation_with_user();
-                            if (relation_with_user != null) {
-                                if (relation_with_user.equals("Maternal Grand Mother")) {
-                                    fetched_name = obj.getName();
-                                    fetched_dob = obj.getDob();
-                                    fetched_gender = obj.getGender();
-                                    fetched_relation = relation_with_user;
-                                    im4.setBackground(null);
-                                    im4.setBackgroundResource(R.drawable.femalepng);
-                                    showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
-                                    break;
-                                } else {
-                                    //Fetch DataBase Details:
+                            if (obj != null) {
+                                String relation_with_user = obj.getRelation_with_user();
+                                if (relation_with_user != null) {
+                                    if (relation_with_user.equals("Maternal Grand Mother")) {
+                                        fetched_name = obj.getName();
+                                        fetched_dob = obj.getDob();
+                                        fetched_gender = obj.getGender();
+                                        fetched_relation = relation_with_user;
+                                        im4.setBackground(null);
+                                        im4.setBackgroundResource(R.drawable.femalepng);
+                                        showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
+                                        flag=1;
+                                        break;
+                                    }
+                                }
+                                else{
                                     showInputCustomDialog("Maternal Grand Mother");
                                 }
                             }
                         }
+                        if(flag==0){
+                            showInputCustomDialog("Maternal Grand Mother");
+                        }
+
                     }
 
                     @Override
@@ -409,30 +356,37 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         im5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                flag=0;
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot i : dataSnapshot.getChildren()) {
                             StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                            String relation_with_user = obj.getRelation_with_user();
-                            if (relation_with_user != null) {
-                                if (relation_with_user.equals("Father")) {
-                                    fetched_name = obj.getName();
-                                    fetched_dob = obj.getDob();
-                                    fetched_gender = obj.getGender();
-                                    fetched_relation = relation_with_user;
-                                    im5.setBackground(null);
-                                    im5.setBackgroundResource(R.drawable.male);
-                                    showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
-                                    break;
+                            if (obj != null) {
+                                String relation_with_user = obj.getRelation_with_user();
+                                if (relation_with_user != null) {
+                                    if (relation_with_user.equals("Father")) {
+                                        fetched_name = obj.getName();
+                                        fetched_dob = obj.getDob();
+                                        fetched_gender = obj.getGender();
+                                        fetched_relation = relation_with_user;
+                                        im5.setBackground(null);
+                                        im5.setBackgroundResource(R.drawable.male);
+
+                                        showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
+                                        flag=1;
+                                        break;
+                                    }
+                                }
+                                else{
+                                    showInputCustomDialog("Father");
                                 }
                             }
-                            else {
-                                //Fetch DataBase Details:
-                                showInputCustomDialog("Father");
-                            }
                         }
+                        if(flag==0){
+                            showInputCustomDialog("Father");
+                        }
+
                     }
 
                     @Override
@@ -446,31 +400,37 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         im6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                flag=0;
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot i : dataSnapshot.getChildren()) {
                             StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                            String relation_with_user = obj.getRelation_with_user();
-                            if (relation_with_user != null) {
-                                if (relation_with_user.equals("Mother")) {
-                                    fetched_name = obj.getName();
-                                    fetched_dob = obj.getDob();
-                                    fetched_gender = obj.getGender();
-                                    fetched_relation = relation_with_user;
-                                    im6.setBackground(null);
-                                    im6.setBackgroundResource(R.drawable.femalepng);
-                                    showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
-                                    break;
+                            if (obj != null) {
+                                String relation_with_user = obj.getRelation_with_user();
+                                if (relation_with_user != null) {
+                                    if (relation_with_user.equals("Mother")) {
+                                        im6.setBackground(null);
+                                        im6.setBackgroundResource(R.drawable.femalepng);
+                                        fetched_name = obj.getName();
+                                        fetched_dob = obj.getDob();
+                                        fetched_gender = obj.getGender();
+                                        fetched_relation = relation_with_user;
+
+                                        showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
+                                        flag=1;
+                                        break;
+                                    }
+                                }
+                                else{
+                                    showInputCustomDialog("Mother");
                                 }
                             }
-                            else {
-                                //Fetch DataBase Details:
-                                showInputCustomDialog("Mother");
-                            }
                         }
+                        if(flag==0){
+                            showInputCustomDialog("Mother");
+                        }
+
                     }
 
                     @Override
@@ -480,36 +440,46 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                 });
             }
         });
+
         im7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 flag=0;
-
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot i : dataSnapshot.getChildren()) {
                             StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                            String relation_with_user = obj.getRelation_with_user();
-                            if (relation_with_user != null) {
-                                if (relation_with_user.equals("Self")) {
-                                    fetched_name = obj.getName();
-                                    fetched_dob = obj.getDob();
-                                    fetched_gender = obj.getGender();
-                                    fetched_relation = relation_with_user;
-                                    im7.setBackground(null);
-                                    flag=1;
-                                    im7.setBackgroundResource(R.drawable.male);
-                                    showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
-
-                                    break;
+                            if (obj != null) {
+                                String relation_with_user = obj.getRelation_with_user();
+                                if (relation_with_user != null) {
+                                    if (relation_with_user.equals("Self")) {
+                                                if(fetched_gender.equals("Male")) {
+                                                  im7.setBackground(null);
+                                                  im7.setBackgroundResource(R.drawable.male);
+                                                }
+                                                else if(fetched_gender.equals("Female")){
+                                                    im7.setBackground(null);
+                                                    im7.setBackgroundResource(R.drawable.femalepng);
+                                                }
+                                        fetched_name = obj.getName();
+                                        fetched_dob = obj.getDob();
+                                        fetched_gender = obj.getGender();
+                                        fetched_relation = relation_with_user;
+                                        showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
+                                        flag=1;
+                                        break;
+                                    }
+                                }
+                                else{
+                                    showInputCustomDialog("Self");
                                 }
                             }
-                            else {
-                                //Fetch DataBase Details:
-                                showInputCustomDialog("Self");
-                            }
                         }
+                        if(flag==0){
+                            showInputCustomDialog("Self");
+                        }
+
                     }
 
                     @Override
@@ -517,6 +487,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
                     }
                 });
+
             }
 
 
@@ -530,25 +501,31 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot i : dataSnapshot.getChildren()) {
                             StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                            String relation_with_user = obj.getRelation_with_user();
-                            if (relation_with_user != null) {
-                                if (relation_with_user.equals("Child 1 Female")) {
-                                    fetched_name = obj.getName();
-                                    fetched_dob = obj.getDob();
-                                    fetched_gender = obj.getGender();
-                                    fetched_relation = relation_with_user;
-                                    im8.setBackground(null);
-                                    im8.setBackgroundResource(R.drawable.femalepng);
-                                    flag=1;
-                                    showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
-                                    break;
+                            if (obj != null) {
+                                String relation_with_user = obj.getRelation_with_user();
+                                if (relation_with_user != null) {
+                                    if (relation_with_user.equals("Child 1 Female")) {
+                                        im8.setBackground(null);
+                                        im8.setBackgroundResource(R.drawable.femalepng);
+                                        fetched_name = obj.getName();
+                                        fetched_dob = obj.getDob();
+                                        fetched_gender = obj.getGender();
+                                        fetched_relation = relation_with_user;
+
+                                        showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
+                                        flag=1;
+                                        break;
+                                    }
+                                }
+                                else{
+                                    showInputCustomDialog("Child 1 Female");
                                 }
                             }
-                            else {
-                                //Fetch DataBase Details:
-                                showInputCustomDialog("Child 1 Female");
-                            }
                         }
+                        if(flag==0){
+                            showInputCustomDialog("Child 1 Female");
+                        }
+
                     }
 
                     @Override
@@ -556,38 +533,43 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
                     }
                 });
+
             }
-
-
-
         });
         im9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                flag=0;
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot i : dataSnapshot.getChildren()) {
                             StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                            String relation_with_user = obj.getRelation_with_user();
-                            if (relation_with_user != null) {
-                                if (relation_with_user.equals("Child 2 Male")) {
-                                    fetched_name = obj.getName();
-                                    fetched_dob = obj.getDob();
-                                    fetched_gender = obj.getGender();
-                                    fetched_relation = relation_with_user;
-                                    im9.setBackground(null);
-                                    im9.setBackgroundResource(R.drawable.male);
-                                    showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
-                                    break;
+                            if (obj != null) {
+                                String relation_with_user = obj.getRelation_with_user();
+                                if (relation_with_user != null) {
+                                    if (relation_with_user.equals("Child 2 Male")) {
+                                        im9.setBackground(null);
+                                        im9.setBackgroundResource(R.drawable.male);
+                                        fetched_name = obj.getName();
+                                        fetched_dob = obj.getDob();
+                                        fetched_gender = obj.getGender();
+                                        fetched_relation = relation_with_user;
+
+                                        showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
+                                        flag=1;
+                                        break;
+                                    }
+                                }
+                                else{
+                                    showInputCustomDialog("Child 2 Male");
                                 }
                             }
-                            else {
-                                //Fetch DataBase Details:
-                                showInputCustomDialog("Child 2 Male");
-                            }
                         }
+                        if(flag==0){
+                            showInputCustomDialog("Child 2 Male");
+                        }
+
                     }
 
                     @Override
@@ -595,22 +577,16 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
                     }
                 });
+
             }
         });
+
 
         return mylayout;
 
     }
 
     //*********************INPUT DIALOG CODE GOES HERE***************************************
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        // dialog.dismiss();
-        //  dialog_input.dismiss();
-    }
 
 
     public void showInputCustomDialog(final String relation) {
@@ -678,28 +654,23 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
             dialog.dismiss();
             dialog=null;
         }
-
-
         dialog_input= new Dialog(getActivity());
-
-        //************ IMPORTANT TO WRITE.....................................................
+        //Setting the content view for input dialog.
         dialog_input.setContentView(R.layout.custom_dialog_profile_input);
-
         database=FirebaseDatabase.getInstance();
+        dialog_input.setCanceledOnTouchOutside(true);
         reference=database.getReference("Users Family Data");
-
+        //Adjusting the Dialog width and height...
         dialog_input.getWindow()
                 .setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                         WindowManager.LayoutParams.WRAP_CONTENT);
-
-
+        //Fetching the widgets of CustomInputDialog..
         final EditText input_name=dialog_input.findViewById(R.id.id_input_name);
         final EditText input_DOB=dialog_input.findViewById(R.id.id_input_dob);
         final EditText input_gender=dialog_input.findViewById(R.id.id_input_gender);
         final Button set_profile=dialog_input.findViewById(R.id.input_editbutton);
         final TextView cross=dialog_input.findViewById(R.id.close_input);
         TextView relation_user= dialog_input.findViewById(R.id.id_input_relation);
-
 
         fetched_relation=relation;
         relation_user.setText(fetched_relation);
@@ -726,9 +697,6 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                 String final_name=input_name.getText().toString();
                 String final_dob=input_DOB.getText().toString();
                 String final_gender=input_gender.getText().toString();
-
-                //Checking if relation isnt already there in firebase.
-                // Write Logic here!
                 reference=database.getReference("Users Family Data");
                 //Storing Details in Firebase.
                 StoringUserFamilyData storingUserFamilyData = new StoringUserFamilyData();
@@ -744,38 +712,31 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                     case "Paternal Grand Father":
                         im1.setBackground(null);
                         im1.setBackgroundResource(R.drawable.male);
-                        i1=true;
                         break;
                     case "Paternal Grand Mother":
                         im2.setBackground(null);
                         im2.setBackgroundResource(R.drawable.femalepng);
-                        i2=true;
                         break;
                     case "Maternal Grand Father":
                         im3.setBackground(null);
                         im3.setBackgroundResource(R.drawable.male);
-                        i3=true;
                         break;
                     case "Maternal Grand Mother":
                         im4.setBackground(null);
                         im4.setBackgroundResource(R.drawable.femalepng);
-                        i4=true;
                         break;
                     case "Father":
                         im5.setBackground(null);
                         im5.setBackgroundResource(R.drawable.male);
-                        i5=true;
                         break;
                     case "Mother":
                         im6.setBackground(null);
                         im6.setBackgroundResource(R.drawable.femalepng);
-                        i6=true;
                         break;
                     case "Self":
                         if (final_gender.equals("Male")) {
                             im7.setBackground(null);
                             im7.setBackgroundResource(R.drawable.male);
-                            i7=true;
                             break;
                         }
                         else {
@@ -802,26 +763,13 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
     }
 
-
     //******************CUSTOM DIALOG PROFILE TO BE SHOWN*****************************
-
-   /* @Override
-    public void onPause() {
-        super.onPause();
-        dialog.dismiss();
-        dialog_input.dismiss();
-    }*/
-
 
     private void showCustomDialog(String name_of_current_profile, String gender_user, String relation_with_user, String dob) {
         if(dialog_input!=null){
             dialog_input.dismiss();
         }
-// 1-->2-->3-->...9
-        //Making sure about other opened dialog.
-
         dialog= new Dialog(getActivity());
-
         dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.cutom_dialog_profile);
         LinearLayout l1,l2,l3;
@@ -834,10 +782,14 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         final TextView dobget= dialog.findViewById(R.id.iddob_custom_dialog);
         final TextView cross=dialog.findViewById(R.id.close);
         final Button edit_profile=dialog.findViewById(R.id.editbuttonoutput);
+        final Button close_profile_output=dialog.findViewById(R.id.closebuttondialog);
 
         l1=dialog.findViewById(R.id.setReminder);
         l2=dialog.findViewById(R.id.match_symptoms);
         l3=dialog.findViewById(R.id.preventive_measures);
+        TextView tvreminder=dialog.findViewById(R.id.tvsetReminder);
+        TextView tvmatch_symptoms=dialog.findViewById(R.id.tvmatch_symptoms);
+        TextView tvpreventive_measures=dialog.findViewById(R.id.tvpreventive_measures);
 
         if(gender_user!=null){
             Uri imgUri;
@@ -862,6 +814,19 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
             }
         });
+        close_profile_output.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        close_profile_output.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                dialog.dismiss();
+                return false;
+            }
+        });
 
         //Cross button listener
         cross.setOnClickListener(new View.OnClickListener() {
@@ -876,12 +841,18 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
             @Override
             public void onClick(View view) {
                 //Code for Setting reminder fragment and dismissing the dialog.
+                dialog.dismiss();
             }
         });
         l2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Code for Symptoms match fragment and dismissing the dialog.
+                //lay2=true;
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Match_Symptoms()).commit();
+                dialog.dismiss();
+
+
             }
         });
         l3.setOnClickListener(new View.OnClickListener() {
@@ -891,7 +862,28 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                 dialog.dismiss();
             }
         });
+        //Inner TextView Listeners..
+        tvreminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        tvmatch_symptoms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Match_Symptoms()).commit();
+                dialog.dismiss();
 
+
+            }
+        });
+        tvpreventive_measures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
         dialog.show();
 
     }

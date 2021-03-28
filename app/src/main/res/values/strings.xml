@@ -29,7 +29,7 @@
     <string name="Spinach">Spinach is a major superfood that is great for your overall health.It contains vitamin C that help reduce symptoms of sickness.</string>
     <string name="apple">"An apple a day keeps the doctor away". These antioxidants help boost immunity and reduce the risk of chronic diseases.</string>
 
-    
+
     <!--don'ts cold and flu-->
     <string name="Caffeine">Caffeinated drinks should be avoided as they are dehydrating. They include coffee, cola drinks, energy drinks and tea.</string>
     <string name="alcohol">Alcohol is also dehydrating and should be avoided.It affects the functioning of the immune system and makes you more likely to get an infection.</string>
@@ -38,14 +38,14 @@
     <string name="SourOrPickled">Sour, pickled, or brined foods  contain vinegar and or salt, so they can increase inflammation in a sore throat.</string>
 
     <string name="medicine_cold">\n1)COLDARIN ALL IN 1®(containing Paracetamol, Diphenhydramine, Phenylephrine)\n2)Cetirizine\n3)Oseltamivir (Tamiflu®)</string>
-        
+
     <!--depression dos-->
     <string name="protine">Foods like turkey, tuna, and chicken have an amino acid called tryptophan, which may help you make serotonin.Which need to clear your mind and boost your energy.</string>
     <string name="vitamin">Depression is higher in people with low levels of vitamin D.People with seasonal affective disorder,tended to get better when the amount of vitamin D in their bodies went up.</string>
     <string name="Selenium">Studies have reported a link between lowNuts selenium and poor moods.It is probably best to focus on foods:Beans and legumes,whole grains,nuts/seeds.</string>
     <string name="Omega3">People that do not eat enough omega-3s may have higher rates of major depressive disorder.</string>
-    
-    
+
+
     <!--deression dont-->
     <string name="Alcohol">Alcohol even a little can mess up your sleep. Not enough rest can raise anxiety and cause depression.</string>
     <string name="Soy_Sauce">This one is only for people who are sensitive to gluten.It can cause anxiety/depression and make you feel sluggish and not at your best.</string>
@@ -81,8 +81,7 @@
     <string name="Pumpkin"></string>
 
 
-
-    <string-array name="relation">
+   <string-array name="relation">
         <item>Choose relation</item>
         <item>You</item>
         <item>Father</item>
@@ -93,4 +92,71 @@
         <item>Maternal Grandmother</item>
     </string-array>
 
+    <!-- String Array for Diabetes Symptoms -->
+    <string-array name="diabetes_symptoms">
+        <item>Urinate (pee) a lot, often at night</item>
+        <item>Are very thirsty</item>
+        <item>Lose weight without trying</item>
+        <item>Gets hungry after small intervals of food intake</item>
+        <item>Have blurry vision</item>
+        <item>Have numb or tingling hands or feet</item>
+        <item>Feel very tired</item>
+        <item>Have very dry skin</item>
+        <item>Have sores that heal slowly</item>
+        <item>Have more infections than usual</item>
+    </string-array>
+    <string-array name="migrane_symptoms">
+        <item>Constipation</item>
+        <item>Mood changes, from depression to euphoria</item>
+        <item>Food cravings</item>
+        <item>Neck stiffness</item>
+        <item>Increased thirst and urination</item>
+        <item>Frequent yawning</item>
+    </string-array>
+    <string-array name="hyperthyroid_symptoms">
+        <item>Experiencing anxiety, irritability, and nervousness.</item>
+        <item>Having trouble sleeping.</item>
+        <item>Losing weight.</item>
+        <item>Having an enlarged thyroid gland or a goiter.</item>
+        <item>Having muscle weakness and tremors.</item>
+        <item>Experiencing irregular menstrual periods or having your menstrual cycle stop.</item>
+        <item>Feeling sensitive to heat.</item>
+        <item>Having vision problems or eye irritation</item>
+
+    </string-array>
+    <string-array name="hypothyroid_symptoms">
+        <item>Feeling tired (fatigue).</item>
+        <item>Gaining weight.</item>
+        <item>Experiencing forgetfulness.</item>
+        <item>Having frequent and heavy menstrual periods.</item>
+        <item>Having dry and coarse hair.</item>
+        <item>Having a hoarse voice.</item>
+        <item>Experiencing an intolerance to cold temperatures</item>
+
+    </string-array>
+<string-array name="congenital_heart_disease_symptoms">
+   <item> Abnormal heart rhythms (arrhythmias)</item>
+   <item> A bluish tint to the skin, lips, and fingernails (cyanosis)</item>
+    <item> Shortness of breath</item>
+   <item> Tiring quickly upon exertion</item>
+   <item> Swelling of body tissue or organs (edema)</item>
+
+</string-array>
+    <string-array name="thalassemia_symptoms">
+       <item> Fatigue</item>
+       <item> Weakness</item>
+       <item> Pale or yellowish skin</item>
+       <item> Facial bone deformities</item>
+       <item> Slow growth</item>
+       <item> Abdominal swelling</item>
+       <item> Dark urine</item>
+    </string-array>
+    <string-array name="rheumatoid_arthritis_symptoms">
+    <item>Tender, warm, swollen joints</item>
+    <item>Joint stiffness is usually worse in the mornings and after inactivity</item>
+    <item>Fatigue, fever, and loss of appetite</item>
+    <item>Black/ Red spots on the body without any skincare.</item>
+    <item>Eyes redness.</item>
+
+    </string-array>
 </resources>

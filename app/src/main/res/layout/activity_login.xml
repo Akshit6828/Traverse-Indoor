@@ -11,18 +11,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="164dp"
+        android:layout_marginBottom="36dp"
         android:capitalize="words"
         android:fontFamily="@font/simonetta_italic"
         android:text="Hey There!"
         android:textColor="#000007"
         android:textSize="50sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintBottom_toTopOf="@+id/e1"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/e1"
@@ -70,9 +68,11 @@
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/progressbar"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/e2"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintVertical_bias="0.13" />
 
     <ProgressBar
         android:id="@+id/progressbar"
@@ -99,7 +99,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/b1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.659"
         app:layout_constraintStart_toEndOf="@+id/b1"
         app:layout_constraintTop_toBottomOf="@+id/progressbar"
         app:layout_constraintVertical_bias="1.0" />
