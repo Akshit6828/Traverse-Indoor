@@ -21,7 +21,9 @@
         android:text="X"
         style="bold"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:background="@drawable/container_bg"
+        android:textColor="@color/bluedark"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toTopOf="@+id/textView22"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -186,36 +188,21 @@
     </LinearLayout>
     <LinearLayout
         android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/editbuttonoutput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/custom_dialog_button"
-            android:text="Edit Profile"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold">
-
-        </Button>
 
         <Button
             android:id="@+id/closebuttondialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="43dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/custom_dialog_button"
+            android:foregroundGravity="center"
+            android:gravity="center"
             android:text="Close"
             android:textColor="@color/white"
             android:textSize="16sp"

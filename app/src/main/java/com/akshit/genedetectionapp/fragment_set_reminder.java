@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,6 +51,7 @@ public class fragment_set_reminder extends Fragment {
     Button set;
     Spinner r;
     String relation[];
+    String username,userrelation;
 
     public fragment_set_reminder() {
         // Required empty public constructor
@@ -89,6 +91,15 @@ public class fragment_set_reminder extends Fragment {
 
         View mylayout=  inflater.inflate(R.layout.fragment_set_reminder, container, false);
         fab=mylayout.findViewById(R.id.floatingActionButton);
+        if(getArguments()!=null) {
+            username = getArguments().getString("UserName");
+            userrelation = getArguments().getString("UserRelation");
+            if (username == null || userrelation == null) {
+                Toast.makeText(getActivity(), "No reminder set", Toast.LENGTH_SHORT).show();
+            } else {
+                //Logic to show in Recycler View.
+            }
+        }
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
