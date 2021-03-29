@@ -21,42 +21,21 @@
         android:textSize="25dp"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.369" />
-
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="280dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_design"
-        android:ems="10"
-        android:hint="    Enter Phone number"
-        android:inputType="phone"
-        android:paddingStart="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="@+id/textView23"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:paddingStart="10dp"
-        android:background="@drawable/button_design"
         android:layout_width="280dp"
         android:layout_height="41dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPhone"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintVertical_bias="0.066" />
+        android:layout_marginTop="44dp"
+        android:background="@drawable/button_design"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView23"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <EditText
         android:id="@+id/editTextDate"
@@ -74,58 +53,55 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintVertical_bias="0.105" />
 
     <EditText
-        android:background="@drawable/button_design"
-        android:paddingStart="10dp"
-        android:paddingRight="15dp"
         android:id="@+id/editTextTime"
         android:layout_width="280dp"
         android:layout_height="41dp"
+        android:background="@drawable/button_design"
         android:drawableRight="@drawable/ic_time"
         android:ems="10"
         android:hint="   hh:mm"
         android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:paddingRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextDate"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextDate"
         app:layout_constraintTop_toBottomOf="@+id/editTextDate"
-        app:layout_constraintVertical_bias="0.147"
-        />
+        app:layout_constraintVertical_bias="0.147" />
 
     <EditText
-        android:background="@drawable/button_design"
-        android:paddingStart="10dp"
         android:id="@+id/editTextMessage"
         android:layout_width="283dp"
         android:layout_height="81dp"
-        android:layout_marginTop="28dp"
+        android:background="@drawable/button_design"
         android:ems="10"
-        android:hint="  Type Message for Reminder.."
         android:gravity="left"
+        android:hint="  Type Message for Reminder.."
+        android:paddingStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTime"
         app:layout_constraintStart_toStartOf="@+id/editTextTime"
         app:layout_constraintTop_toBottomOf="@+id/editTextTime"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.23" />
 
     <Button
         android:id="@+id/button_set"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
-        android:layout_height="wrap_content"
         android:background="@drawable/moretocome"
-        android:textSize="20dp"
-        android:textColor="@color/white"
         android:text="Set Reminder"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextMessage"
         app:layout_constraintStart_toStartOf="@+id/editTextMessage"
         app:layout_constraintTop_toBottomOf="@+id/editTextMessage" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

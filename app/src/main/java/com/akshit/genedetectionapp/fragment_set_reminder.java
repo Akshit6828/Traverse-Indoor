@@ -26,6 +26,11 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Calendar;
@@ -52,6 +57,8 @@ public class fragment_set_reminder extends Fragment {
     Spinner r;
     String relation[];
     String username,userrelation;
+    FirebaseDatabase database;
+    DatabaseReference reference;
 
     public fragment_set_reminder() {
         // Required empty public constructor
@@ -105,12 +112,12 @@ public class fragment_set_reminder extends Fragment {
             public void onClick(View view) {
                  final Dialog dialog=new Dialog(getActivity());
                  dialog.setContentView(R.layout.custom_dialog);
-                 c=dialog.findViewById(R.id.editTextPhone);
                  r=dialog.findViewById(R.id.spinner);
                  d=dialog.findViewById(R.id.editTextDate);
                  t=dialog.findViewById(R.id.editTextTime);
                  m=dialog.findViewById(R.id.editTextMessage);
                  set=dialog.findViewById(R.id.button_set);
+
 
                     dialog.show();
                     final int y,mm,dd,h,min;
@@ -146,7 +153,38 @@ public class fragment_set_reminder extends Fragment {
 
                         if (r.getSelectedItemPosition() > 0) {
                           // get selected item value
-                            String itemvalue = String.valueOf(r.getSelectedItem());
+                            if(getArguments()==null) {
+                                userrelation = String.valueOf(r.getSelectedItem());
+                                //item-->firebase?
+                                reference = database.getReference("Users Family Data");
+                                reference.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for (DataSnapshot i : snapshot.getChildren()) {
+                                            StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
+                                            if (obj != null) {
+                                                String fetched_username = obj.getName();
+                                                String fetched_Relation = obj.getRelation_with_user();
+                                                if (fetched_Relation != null) {
+                                                    if (userrelation.equals(fetched_Relation)) {
+                                                        username = fetched_username;
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
+
+                                //logic for setting the alarm with username as name and userelation as relation.
+
+
                         } else {
                           // set error message on spinner
                             TextView errorTextview = (TextView) r.getSelectedView();
