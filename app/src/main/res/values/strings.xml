@@ -160,12 +160,11 @@
     </string-array>
 
     <string-array name="all_symptoms">
-        <item>Urinate (pee) a lot, often at night</item>
+        <item>Common Symptoms</item>
         <item>Are very thirsty</item>
         <item>Lose weight without trying</item>
         <item>Gets hungry after small intervals of food intake</item>
         <item>Have blurry vision</item>
-        <item>Have numb or tingling hands or feet</item>
         <item>Feel very tired</item>
         <item>Have very dry skin</item>
         <item>Have sores that heal slowly</item>
@@ -173,34 +172,26 @@
 
         //Migrane
         <item>Constipation</item>
-        <item>Mood changes, from depression to euphoria(Getting Sudden Excited)</item>
         <item>Much Food cravings when mind is not stable</item>
-        <item>Neck stiffness</item>//age specific below 25-30
         <item>Increased thirst and urination during severe headache</item>
         <item>Frequent yawning while not able to sleep during headache</item>
 
         //Hyper thyroid Symptoms…
         <item>Experiencing anxiety, irritability, and nervousness</item>
         <item>Having trouble sleeping</item>
-        <item>Losing weight without giving efforts</item>
         <item>Having an enlarged thyroid gland or a goiter</item>
-        <item>Having muscle weakness and tremors</item>
         <item>Experiencing irregular menstrual periods or having your menstrual cycle stop</item>
         <item>Feeling sensitive to heat</item>
         <item>Having vision problems or eye irritation</item>
 
         //Hypo thyroid Symptoms…
         <item>Feeling tired (fatigue) with doing a little work</item>
-        <item>Gaining weight without eating much</item>
-        <item>Experiencing forgetfulness</item>
         <item>Having frequent and heavy menstrual periods</item>
         <item>Having dry and coarse hair</item>
         <item>Having a hoarse voice</item>
         <item>Experiencing an intolerance to cold temperatures</item>
 
         //Congenital heart disease…
-        <item>Abnormal heart rhythms (arrhythmias) either too fast or too slow.</item>
-        <item>A bluish tint to the skin, lips, and fingernails</item>
         <item>Shortness of breath</item>
         <item>Tiring quickly upon exertion</item>
         <item>Swelling of body tissue or organs (edema)</item>
@@ -218,8 +209,26 @@
         <item>Tender, warm, swollen joints</item>
         <item>Joint stiffness is usually worse in the mornings and after inactivity</item>
         <item>Fatigue, fever, and loss of appetite</item>
-        <item>Black/ Red spots on the body without any skincare</item>
         <item>Eyes redness</item>
+
+        //-----Disease specific for 25-30 below:
+        <item>Please Note:\n Below symptoms are disease specific. Please fill the following symptoms with care if your age is better 25–30 years or below.</item>
+        <item>Neck stiffness</item>//Diabetes
+        <item>Have numb or tingling hands or feet</item>
+        <item>Mood changes, from depression to euphoria(Getting Sudden Excited)</item>//migrane
+        <item>Losing weight without giving efforts</item>//hyper thyroid
+        <item>Having muscle weakness and tremors</item>
+        <item>Gaining weight without eating much</item>//hypo thyroid
+        <item>Experiencing forgetfulness</item>
+        <item>Abnormal heart rhythms (arrhythmias) either too fast or too slow.</item>//congential heart disease
+        <item>A bluish tint to the skin, lips, and fingernails</item>
+        <item>Urinate (pee) a lot, often at night</item>
+        <item>Black/ Red spots on the body without any skincare</item>//RA Factor
+
+
+        //---Age specific
+
+
 
     </string-array>
     <!-- Diseases Symptoms Array List Ends-->
