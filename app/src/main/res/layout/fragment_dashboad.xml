@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +8,7 @@
     tools:context=".fragment_dashboad">
 
     <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainPage"
@@ -50,11 +51,11 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="484dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="213dp"
-            android:layout_alignParentLeft="true">
+            android:layout_marginTop="175dp">
 
             <LinearLayout
                 android:id="@+id/allsublayouts"
@@ -73,9 +74,9 @@
                     android:padding="4dp">
 
                     <LinearLayout
-                        android:layout_marginRight="2dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -88,14 +89,14 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:textAlignment="center"
-                            android:gravity="center_horizontal"
-                            android:layout_marginRight="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="2dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center_horizontal"
                             android:padding="8dp"
-                            android:src="@drawable/searchgerms"></ImageView>
+                            android:src="@drawable/searchgerms"
+                            android:textAlignment="center"></ImageView>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -120,12 +121,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="15dp"
+                            android:gravity="center_horizontal"
                             android:text="Pedigree\nAnalysis"
                             android:textAlignment="center"
-                            android:gravity="center_horizontal"
                             android:textColor="#FFFFFF"
                             android:textSize="22dp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <ImageView
 
@@ -158,23 +159,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="Common\nDiseases"
+                            android:text="Know\nAbout\nDisease"
                             android:textColor="#FFFFFF"
-                            android:gravity="center_horizontal"
-                            android:layout_marginTop="15dp"
                             android:textSize="22dp"
                             android:textStyle="bold" />
 
                         <ImageView
 
-                            android:textAlignment="center"
-                            android:gravity="center_horizontal"
-                            android:layout_marginRight="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="2dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center_horizontal"
                             android:padding="8dp"
-                            android:src="@drawable/disease"></ImageView>
+                            android:src="@drawable/onlinesearch"
+                            android:textAlignment="center"></ImageView>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -191,9 +190,9 @@
 
                     <LinearLayout
 
-                        android:layout_marginBottom="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -201,23 +200,23 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="Google\nSearch"
-                            android:textColor="#FFFFFF"
-                            android:textAlignment="center"
-                            android:gravity="center_horizontal"
                             android:layout_marginTop="15dp"
+                            android:gravity="center_horizontal"
+                            android:text="Set\nReminder"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
                             android:textSize="22dp"
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:textAlignment="center"
-                            android:gravity="center_horizontal"
-                            android:layout_marginRight="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="2dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center_horizontal"
                             android:padding="8dp"
-                            android:src="@drawable/google_search"></ImageView>
+                            android:src="@drawable/health"
+                            android:textAlignment="center"></ImageView>
 
                     </LinearLayout>
                 </LinearLayout>

@@ -13,9 +13,9 @@
         android:layout_width="216dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/vesper_libre_medium"
-        android:gravity="center_horizontal"
-        android:text="Set Reminder"
+        android:background="@drawable/container_bg"
+        android:gravity="center"
+        android:text="Reminder"
         android:textAlignment="center"
         android:textColor="#E91E63"
         android:textSize="25dp"
@@ -33,9 +33,11 @@
         android:layout_width="280dp"
         android:layout_height="41dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/button_design"
         android:ems="10"
-        android:hint="Enter Phone number"
+        android:hint="    Enter Phone number"
         android:inputType="phone"
+        android:paddingStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView23"
         app:layout_constraintHorizontal_bias="0.503"
@@ -45,6 +47,8 @@
 
     <Spinner
         android:id="@+id/spinner"
+        android:paddingStart="10dp"
+        android:background="@drawable/button_design"
         android:layout_width="280dp"
         android:layout_height="41dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,24 +62,30 @@
         android:id="@+id/editTextDate"
         android:layout_width="280dp"
         android:layout_height="41dp"
+        android:background="@drawable/button_design"
         android:drawableRight="@drawable/ic_calendar"
         android:ems="10"
-        android:hint="dd/mm/yyyy"
+        android:hint="   dd/mm/yyyy"
         android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:paddingRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/spinner"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintVertical_bias="0.106" />
 
     <EditText
+        android:background="@drawable/button_design"
+        android:paddingStart="10dp"
+        android:paddingRight="15dp"
         android:id="@+id/editTextTime"
         android:layout_width="280dp"
         android:layout_height="41dp"
         android:drawableRight="@drawable/ic_time"
         android:ems="10"
-        android:hint="hh:mm"
+        android:hint="   hh:mm"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextDate"
@@ -86,12 +96,14 @@
         />
 
     <EditText
+        android:background="@drawable/button_design"
+        android:paddingStart="10dp"
         android:id="@+id/editTextMessage"
         android:layout_width="283dp"
         android:layout_height="81dp"
         android:layout_marginTop="28dp"
         android:ems="10"
-        android:hint="Type Message"
+        android:hint="  Type Message for Reminder.."
         android:gravity="left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/editTextTime"
@@ -100,14 +112,20 @@
 
     <Button
         android:id="@+id/button_set"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/boundary"
-        android:text="Set"
+        android:background="@drawable/moretocome"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:text="Set Reminder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextMessage"
         app:layout_constraintStart_toStartOf="@+id/editTextMessage"
         app:layout_constraintTop_toBottomOf="@+id/editTextMessage" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

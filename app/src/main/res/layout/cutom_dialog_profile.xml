@@ -21,7 +21,9 @@
         android:text="X"
         style="bold"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:background="@drawable/container_bg"
+        android:textColor="@color/bluedark"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toTopOf="@+id/textView22"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -125,6 +127,7 @@
             android:layout_height="100dp">
 
             <TextView
+                android:id="@+id/tvsetReminder"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -146,6 +149,7 @@
             android:layout_height="100dp">
 
             <TextView
+                android:id="@+id/tvmatch_symptoms"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -167,6 +171,7 @@
             android:layout_height="100dp">
 
             <TextView
+                android:id="@+id/tvpreventive_measures"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:textStyle="bold"
@@ -187,18 +192,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <Button
-            android:layout_marginTop="10dp"
-            android:id="@+id/editbuttonoutput"
+            android:id="@+id/closebuttondialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/custom_dialog_button"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="Close"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:background="@drawable/custom_dialog_button"
-            android:layout_width="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:layout_height="wrap_content"
-            android:text="Edit Profile">
+            android:textStyle="bold">
 
         </Button>
     </LinearLayout>
