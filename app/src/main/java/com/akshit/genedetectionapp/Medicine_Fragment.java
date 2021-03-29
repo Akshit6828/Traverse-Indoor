@@ -91,6 +91,24 @@ public class Medicine_Fragment extends Fragment {
                 textView1.setText(R.string.med_diabetes);
 
             }
+            else if(choice.equals("bloodpressure")){
+                textView1.setText(R.string.med_hbp);
+
+            }
+            else if(choice.equals("migraine")){
+                textView1.setText(R.string.migraine_med);
+            }
+            else if(choice.equals("thyroid"))
+                textView1.setText(R.string.thyroid_med);
+            else if(choice.equals("cholesterol"))
+                textView1.setText(R.string.chol_med);
+            else if(choice.equals("pinkeye"))
+                textView1.setText(R.string.med_conj);
+            else if(choice.equals("diarrhea"))
+                textView1.setText(R.string.med_diarrhea);
+            else if(choice.equals("insomnia"))
+                textView1.setText(R.string.med_sleep);
+
         }
 
         return mylayout;

@@ -80,7 +80,7 @@ public class fragment_dashboad extends Fragment {
         l4=mylayout.findViewById(R.id.layout4);
         usersname=mylayout.findViewById(R.id.tv1);
         preferences= this.getActivity().getSharedPreferences("Local_Details",0);
-       String getname=preferences.getString("username_in_sharedpreference","User");
+       String getname=preferences.getString("username_key","User");
 
 
        String[] firstname=getname.split(" ");
@@ -115,8 +115,9 @@ public class fragment_dashboad extends Fragment {
         l4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_set_reminder()).commit();
-
+               // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_set_reminder()).commit();
+                Intent i= new Intent(getActivity(),GoogleSearchPage.class);
+                startActivity(i);
             }
         });
         return mylayout;

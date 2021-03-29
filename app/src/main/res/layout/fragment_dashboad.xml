@@ -158,8 +158,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="Know\nAbout\nDisease"
+                            android:text="Common\nDiseases"
                             android:textColor="#FFFFFF"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="15dp"
                             android:textSize="22dp"
                             android:textStyle="bold" />
 
@@ -172,7 +174,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="2dp"
                             android:padding="8dp"
-                            android:src="@drawable/onlinesearch"></ImageView>
+                            android:src="@drawable/disease"></ImageView>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -199,7 +201,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="Set\nReminder"
+                            android:text="Google\nSearch"
                             android:textColor="#FFFFFF"
                             android:textAlignment="center"
                             android:gravity="center_horizontal"
@@ -215,7 +217,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="2dp"
                             android:padding="8dp"
-                            android:src="@drawable/health"></ImageView>
+                            android:src="@drawable/google_search"></ImageView>
 
                     </LinearLayout>
                 </LinearLayout>

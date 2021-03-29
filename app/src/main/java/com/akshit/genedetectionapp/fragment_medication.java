@@ -23,7 +23,7 @@ import android.widget.Toast;
  * Use the {@link fragment_medication#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_medication extends Fragment implements MedicationAdapter.OnClickItem {
+public class fragment_medication extends Fragment implements MedicationAdapter.OnClickItem, MainPage.IOnBackPressed {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,7 +41,7 @@ public class fragment_medication extends Fragment implements MedicationAdapter.O
 
 
     Integer img_des[]={R.drawable.asthma1,R.drawable.cholesterol,R.drawable.cold2,R.drawable.conjunctivitis2,R.drawable.depression,R.drawable.diabetes2,R.drawable.diarrhea2,R.drawable.bloodpresssure,R.drawable.insomnia,R.drawable.migraine2,R.drawable.thyroid2};
-    String text_des[]={"Asthma | Breathing Problem","Cholesterol","Colds and Flu","Conjunctivitis | pink eye","Depression","Diabetes","Diarrhea","High Blood Pressure","Insomnia | Sleeplessness","Migraine","Thyroid"};
+    String text_des[]={"Asthma | Breathing Problem","Cholesterol","Colds and Flu","Conjunctivitis | pink eye","Depression","Diabetes","Diarrhea","High Blood Pressure","Insomnia | Sleeplessness","Migraine","Hyperthyroidism | Thyroid"};
     String type_des[]={"Type: Genetic","Type: Genetic","Type: Infectious","Type: Infectious","Type: Heredity","Type: Genetic","Type: Infectious","Type: Genetic","Type: Genetic","Type: Genetic","Type: Genetic"};
 
     public fragment_medication() {
@@ -158,4 +158,10 @@ public class fragment_medication extends Fragment implements MedicationAdapter.O
 
     }
 
+
+    @Override
+    public boolean onBackPressed() {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_dashboad()).commit();
+        return false;
+    }
 }

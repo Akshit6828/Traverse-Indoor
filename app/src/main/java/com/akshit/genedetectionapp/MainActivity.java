@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(MainActivity.this,Login.class);
                 startActivity(i);
+                finish();
             }
         });
         t1.setOnClickListener(new View.OnClickListener() {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i=new Intent(MainActivity.this,Register.class);
                 startActivity(i);
+                finish();
             }
         });
     }

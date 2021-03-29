@@ -9,7 +9,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -20,12 +23,19 @@ import com.google.android.material.navigation.NavigationView;
 public class MainPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CustomDialogProfile.CustomDialogProfileListener {
     private DrawerLayout drawerLayout;
     AlertDialog.Builder builder;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    String message,getname;
+    int flag=0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+        pref= getSharedPreferences("Local_Details",Context.MODE_PRIVATE);
+        getname=pref.getString("username_key","User");
+        editor = pref.edit();
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -40,6 +50,17 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public void onBackPressed() {
+        if(flag!=1)
+        {
+            message = "not pressed";
+            editor.putString("logout_key", message);
+            editor.commit();
+        }
+        else
+        {
+            editor.putString("username_key", getname);
+            editor.commit();
+        }
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
@@ -62,6 +83,11 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_about()).commit();
                 closeDrawer();
                 break;
+            case R.id.nav_notify:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_set_reminder()).commit();
+                closeDrawer();
+                break;
+
             case R.id.nav_logout:
                 closeDrawer();
                 builder = new AlertDialog.Builder(MainPage.this);
@@ -74,6 +100,12 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
+                        message = null;
+                        editor.putString("logout_key", message);
+                        editor.commit();
+                        flag = 1;
+                        Intent intent=new Intent(MainPage.this,MainActivity.class);
+                        startActivity(intent);
                         finish();
 
                     }
@@ -103,5 +135,8 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         PedigreeAnalysis.fetched_dob=dob;
         PedigreeAnalysis.fetched_gender=gender;
         PedigreeAnalysis.fetched_relation=relation;*/
+    }
+    public interface IOnBackPressed {
+        boolean onBackPressed();
     }
 }

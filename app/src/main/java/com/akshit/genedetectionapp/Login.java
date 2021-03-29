@@ -93,12 +93,14 @@ public class Login extends AppCompatActivity {
                                      Intent ji=new Intent(Login.this,MainPage.class);
                                     ji.putExtra("username",nameofuser);
                                     startActivity(ji);
+                                    finish();
                                 }
                             }
                             if (flag == 0) {
                                 Toast.makeText(Login.this, "Number Not Registered..", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Login.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }
 
@@ -144,7 +146,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         startActivity(new Intent(Login.this,MainActivity.class));
-                    finish();
+                        finish();
                     }
                 });
         builder.show();
@@ -216,10 +218,11 @@ public class Login extends AppCompatActivity {
                             Intent i = new Intent(Login.this,MainPage.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         //i.putExtra("username",nameofuser);
-                        editor.putString("username_in_sharedpreference",nameofuser);
+                        editor.putString("username_key",nameofuser);
                         editor.putString("userphone_in_sharedpreference",phonenumber);
                         editor.commit();
                         startActivity(i);
+                        finish();
                         }
                         else
                         {

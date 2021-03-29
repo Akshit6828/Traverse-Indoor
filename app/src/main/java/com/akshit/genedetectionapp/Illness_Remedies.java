@@ -8,7 +8,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.util.BuddhistCalendar;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -23,31 +25,17 @@ public class Illness_Remedies extends AppCompatActivity  {
     androidx.appcompat.widget.Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
-    String finalChoice;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+    String choice;
     int[] tabIcons = {R.drawable.herbal2,R.drawable.medication};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_illness__remedies);
-       /* Bundle b=getIntent().getExtras();
-        if(b!=null){
-            String choice=b.getString("CHOICE_KEY");
-            Toast.makeText(this, "B is not null", Toast.LENGTH_SHORT).show();
-            Natural_Medi_Fragment obj= new Natural_Medi_Fragment();
-            Bundle bundle=new Bundle();
-            bundle.putString("CHOICE_KEY2",choice);
-            obj.setArguments(bundle);
-//        Toast.makeText(getActivity(), "Bundal value"+bundle, Toast.LENGTH_SHORT).show();
-
-
-        }
-        else{
-            Toast.makeText(this, "bundle on Illness is null", Toast.LENGTH_SHORT).show();
-        }*/
-
-
-
-
+        preferences=this.getSharedPreferences("Local_Details", Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
+        editor=preferences.edit();
+        choice= preferences.getString("Choice",null);
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         viewPager = findViewById(R.id.viewpager);
@@ -55,6 +43,35 @@ public class Illness_Remedies extends AppCompatActivity  {
         tabLayout =findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+        if(choice.equals("asthma"))
+            getSupportActionBar().setTitle("Asthma | Breathing Problem");
+        else if(choice.equals("cold"))
+            getSupportActionBar().setTitle("Cold and Flu");
+        else if(choice.equals("depression"))
+            getSupportActionBar().setTitle("Depression");
+        else if(choice.equals("diabetes"))
+            getSupportActionBar().setTitle("Diabetes");
+        else if(choice.equals("bloodpressure"))
+            getSupportActionBar().setTitle("High Blood Pressure");
+        else if(choice.equals("migraine"))
+            getSupportActionBar().setTitle("Migraine");
+        else if(choice.equals("thyroid"))
+            getSupportActionBar().setTitle("Hyperthyroidism | Thyroid");
+        else if(choice.equals("cholesterol"))
+            getSupportActionBar().setTitle("Cholesterol");
+        else if(choice.equals("pinkeye"))
+            getSupportActionBar().setTitle("Conjunctivitis | pink eye");
+        else if(choice.equals("diarrhea"))
+            getSupportActionBar().setTitle("Diarrhea");
+        else if(choice.equals("insomnia"))
+            getSupportActionBar().setTitle("Insomnia | Sleeplessness");
+
+
+
+
+
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {

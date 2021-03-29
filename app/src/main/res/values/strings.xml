@@ -86,9 +86,110 @@
     <string name="Frozen_pizza">Frozen pizza are high in sugar, saturated fat, and sodium.Frozen pizza can have especially high levels of sodium.</string>
     <string name="Pickles">The longer vegetables sit in canning and preserving liquids, the more sodium they pick up.</string>
     <string name="Sugar">Sugar can increase your blood pressure in several ways.Sugar-sweetened drinks contributes to weight gain in adults and children. </string>
+    <string name="Alcohol_bp">Drinking too much alcohol can increaseTrusted Source your blood pressure.In addition,many alcoholic drinks are high in sugar and calories.</string>
+    <string name="tomato">Most canned tomato sauces, pasta sauces, and tomato juices are high in sodium and they can cause raise your blood pressure.</string>
+
+    <!--medicine high blood pressure-->
+    <string name="med_hbp">High blood pressure drugs\n1)Diuretics(water pills)\n2)Beta-blockers\n3)Alpha-beta-blockers\n4)Calcium channel blockers\n5)Alpha-1 blockers\n6)Alpha-2 receptor agonists\n7)Vasodilators</string>
+
+    <!--migraine do's-->
+    <string name="omega3_mig">Eating inflammation-fighting foods may help reduce migraines.Omega-3 fatty acids can help decrease inflammation.Foods include:salmon, flaxseed, olive oil, and walnuts.</string>
+    <string name="Water">Staying hydrated is key when it comes to migraine management because dehydration is a common migraine trigger.In fact, mild to moderate headaches can be a sign of dehydration</string>
+    <string name="Caffeine_yes">Caffeine, which is found in tea, coffee, and soda, has a delicate relationship with migraines.Caffeine can actually help people who are in the midst of a migraine attack.</string>
+    <string name="Dark_Chocolate">Dark chocolate contains large amounts of magnesium, the relaxation mineral,which the most commonly used minerals for Migraine management.It is vital for relaxation and proper sleep.</string>
+    <string name="Carrots">Carrots are high in beta-carotene and other nutrients with anti-inflammatory properties</string>
+    <string name="Collard_greens">Collard greens including cabbage and broccoli are a “neutral” food they pose no known risk of triggering a Migraine attack.It is extremely high in magnesium.</string>
+
+   <!--migraine don'ts-->
+    <string name="Nuts_mig">Nuts like almonds, peanuts, and many other nuts and seeds contain tyramine.But not all migraine sufferers are sensitive to nuts.</string>
+    <string name="red_wine">Red wine is the most commonly-reported trigger as it contains a lot of histamine.</string>
+    <string name="Cheeses">Aged Cheeses like blue cheese, brie, cheddar, swiss, feta, mozzarella, and most common migraine trigger as it contains tyramine.</string>
+    <string name="Excessive_Coffee">Excessive caffeine consumption can trigger migraines.People who consume too much caffeine can increases their risk of experiencing caffeine withdrawal symptoms when they stop consuming it, including anxiety and headache.</string>
+
+   <!--migraine medication-->
+    <string name="migraine_med">Drugs That Stop Migraine Headaches(Abortive drugs)\n1)ibuprofen\n2)aspirin\n3)acetaminophen\n4)naproxen\n\nNausea Drugs for Migraines\n1)chlorpromazine\n2)prochlorperazine\n3)metoclopramide hydrochloride</string>
+
+    <!--thyroid do's-->
+    <string name="iodine">Iodine is an essential mineral that’s needed to make thyroid hormones and its deficiency might cause hypothyroidism.Iodine-rich foods includes seaweed,fish,dairy,eggs.</string>
+    <string name="selenium">Selenium helps “activate” thyroid hormones.Selenium-rich foods includes Brazil nuts, tuna, sardines, eggs, and legumes.</string>
+    <string name="Zinc">Zinc helps the body “activate” thyroid hormones.Zinc-rich foods includes oysters and other shellfish, beef, and chicken.</string>
+
+   <!--thyroid don'ts-->
+    <string name="Soy">Soy also called isoflavones increase a person risk for hypothyroidism.Foods With Soy,includes Edamame, Tofu, and Miso </string>
+    <string name="Cruciferous">Cruciferous vegetables, such as broccoli and cabbage may interfere with the production of thyroid hormone if you have an iodine deficiency.</string>
+    <string name="Gluten">Gluten a protein found in foods processed from wheat, barley, rye, and other grains may hamper absorption of thyroid hormone replacement medication.</string>
+    <string name="Fatty_Foods">Fatty Foods such as Butter,Meat and fried absorb thyroid hormone replacement medicines and may also interfere with the thyroids ability to produce hormone.</string>
+    <string name="Alcohol_thy">Alcohol consumption can wreak havoc on both thyroid hormone levels in the body and the ability of the thyroid to produce hormone.</string>
+
+    <!--thyroid medicine-->
+    <string name="thyroid_med">Hypothyroidism medications:\n\n1)levothyroxine (Levoxyl, Synthroid)\n2)T4 and triiodothyronine (T3)\n3)Tapazole (methimazole)\n4)Propylthiouracil (PTU)</string>
+
+   <!--cholesterol dos-->
+    <string name="Legumes">Legumes that includes beans, peas and lentils contain a lot of fiber, minerals and protein that can lower your risk of heart disease.</string>
+    <string name="avocados">Avocados is a nutrient-dense fruit which is a rich source of monounsaturated fats and fiber that lowers cholesterol.</string>
+    <string name="nuts">Nuts especially Almonds and Walnuts are very high in monounsaturated fats.Walnut is also rich in omega-3,associated with heart health.</string>
+    <string name="Grains">Whole Grains especially Oats and Barley lower heart disease risk by 20% and promote heart health.</string>
+    <string name="Cocoa">Dark Chocolate and Cocoa protect the “bad” LDL cholesterol in your blood from oxidation, which is a key cause of heart disease.</string>
+    <string name="Soy_chol">Soy foods like Soybeans are a type of legume that may be beneficial for heart health.It reduces “bad” LDL and increases “good” HDL cholesterol.</string>
+  
+    <!--cholesterol don'ts-->
+    <string name="Cheese">Cheese provides 27 mg of cholesterol and must be avoided.</string>
+    <string name="fried">Fried Foods have high-cholesterol and should be avoided whenever possible.It can contain trans fats, which increase heart disease risk.</string>
+    <string name="Desserts">Cookies,cakes,ice cream,and other sweets are unhealthy foods that tend to be high in cholesterol, as well as added sugars, unhealthy fats and calories.</string>
+    <string name="Shellfish">Shellfish including clams, crab and shrimp are high in cholesterol and must be avoided.</string>
+
+   <!--medicine cholesterol-->
+    <string name="chol_med">Cholesterol medications/drugs:\n\n1)Atorvastatin (Lipitor)\n2)Lovastatin (Altoprev)\n3)Ezetimibe (Zetia)\n4)Alirocumab (Praluent)\n5)Bempedoic acid (Nexletol)\n6)Colestipol (Colestid)\n6)Ezetimibe-simvastatin (Vytorin)\n7)Amlodipine-atorvastatin (Caduet)</string>
+
+    <!--dos conjunctivitis-->
+    <string name="juices">Raw juices of certain vegetables, especially carrots and spinach, have been found valuable in the treatment of conjunctivitis.</string>
+    <string name="vitaminA">Vitamin A like milk, curds, butter, carrots, pumpkins, green leafy vegetables, tomatoes, mangoes and papayas  have been found valuable in the treatment of conjunctivitis. </string>
+    <string name="vitaminB2">Foods rich in vitamin B2 are green leafy vegetables, milk, almonds, citrus fruits, bananas and tomatoes are valuable in the treatment of conjunctivitis.</string>
+    <string name="fruit">Fresh fruit diet consisting of apples, oranges, pears, grapes, pineapples and grapefruits should be taken.</string>
+    
+    <!--dont conjunctivitis-->
+    <string name="Bananas">Bananas should not be taken in fruit diet in conjunctivitis.</string>
+    <string name="starchySugary">Excessive intake of starchy and sugary foods in the form of white bread,refined cereals,potatoes,puddings,pastry,sugar and jams,which cause the general catarrhal condition as well as conjunctivitis. </string>
+    <string name="salts">Excessive salt intake should be avoided in conjunctivitis.</string>
+    <string name="fatty_food">Fatty foods such as Butter,Meat and fried should be avoided.</string>
+
+    <!--medication conjunctivitis-->
+    <string name="med_conj">Pharmacies to treat bacterial conjunctivitis:\n\n->Chloramphenicol eye drop.\n\nAllergic conjunctivitis:\n\n->antihistamines(anti-allergy).</string>
 
 
+    <!--dos diarrhea-->
+    <string name="Banana">Bananas are bland and easily digested, making them a good choice for settling an upset digestive system.It is excellent source of potassium, an important electrolyte.</string>
+    <string name="grains">Oats are another source of soluble fiber. As a bulking agent for stool, it can help reduce diarrhea.Plain white rice is easily digested,which means it helps firm up loose stools.</string>
+    <string name="Protein">Protein like steamed white meat chicken is one of the most easily digested.Lean cuts of turkey, beef, pork, and fish are also acceptable. </string>
+    <string name="water_dirr">Water and Coconut water is another hydrating choice.</string>
+    <string name="zinc_supplements">Addition of zinc or zinc supplements also help in reducing the severity and duration of diarrhoea episode. Some good food sources of zinc are curd, rice, rajmah, spinach, garlic and fruits.</string>
+    <string name="Sabudana">Sabudana is also a great source of starch.It  is a good semi-liquid food option helping bind the water in the intestine and controlling the frequency of diarrhoea.</string>
+    <string name="potato">Boiling and immediate cooling of potato helps develop resistant starch, which improves water and electrolyte absorption helping to control the diarrhoea.</string>
+    
+    <!--dosnt diarrhea-->
+    <string name="Diary">Avoid milk,paneer and sweetened milk products like kheer,sweets made from milk.They are concentrated sources of energy which may be difficult for the intestine to digest and absorb, creating a new condition like osmotic diarrhoea.</string>
+    <string name="spicy_food">Avoid spicy food as they irritate the small intestine.Instead curd rice, khichdi, kadhi-rice etc. are some good options.</string>
+    <string name="Beverages">Avoid tea/coffee/sweetened beverages such as colas, aerated beverages etc. They may further aggravate dehydration (water loss).</string>
+    <string name="green">Avoid broccoli, cauliflower, peppers, peas, green leafy vegetables, and corn, as they tend to cause gas.</string>
 
+    <!--med diarrhea-->
+    <string name="med_diarrhea">Medicines to relieve diarrhea:\n\n1)Oral rehydration solution (ORS)\n2)Loperamide (Imodium)\n3)Bismuth subsalicylate (Kaopectate, Pepto-Bismol)</string>
+
+    <!--dos insomnia-->
+    <string name="kiwi">Kiwifruit possess numerous vitamins and minerals and can improve sleep.People who ate two kiwis one hour before bedtime found that they fell asleep faster.</string>
+    <string name="milk">Malted milk before bed reduced sleep interruptions.Milk are melatonin -enriched.Taking Nighttime milk may be useful in providing a natural source of the sleep-producing hormone.</string>
+    <string name="fatty_Fish">Fatty fish may be a good food for better sleep.People who ate salmon three times per week had better overall sleep as well as improved daytime functioning.</string>
+    <string name="nuts_sleep">Nuts like almonds, walnuts9, pistachios, and cashews are good food for sleep.Nuts contain melatonin,that helped older adults with insomnia get better sleep.</string>
+    <string name="Rice_sleep">Rice consumption with improved sleep.High glycemic index around four hours before bedtime helped with falling asleep.</string>
+
+    <!--dosnt insomnia-->
+    <string name="alcohol_sleepless">Even if it might make you drowsy, it affects the quality of your sleep and you will end up waking up more often and not sleeping deeply.</string>
+    <string name="sugary_beverages">Sugary beverages increase your energy level making it more difficult for you to fall asleep.</string>
+    <string name="High_Fat">People who often eat high-fat foods gain weight and their sleep cycles tend to get disrupted as it activates digestion, which can lead to nighttime trips to the bathroom.</string>
+    <string name="Caffeine_sleep">Beware of Hidden Caffeine like coffee,chocolate,cola, and tea as it might disrupt your sleep.</string>
+
+    <!--medication insomnia-->
+    <string name="med_sleep">Medications to treat insomnia:\n\n1)Antidepressants such as trazodone (Desyrel)\n2)Benzodiazepines\n3)Doxepine (Silenor)\n4)Eszopiclone (Lunesta)\n5)Lemborexant (Dayvigo)</string>
 
 
     <string-array name="relation">
