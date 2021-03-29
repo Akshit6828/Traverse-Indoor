@@ -79,7 +79,7 @@ public class Match_Symptoms extends Fragment {
         // Inflate the layout for this fragment
         View myview =inflater.inflate(R.layout.fragment_match__symptoms, container, false);
         recyclerView=myview.findViewById(R.id.recycler_viewMatch_symptoms);
-        recyclerView.setHasFixedSize(true);
+      //  recyclerView.setHasFixedSize(true);
         layoutManager= new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
        // all_disease_Arraylist= new ArrayList<>();

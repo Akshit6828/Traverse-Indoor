@@ -9,9 +9,46 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_viewMatch_symptoms"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:layout_height="547dp"
+        android:background="@drawable/black_border"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.833" />
+
+    <Button
+        android:id="@+id/button3"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/button_design"
+        android:text="  Submit Symptoms  "
+        android:textColor="#23020D"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/recycler_viewMatch_symptoms"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/container_bg"
+        android:text="    Mark Your Symptoms   "
+        android:textColor="#503D04"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        style="@style/Animation.Design.BottomSheetDialog"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_viewMatch_symptoms"
+        app:layout_constraintEnd_toEndOf="@+id/recycler_viewMatch_symptoms"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/recycler_viewMatch_symptoms"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.685" />
 </androidx.constraintlayout.widget.ConstraintLayout>
