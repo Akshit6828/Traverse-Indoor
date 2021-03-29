@@ -765,7 +765,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
     //******************CUSTOM DIALOG PROFILE TO BE SHOWN*****************************
 
-    private void showCustomDialog(String name_of_current_profile, String gender_user, String relation_with_user, String dob) {
+    private void showCustomDialog(final String name_of_current_profile, String gender_user, final String relation_with_user, String dob) {
         if(dialog_input!=null){
             dialog_input.dismiss();
         }
@@ -781,7 +781,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         final TextView relation= dialog.findViewById(R.id.idrelation_custom_dialog);
         final TextView dobget= dialog.findViewById(R.id.iddob_custom_dialog);
         final TextView cross=dialog.findViewById(R.id.close);
-        final Button edit_profile=dialog.findViewById(R.id.editbuttonoutput);
+       // final Button edit_profile=dialog.findViewById(R.id.editbuttonoutput);
         final Button close_profile_output=dialog.findViewById(R.id.closebuttondialog);
 
         l1=dialog.findViewById(R.id.setReminder);
@@ -808,12 +808,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         relation.setText("Relation : "+relation_with_user);
 
         //Edit button listener not working..Need to write code to Bring again the inputprofile button
-        edit_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
         close_profile_output.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -841,6 +836,14 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
             @Override
             public void onClick(View view) {
                 //Code for Setting reminder fragment and dismissing the dialog.
+                fragment_set_reminder obj = new fragment_set_reminder ();
+                Bundle args = new Bundle();
+                args.putString("UserRelation", relation_with_user);
+                args.putString("UserName", name_of_current_profile);
+                obj.setArguments(args);
+
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_set_reminder()).commit();
                 dialog.dismiss();
             }
         });
@@ -848,7 +851,9 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
             @Override
             public void onClick(View view) {
                 //Code for Symptoms match fragment and dismissing the dialog.
-                //lay2=true;
+
+
+
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Match_Symptoms()).commit();
                 dialog.dismiss();
 

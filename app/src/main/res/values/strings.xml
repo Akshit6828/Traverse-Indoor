@@ -81,8 +81,8 @@
     <string name="Pumpkin"></string>
 
 
-   <string-array name="relation">
-        <item>Choose relation</item>
+    <string-array name="relation">
+        <item>   Choose relation</item>
         <item>You</item>
         <item>Father</item>
         <item>Mother</item>
@@ -107,56 +107,120 @@
     </string-array>
     <string-array name="migrane_symptoms">
         <item>Constipation</item>
-        <item>Mood changes, from depression to euphoria</item>
-        <item>Food cravings</item>
+        <item>Mood changes, from depression to euphoria(Getting Sudden Excited)</item>
+        <item>Much Food cravings when mind is not stable</item>
         <item>Neck stiffness</item>
-        <item>Increased thirst and urination</item>
-        <item>Frequent yawning</item>
+        <item>Increased thirst and urination during severe headache</item>
+        <item>Frequent yawning while not able to sleep during headache</item>
     </string-array>
     <string-array name="hyperthyroid_symptoms">
-        <item>Experiencing anxiety, irritability, and nervousness.</item>
-        <item>Having trouble sleeping.</item>
-        <item>Losing weight.</item>
-        <item>Having an enlarged thyroid gland or a goiter.</item>
-        <item>Having muscle weakness and tremors.</item>
-        <item>Experiencing irregular menstrual periods or having your menstrual cycle stop.</item>
-        <item>Feeling sensitive to heat.</item>
+        <item>Experiencing anxiety, irritability, and nervousness</item>
+        <item>Having trouble sleeping</item>
+        <item>Losing weight without giving efforts</item>
+        <item>Having an enlarged thyroid gland or a goiter</item>
+        <item>Having muscle weakness and tremors</item>
+        <item>Experiencing irregular menstrual periods or having your menstrual cycle stop</item>
+        <item>Feeling sensitive to heat</item>
         <item>Having vision problems or eye irritation</item>
 
     </string-array>
     <string-array name="hypothyroid_symptoms">
-        <item>Feeling tired (fatigue).</item>
-        <item>Gaining weight.</item>
-        <item>Experiencing forgetfulness.</item>
-        <item>Having frequent and heavy menstrual periods.</item>
-        <item>Having dry and coarse hair.</item>
-        <item>Having a hoarse voice.</item>
+        <item>Feeling tired (fatigue) with doing a little work</item>
+        <item>Gaining weight without eating much</item>
+        <item>Experiencing forgetfulness</item>
+        <item>Having frequent and heavy menstrual periods</item>
+        <item>Having dry and coarse hair</item>
+        <item>Having a hoarse voice</item>
         <item>Experiencing an intolerance to cold temperatures</item>
 
     </string-array>
-<string-array name="congenital_heart_disease_symptoms">
-   <item> Abnormal heart rhythms (arrhythmias)</item>
-   <item> A bluish tint to the skin, lips, and fingernails (cyanosis)</item>
-    <item> Shortness of breath</item>
-   <item> Tiring quickly upon exertion</item>
-   <item> Swelling of body tissue or organs (edema)</item>
+    <string-array name="congenital_heart_disease_symptoms">
+        <item> Abnormal heart rhythms (arrhythmias) either too fast or too slow</item>
+        <item> A bluish tint to the skin, lips, and fingernails</item>
+        <item> Shortness of breath</item>
+        <item> Tiring quickly upon exertion</item>
+        <item> Swelling of body tissue or organs (edema)</item>
 
-</string-array>
+    </string-array>
     <string-array name="thalassemia_symptoms">
-       <item> Fatigue</item>
-       <item> Weakness</item>
-       <item> Pale or yellowish skin</item>
-       <item> Facial bone deformities</item>
-       <item> Slow growth</item>
-       <item> Abdominal swelling</item>
-       <item> Dark urine</item>
+        <item>Fatigue after doing work</item>
+        <item>Feeling Regular Weakness on daily basics</item>
+        <item>Pale or yellowish skin</item>
+        <item>Facial bone deformities</item>
+        <item>Slow growth</item>
+        <item>Abdominal swelling</item>
+        <item>Dark urine(Normally)</item>
     </string-array>
     <string-array name="rheumatoid_arthritis_symptoms">
-    <item>Tender, warm, swollen joints</item>
-    <item>Joint stiffness is usually worse in the mornings and after inactivity</item>
-    <item>Fatigue, fever, and loss of appetite</item>
-    <item>Black/ Red spots on the body without any skincare.</item>
-    <item>Eyes redness.</item>
+        <item>Tender, warm, swollen joints</item>
+        <item>Joint stiffness is usually worse in the mornings and after inactivity</item>
+        <item>Fatigue, fever, and loss of appetite</item>
+        <item>Black/ Red spots on the body without any skincare</item>
+        <item>Eyes redness</item>
+    </string-array>
+
+    <string-array name="all_symptoms">
+        <item>Urinate (pee) a lot, often at night</item>
+        <item>Are very thirsty</item>
+        <item>Lose weight without trying</item>
+        <item>Gets hungry after small intervals of food intake</item>
+        <item>Have blurry vision</item>
+        <item>Have numb or tingling hands or feet</item>
+        <item>Feel very tired</item>
+        <item>Have very dry skin</item>
+        <item>Have sores that heal slowly</item>
+        <item>Have more infections than usual</item>
+
+        //Migrane
+        <item>Constipation</item>
+        <item>Mood changes, from depression to euphoria(Getting Sudden Excited)</item>
+        <item>Much Food cravings when mind is not stable</item>
+        <item>Neck stiffness</item>//age specific below 25-30
+        <item>Increased thirst and urination during severe headache</item>
+        <item>Frequent yawning while not able to sleep during headache</item>
+
+        //Hyper thyroid Symptoms…
+        <item>Experiencing anxiety, irritability, and nervousness</item>
+        <item>Having trouble sleeping</item>
+        <item>Losing weight without giving efforts</item>
+        <item>Having an enlarged thyroid gland or a goiter</item>
+        <item>Having muscle weakness and tremors</item>
+        <item>Experiencing irregular menstrual periods or having your menstrual cycle stop</item>
+        <item>Feeling sensitive to heat</item>
+        <item>Having vision problems or eye irritation</item>
+
+        //Hypo thyroid Symptoms…
+        <item>Feeling tired (fatigue) with doing a little work</item>
+        <item>Gaining weight without eating much</item>
+        <item>Experiencing forgetfulness</item>
+        <item>Having frequent and heavy menstrual periods</item>
+        <item>Having dry and coarse hair</item>
+        <item>Having a hoarse voice</item>
+        <item>Experiencing an intolerance to cold temperatures</item>
+
+        //Congenital heart disease…
+        <item>Abnormal heart rhythms (arrhythmias) either too fast or too slow.</item>
+        <item>A bluish tint to the skin, lips, and fingernails</item>
+        <item>Shortness of breath</item>
+        <item>Tiring quickly upon exertion</item>
+        <item>Swelling of body tissue or organs (edema)</item>
+
+        //Thalesemia disease…
+        <item>Fatigue after doing work</item>
+        <item>Feeling Regular Weakness on daily basics</item>
+        <item>Pale or yellowish skin</item>
+        <item>Facial bone deformities</item>
+        <item>Slow growth</item>
+        <item>Abdominal swelling</item>
+        <item>Dark urine(Normally)</item>
+
+        //rheumatoid_arthritis…
+        <item>Tender, warm, swollen joints</item>
+        <item>Joint stiffness is usually worse in the mornings and after inactivity</item>
+        <item>Fatigue, fever, and loss of appetite</item>
+        <item>Black/ Red spots on the body without any skincare</item>
+        <item>Eyes redness</item>
 
     </string-array>
+    <!-- Diseases Symptoms Array List Ends-->
 </resources>

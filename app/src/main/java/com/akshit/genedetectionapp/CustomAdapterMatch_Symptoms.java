@@ -12,11 +12,13 @@ import java.util.ArrayList;
 
 public class CustomAdapterMatch_Symptoms extends  RecyclerView.Adapter<CustomAdapterMatch_Symptoms.myviewholder> {
 
+    ArrayList<Data_model_match_symptoms> dataholder;
+    String current_arraylist;
     public CustomAdapterMatch_Symptoms(ArrayList<Data_model_match_symptoms> dataholder) {
         this.dataholder = dataholder;
     }
 
-    ArrayList<Data_model_match_symptoms> dataholder;
+
 
     @NonNull
     @Override
@@ -27,7 +29,8 @@ public class CustomAdapterMatch_Symptoms extends  RecyclerView.Adapter<CustomAda
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        holder.checkedTextView.setText(dataholder.get(position).getSymptom());
+       // holder.checkedTextView.setText(dataholder.get(position).get);
+        //current_arraylist=holder.checkedTextView()
     }
 
     @Override
@@ -37,6 +40,7 @@ public class CustomAdapterMatch_Symptoms extends  RecyclerView.Adapter<CustomAda
 
     class myviewholder extends RecyclerView.ViewHolder {
         CheckedTextView checkedTextView;
+        ArrayList<String> arrayListfordisease;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,8 +28,19 @@ public class Match_Symptoms extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    //Here data_model class is same as arraylist object for the purpose.
+   // ArrayList<Data_model_match_symptoms> dataholder;
+    String[] all_disease_Arraylist;
     RecyclerView recyclerView;
-    ArrayList<Data_model_match_symptoms> Data_holder_al_for_Symptoms;
+//    String[]  diabetes;
+//    String[] migrane;
+//    String[] hyperthyroid;
+//    String[] hypothyroid;
+//    String[] congenital_heart_disease;
+//    String[] thalassemia;
+//    String[] rheumatoid_arthritis;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
 
     public Match_Symptoms() {
         // Required empty public constructor
@@ -67,13 +79,45 @@ public class Match_Symptoms extends Fragment {
         // Inflate the layout for this fragment
         View myview =inflater.inflate(R.layout.fragment_match__symptoms, container, false);
         recyclerView=myview.findViewById(R.id.recycler_viewMatch_symptoms);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        Data_holder_al_for_Symptoms=new ArrayList<>();
-        Data_model_match_symptoms  obj1= new Data_model_match_symptoms("Urinate Alot at Night");
-        Data_holder_al_for_Symptoms.add(obj1);
-        Data_model_match_symptoms  obj2= new Data_model_match_symptoms("Gets hungry after small intervals of food intake");
-        Data_holder_al_for_Symptoms.add(obj2);
-        recyclerView.setAdapter(new CustomAdapterMatch_Symptoms(Data_holder_al_for_Symptoms));
+        recyclerView.setHasFixedSize(true);
+        layoutManager= new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+       // all_disease_Arraylist= new ArrayList<>();
+    //   dataholder= new ArrayList<>();
+
+
+//        Data_holder_al_for_Symptoms=new ArrayList<>();
+//        Data_model_match_symptoms  obj1= new Data_model_match_symptoms("Urinate Alot at Night");
+//        Data_holder_al_for_Symptoms.add(obj1);
+//        Data_model_match_symptoms  obj2= new Data_model_match_symptoms("Gets hungry after small intervals of food intake");
+//        Data_holder_al_for_Symptoms.add(obj2);
+        //Data_model_match_symptoms<> obj= new Data_model_match_symptoms(diabetes);
+        
+        
+        //diabetes= getResources().getStringArray(R.array.diabetes_symptoms);
+       // adapter=new MainAdapter(diabetes);
+       // recyclerView.setAdapter(adapter);
+//        migrane= getResources().getStringArray(R.array.migrane_symptoms);
+//        //adapter=new MainAdapter(migrane);
+//        //recyclerView.setAdapter(adapter);
+//        hyperthyroid= getResources().getStringArray(R.array.hyperthyroid_symptoms);
+//        hypothyroid= getResources().getStringArray(R.array.hypothyroid_symptoms);
+//        congenital_heart_disease= getResources().getStringArray(R.array.congenital_heart_disease_symptoms);
+//        thalassemia= getResources().getStringArray(R.array.thalassemia_symptoms);
+//        rheumatoid_arthritis= getResources().getStringArray(R.array.rheumatoid_arthritis_symptoms);
+//        all_disease_Arraylist.add(diabetes);
+//        all_disease_Arraylist.add(migrane);
+//        all_disease_Arraylist.add(hyperthyroid);
+//        all_disease_Arraylist.add(hypothyroid);
+//        all_disease_Arraylist.add(congenital_heart_disease);
+//        all_disease_Arraylist.add(thalassemia);
+//        all_disease_Arraylist.add(rheumatoid_arthritis);
+       //Data_model_match_symptoms obj1 = new Data_model_match_symptoms(all_disease_Arraylist);
+      //  adapter= new MainAdapter(diabetes,migrane,hyperthyroid,hypothyroid,congenital_heart_disease,thalassemia,rheumatoid_arthritis);
+        all_disease_Arraylist=getResources().getStringArray(R.array.all_symptoms);
+      adapter= new MainAdapter(all_disease_Arraylist);
+        recyclerView.setAdapter(adapter);
+        // recyclerView.setAdapter(new CustomAdapterMatch_Symptoms(diabetes));
 
 
 
