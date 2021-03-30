@@ -9,15 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Match_Symptoms#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Match_Symptoms extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -28,32 +25,27 @@ public class Match_Symptoms extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    //Here data_model class is same as arraylist object for the purpose.
-   // ArrayList<Data_model_match_symptoms> dataholder;
-    String[] all_disease_Arraylist;
-    RecyclerView recyclerView;
-//    String[]  diabetes;
-//    String[] migrane;
-//    String[] hyperthyroid;
-//    String[] hypothyroid;
-//    String[] congenital_heart_disease;
-//    String[] thalassemia;
-//    String[] rheumatoid_arthritis;
-    RecyclerView.Adapter adapter;
-    RecyclerView.LayoutManager layoutManager;
-
+    String[] all_disease_common;
+    String[] not_common_disease;
+    RecyclerView recyclerView,recyclerView2;
+    RecyclerView.Adapter adapter,adapter2;
+    int sentno;
+    RecyclerView.LayoutManager layoutManager,layoutManager2;
+    public  static  ArrayList<String> matched_symptoms_user1;
+    public  static  ArrayList<String> matched_symptoms_user2;
+    public  static  ArrayList<String> matched_symptoms_user3;
+    public  static  ArrayList<String> matched_symptoms_user4;
+    public  static  ArrayList<String> matched_symptoms_user5;
+    public  static  ArrayList<String> matched_symptoms_user6;
+    public  static  ArrayList<String> matched_symptoms_user7;
+    public  static  ArrayList<String> matched_symptoms_user8;
+    public  static  ArrayList<String> matched_symptoms_user9;
+    Button button;
+    String cur_username,cur_relation;
     public Match_Symptoms() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Match_Symptoms.
-     */
     // TODO: Rename and change types and number of parameters
     public static Match_Symptoms newInstance(String param1, String param2) {
         Match_Symptoms fragment = new Match_Symptoms();
@@ -71,56 +63,153 @@ public class Match_Symptoms extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        matched_symptoms_user1=new ArrayList<>();
+        matched_symptoms_user2=new ArrayList<>();
+        matched_symptoms_user3=new ArrayList<>();
+        matched_symptoms_user4=new ArrayList<>();
+        matched_symptoms_user5=new ArrayList<>();
+        matched_symptoms_user6=new ArrayList<>();
+        matched_symptoms_user7=new ArrayList<>();
+        matched_symptoms_user8=new ArrayList<>();
+        matched_symptoms_user9=new ArrayList<>();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View myview =inflater.inflate(R.layout.fragment_match__symptoms, container, false);
-        recyclerView=myview.findViewById(R.id.recycler_viewMatch_symptoms);
-      //  recyclerView.setHasFixedSize(true);
+        final View my_view =inflater.inflate(R.layout.fragment_match__symptoms, container, false);
+        button=my_view.findViewById(R.id.submit_symptom);
+        if(getArguments()!=null){
+            cur_username=getArguments().getString("UserName");
+            cur_relation=getArguments().getString("UserRelation");
+
+        }
+        else{
+            Toast.makeText(getActivity(), "Sorry No args fetched. ", Toast.LENGTH_SHORT).show();
+        }
+        if(cur_relation!=null) {
+            switch (cur_relation) {
+                case "Paternal Grand Father": sentno = 1;
+                    break;
+                case "Paternal Grand Mother": sentno = 2;
+                    Toast.makeText(getActivity(), "currltn!=null with sent no=2", Toast.LENGTH_SHORT).show();
+                    break;
+                case "Maternal Grand Father": sentno = 3;
+                    break;
+                case "Maternal Grand Mother3": sentno = 4;
+                    break;
+                case "Father":sentno = 5;
+                    break;
+                case "Mother":sentno = 6;
+                    break;
+                case "Self":sentno = 7;
+                    break;
+                case "Child 1 Female":sentno = 8;
+                    break;
+                case "Child 1 Male":sentno = 9;
+                    break;
+            }
+        }
+
+        recyclerView=my_view.findViewById(R.id.recycler_viewMatch_symptoms);
+        recyclerView2=my_view.findViewById(R.id.recycler_view2);
+        recyclerView.setHasFixedSize(true);
+        recyclerView2.setHasFixedSize(true);
+
         layoutManager= new LinearLayoutManager(getActivity());
+        layoutManager2= new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-       // all_disease_Arraylist= new ArrayList<>();
-    //   dataholder= new ArrayList<>();
+        recyclerView2.setLayoutManager(layoutManager2);
+        all_disease_common=getResources().getStringArray(R.array.all_symptoms);
+        not_common_disease=getResources().getStringArray(R.array.not_common_symptoms);
+        adapter= new MainAdapter(all_disease_common,sentno);
+        adapter2= new MainAdapter(not_common_disease,sentno);
 
-
-//        Data_holder_al_for_Symptoms=new ArrayList<>();
-//        Data_model_match_symptoms  obj1= new Data_model_match_symptoms("Urinate Alot at Night");
-//        Data_holder_al_for_Symptoms.add(obj1);
-//        Data_model_match_symptoms  obj2= new Data_model_match_symptoms("Gets hungry after small intervals of food intake");
-//        Data_holder_al_for_Symptoms.add(obj2);
-        //Data_model_match_symptoms<> obj= new Data_model_match_symptoms(diabetes);
-        
-        
-        //diabetes= getResources().getStringArray(R.array.diabetes_symptoms);
-       // adapter=new MainAdapter(diabetes);
-       // recyclerView.setAdapter(adapter);
-//        migrane= getResources().getStringArray(R.array.migrane_symptoms);
-//        //adapter=new MainAdapter(migrane);
-//        //recyclerView.setAdapter(adapter);
-//        hyperthyroid= getResources().getStringArray(R.array.hyperthyroid_symptoms);
-//        hypothyroid= getResources().getStringArray(R.array.hypothyroid_symptoms);
-//        congenital_heart_disease= getResources().getStringArray(R.array.congenital_heart_disease_symptoms);
-//        thalassemia= getResources().getStringArray(R.array.thalassemia_symptoms);
-//        rheumatoid_arthritis= getResources().getStringArray(R.array.rheumatoid_arthritis_symptoms);
-//        all_disease_Arraylist.add(diabetes);
-//        all_disease_Arraylist.add(migrane);
-//        all_disease_Arraylist.add(hyperthyroid);
-//        all_disease_Arraylist.add(hypothyroid);
-//        all_disease_Arraylist.add(congenital_heart_disease);
-//        all_disease_Arraylist.add(thalassemia);
-//        all_disease_Arraylist.add(rheumatoid_arthritis);
-       //Data_model_match_symptoms obj1 = new Data_model_match_symptoms(all_disease_Arraylist);
-      //  adapter= new MainAdapter(diabetes,migrane,hyperthyroid,hypothyroid,congenital_heart_disease,thalassemia,rheumatoid_arthritis);
-        all_disease_Arraylist=getResources().getStringArray(R.array.all_symptoms);
-      adapter= new MainAdapter(all_disease_Arraylist);
         recyclerView.setAdapter(adapter);
-        // recyclerView.setAdapter(new CustomAdapterMatch_Symptoms(diabetes));
+        recyclerView2.setAdapter(adapter2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "button clicked ", Toast.LENGTH_SHORT).show();
+                preventive_measures obj= new preventive_measures();
+                Bundle args= new Bundle();
+                String backstack="PedigreeAnalysis";
+                    switch (sentno){
+                        case 1:
+                            if(matched_symptoms_user1.size()>0)
+                                args.putInt("SentNo_Key",sentno);
+                            else
+                                args.putInt("SentNo_Key",0);
+                            obj.setArguments(args);
+                            break;
+                        case 2:
+                            if(matched_symptoms_user2.size()>0)
+                                args.putInt("SentNo_Key", sentno);
+                            else
+                                args.putInt("SentNo_Key", 0);
+                            obj.setArguments(args);
+                            break;
+                        case 3:
+                            if(matched_symptoms_user3.size()>0)
+                                args.putInt("SentNo_Key",sentno);
+                            else
+                                args.putInt("SentNo_Key",0);
+                            obj.setArguments(args);
+                            break;
+                        case 4:
+                            if(matched_symptoms_user4.size()>0)
+                                args.putInt("SentNo_Key",sentno);
+                            else
+                                args.putInt("SentNo_Key",0);
+                            obj.setArguments(args);
+                            break;
+                        case 5:
+                            if(matched_symptoms_user5.size()>0)
+                                args.putInt("SentNo_Key",sentno);
+                            else
+                                args.putInt("SentNo_Key",0);
+                            obj.setArguments(args);
+                            break;
+                        case 6:
+                            if(matched_symptoms_user6.size()>0)
+                                args.putInt("SentNo_Key",sentno);
+                            else
+                                args.putInt("SentNo_Key",0);
+                            obj.setArguments(args);
+                            break;
+                        case 7:
+                            if(matched_symptoms_user7.size()>0)
+                                args.putInt("SentNo_Key",sentno);
+                            else
+                                args.putInt("SentNo_Key",0);
+                            obj.setArguments(args);
+                            break;
+                        case 8:
+                            if(matched_symptoms_user8.size()>0)
+                                args.putInt("SentNo_Key",sentno);
+                            else
+                                args.putInt("SentNo_Key",0);
+                            obj.setArguments(args);
+                            break;
+                        case 9:
+                            if(matched_symptoms_user9.size()>0)
+                                args.putInt("SentNo_Key",sentno);
+                            else
+                                args.putInt("SentNo_Key",0);
+                            obj.setArguments(args);
+                            break;
+
+                    }
+                getActivity().getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container,obj).addToBackStack(backstack).commit();
 
 
 
-        return myview;
+            }
+        });
+
+        return my_view;
     }
 }

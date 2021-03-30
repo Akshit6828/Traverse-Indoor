@@ -19,7 +19,7 @@
         android:background="@drawable/black_border"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
         android:checkMarkTint="#125E67"
-        android:checked="true"
+        android:checked="false"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"

@@ -42,25 +42,19 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG="PedigreeAnalysis";
-    int mStackLevel;
     private String mParam1;
     private String mParam2;
     private ImageButton im1,im2,im3,im4,im5,im6,im7,im8,im9;
-    SharedPreferences preferences;
-    private FirebaseAuth mAuth;
     EditText input_name, input_gender,input_DOB;
     Dialog dialog,dialog_input;
     TextView relation_user;
-    //    String name,dob,gender;
     public  String fetched_name,fetched_dob,fetched_relation,fetched_gender;
     int year,month,day;
     int flag=0;
     boolean ans;
     FirebaseDatabase database;
-    DatabaseReference reference,relation_Reference;
+    DatabaseReference reference;
     ArrayList<String> stringArrayList;
-    boolean lay1,lay2,lay3;
-    DatabaseReference ref1,ref2,ref3,ref4,ref5,ref6,ref7,ref8,ref9;
     public PedigreeAnalysis() {
         // mStackLevel=0;
 
@@ -236,12 +230,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                                         fetched_dob = obj.getDob();
                                         fetched_gender = obj.getGender();
                                         fetched_relation = relation_with_user;
-
                                         showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
-                                        if(lay2){
-                                            Toast.makeText(getActivity(), "LAy2 Called", Toast.LENGTH_SHORT).show();
-                                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_pedigree_analysis,new Match_Symptoms()).commit();
-                                        }
                                         break;
                                     }
 
@@ -277,7 +266,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                         for (DataSnapshot i : dataSnapshot.getChildren()) {
                             StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
                             if (obj != null) {
-                                String relation_with_user = obj.getRelation_with_user();//pgf-->pgm
+                                String relation_with_user = obj.getRelation_with_user();
                                 if (relation_with_user != null) {
                                     if (relation_with_user.equals("Maternal Grand Father")) {
                                         im3.setBackground(null);
@@ -591,58 +580,6 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
     public void showInputCustomDialog(final String relation) {
 
-        /*
-        dialog_input.setContentView(R.layout.custom_dialog_profile_input);
-        dialog_input.setCancelable(false);
-        input_name=dialog_input.findViewById(R.id.id_input_name);
-        input_DOB=dialog_input.findViewById(R.id.id_input_dob);
-        input_gender=dialog_input.findViewById(R.id.id_input_gender);
-        final Button set_profile=dialog_input.findViewById(R.id.editbutton);
-        final TextView cross=dialog_input.findViewById(R.id.close_input);
-        cross.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            dialog_input.dismiss();
-            }
-        });
-        input_DOB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar ca= Calendar.getInstance();
-              final int y=ca.get(Calendar.YEAR);
-                final  int m=ca.get(Calendar.MONTH);
-                final int d=ca.get(Calendar.DAY_OF_MONTH);
-                new DatePickerDialog(getActivity(),listener,year,month,day).show();
-            }
-        });
-        set_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                 final_name=input_name.getText().toString();
-               final_dob=input_DOB.getText().toString();
-             final_gender=input_gender.getText().toString();
-             flag[0] =1;
-             data.add(final_name);
-             data.add(final_dob);
-             data.add(final_gender);
-
-            }
-        });
-        dialog_input.show();*/
-     /*   FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        Fragment prev = getActivity().getSupportFragmentManager().findFragmentById(R.id.idinputFragment);
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        Bundle args = new Bundle();
-        args.putString("Relation", relation);
-        DialogFragment dialogFragment = new CustomDialogProfile();
-        dialogFragment.setArguments(args);
-        dialogFragment.show(getActivity().getSupportFragmentManager(),"Dialog");*/
-
         //**********OPENING DIALOG USING CUSTOM_DIALOG_CLASS ----------
 
         /*DialogFragment show_input_dialog_obj = new CustomDialogProfile();
@@ -831,19 +768,36 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
             }
         });
 
-        //Linear layout listeners.
+        //Linear layout listeners and their text views listeners.
         l1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Code for Setting reminder fragment and dismissing the dialog.
+                String backstackname="PedigreeAnalyis";
                 fragment_set_reminder obj = new fragment_set_reminder ();
                 Bundle args = new Bundle();
                 args.putString("UserRelation", relation_with_user);
                 args.putString("UserName", name_of_current_profile);
                 obj.setArguments(args);
-
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_set_reminder()).commit();
+                getActivity().getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container,obj).addToBackStack(backstackname).commit();
+                dialog.dismiss();
+            }
+        });
+        tvreminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String backstackname="PedigreeAnalyis";
+                fragment_set_reminder obj = new fragment_set_reminder ();
+                Bundle args = new Bundle();
+                args.putString("UserRelation", relation_with_user);
+                args.putString("UserName", name_of_current_profile);
+                obj.setArguments(args);
+                getActivity().getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container,obj).
+                        addToBackStack(backstackname).commit();
                 dialog.dismiss();
             }
         });
@@ -851,10 +805,34 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
             @Override
             public void onClick(View view) {
                 //Code for Symptoms match fragment and dismissing the dialog.
+                String backstackname="PedigreeAnalyis";
+                Match_Symptoms obj= new Match_Symptoms();
+                Bundle args = new Bundle();
+                args.putString("UserRelation", relation_with_user);
+                args.putString("UserName", name_of_current_profile);
+                obj.setArguments(args);
 
+                getActivity().getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container,obj).
+                        addToBackStack(backstackname).commit();
+                dialog.dismiss();
+            }
+        });
+        tvmatch_symptoms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String backstackname="PedigreeAnalyis";
+                Match_Symptoms obj= new Match_Symptoms();
+                Bundle args = new Bundle();
+                args.putString("UserRelation", relation_with_user);
+                args.putString("UserName", name_of_current_profile);
+                obj.setArguments(args);
 
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Match_Symptoms()).commit();
+                getActivity().getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container,obj).
+                        addToBackStack(backstackname).commit();
                 dialog.dismiss();
 
 
@@ -863,29 +841,33 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         l3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String backstackname="PedigreeAnalyis";
                 //Code for Preventive Measures for fragment and dismissing the dialog.
-                dialog.dismiss();
-            }
-        });
-        //Inner TextView Listeners..
-        tvreminder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        tvmatch_symptoms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Match_Symptoms()).commit();
-                dialog.dismiss();
+                preventive_measures obj= new preventive_measures();
+                Bundle args = new Bundle();
+                args.putString("UserRelation", relation_with_user);
+                args.putString("UserName", name_of_current_profile);
+                obj.setArguments(args);
 
+                getActivity().getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container,obj).addToBackStack(backstackname).commit();
 
+                dialog.dismiss();
             }
         });
         tvpreventive_measures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String backstackname="PedigreeAnalyis";
+                preventive_measures obj= new preventive_measures();
+                Bundle args = new Bundle();
+                args.putString("UserRelation", relation_with_user);
+                args.putString("UserName", name_of_current_profile);
+                obj.setArguments(args);
+                getActivity().getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container,obj).addToBackStack(backstackname).commit();
                 dialog.dismiss();
             }
         });
@@ -893,120 +875,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
     }
 
-/*
-     // TREE VIEW CODE USING NODE IMPLEMENTATION STARTS............
 
-      TreeView treeView = mylayout.findViewById(R.id.idTreeView);
-
-        BaseTreeAdapter<Viewholder> adapter = new BaseTreeAdapter<Viewholder>(getActivity(),R.layout.tree_view_node) {
-            @NonNull
-            @Override
-            public Viewholder onCreateViewHolder(View view) {
-                return new Viewholder(view);
-            }
-
-            @Override
-            public void onBindViewHolder(Viewholder viewHolder, Object data, int position) {
-                viewHolder.textView.setText(data.toString());
-                Uri imgUri=Uri.parse("android.resource://com.akshit.genedetectionapp/"+R.drawable.ic_add);
-                viewHolder.imageView.setImageURI(null);
-                viewHolder.imageView.setImageURI(imgUri);
-                //viewHolder.imageView.setImageURI();//------ Convert image to URI ......
-            }
-        };
-        treeView.setAdapter(adapter);
-        TreeNode root= new TreeNode("Grand\nAncestor");
-        TreeNode pgf= new TreeNode(" Paternal\nGrand Father");
-        TreeNode pgm= new TreeNode(" Paternal\nGrand Mother");
-        TreeNode mgf= new TreeNode(" Maternal\nGrand Father");
-        TreeNode mgm= new TreeNode("Maternal\n Grand Mother");
-        TreeNode father= new TreeNode("Father");
-        TreeNode mother= new TreeNode("Mother");
-        TreeNode me=new TreeNode("You");
-        TreeNode child1boy=new TreeNode("Child male");
-        TreeNode child2girl=new TreeNode("Child female");
-        root.addChildren(pgf,pgm,mgf,mgm);
-        //pgf.addChild(father);
-        pgm.addChild(father);
-        mgm.addChild(mother);
-        father.addChild(me);
-
-        me.addChildren(child1boy,child2girl);
-
-        //root.addChild(child2girl);
-        //root.setParent(parent1);
-        //root.setParent(parent2);
-        //root.setParent(parent3);
-        //parent1.setParent(parent4);
-        //parent2.setParent(parent5);
-        //parent2.setParent(parent6);
-
-        adapter.setRootNode(root);
-       // adapter.setRootNode(me);
-
-
-       //TREE VIEW CODE USING NODE XML ENDS............
-*/
-       /*graphView = mylayout.findViewById(R.id.idGraphView);
-        final Uri imageuri = Uri.parse("android.resource://com.akshit.genedetectionapp/drawable/ic_add");
-        final Graph graph = new Graph();
-        final Node node1 = new Node("You");
-        final Node node2 = new Node("Father");
-        final Node node3 = new Node("Mother");
-       // graph.addEdge(node1, node2);
-        //graph.addEdge(node1, node3);
-       // graph.addNode(node2);
-        //graph.addNode(node3);
-     //   graph.hasPredecessor(node1);
-        graph.addNodes(node1,node2,node3);
-        graph.addEdge(node1,node2);
-        graph.addEdge(node1,node3);
-        /*graph.predecessorsOf(node2);
-        graph.predecessorsOf(node3);
-
-       /* graphAdapter= new GraphAdapter<GraphView.ViewHolder>(graph) {
-            @NonNull
-            @NotNull
-            @Override
-            public GraphView.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup viewGroup, int i) {
-                final View view = LayoutInflater.from(getActivity()).inflate(R.layout.tree_view_node, viewGroup, false);
-                return new Viewholder(view);
-
-            }
-
-            @Override
-            public void onBindViewHolder(@NonNull @NotNull GraphView.ViewHolder viewHolder, @NotNull Object o, int i) {
-                ((Viewholder) viewHolder).textView.setText(o.toString());
-            //    ((Viewholder) viewHolder).imageView.setImageURI(imageuri);
-
-            }
-
-            @Override
-            public int getCount() {
-                return 0;
-            }
-
-            @Override
-            public Object getItem(int i) {
-                return null;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-        };
-        graphView.setAdapter(graphAdapter);
-        final BuchheimWalkerConfiguration configuration = new BuchheimWalkerConfiguration.Builder()
-                .setSiblingSeparation(100)
-                .setLevelSeparation(300)
-                .setSubtreeSeparation(300)
-                .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
-                .build();
-        graphView.setLayout(new BuchheimWalkerAlgorithm(configuration));*/
-
-    //Image button code goes here!...........
-    //Connecting UI and Backend!
 
 
     DatePickerDialog.OnDateSetListener listenerdob = new DatePickerDialog.OnDateSetListener() {

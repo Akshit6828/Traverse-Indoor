@@ -106,7 +106,8 @@ public class fragment_dashboad extends Fragment {
         l3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_medication()).commit();
+                String backstack="PedigreeAnalysis";
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_medication()).addToBackStack(backstack).commit();
                 //Intent i= new Intent(getActivity(),GoogleSearchPage.class);
                 //startActivity(i);
 

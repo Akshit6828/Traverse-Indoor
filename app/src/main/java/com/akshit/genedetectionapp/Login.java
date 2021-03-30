@@ -85,6 +85,9 @@ public class Login extends AppCompatActivity {
                                 if (phoneindb.equals(phonenumber)) {
                                     flag = 1;
                                     nameofuser = obj.getName();
+                                    editor.putString("username_key",nameofuser);
+                                    editor.putString("userphone_in_sharedpreference",phonenumber);
+                                    editor.commit();
                                     //Toast.makeText(Login.this, "User Confirmed and Name of User is "+nameofuser, Toast.LENGTH_SHORT).show();
                                     phonenumber = e1.getText().toString();
                                     progressBar.setVisibility(View.VISIBLE);
@@ -217,10 +220,6 @@ public class Login extends AppCompatActivity {
                         {
                             Intent i = new Intent(Login.this,MainPage.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        //i.putExtra("username",nameofuser);
-                        editor.putString("username_key",nameofuser);
-                        editor.putString("userphone_in_sharedpreference",phonenumber);
-                        editor.commit();
                         startActivity(i);
                         finish();
                         }
