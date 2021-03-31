@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:21.0.1'
 
     implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation 'androidx.room:room-runtime:2.2.5'
     testImplementation 'junit:junit:4.12'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
@@ -53,4 +54,5 @@ dependencies {
     implementation 'de.blox.treeview:treeview:0.1.0'
 
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    annotationProcessor 'androidx.room:room-compiler:2.2.5'
 }

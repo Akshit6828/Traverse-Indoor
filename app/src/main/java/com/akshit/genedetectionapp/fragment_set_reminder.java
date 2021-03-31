@@ -1,14 +1,20 @@
 package com.akshit.genedetectionapp;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +29,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.akshit.genedetectionapp.Database.DatabaseClass;
+import com.akshit.genedetectionapp.Database.EntityClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,7 +41,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,8 +72,11 @@ public class fragment_set_reminder extends Fragment {
     Spinner r;
     String relation[];
     String username,userrelation;
-    FirebaseDatabase database;
-    DatabaseReference reference;
+    String timeToNotify;
+    DatabaseClass databaseClass;
+    ReminderAdapter reminderAdapter;
+    RecyclerView recyclerView;
+
 
     public fragment_set_reminder() {
         // Required empty public constructor
@@ -98,15 +116,20 @@ public class fragment_set_reminder extends Fragment {
 
         View mylayout=  inflater.inflate(R.layout.fragment_set_reminder, container, false);
         fab=mylayout.findViewById(R.id.floatingActionButton);
+        recyclerView=mylayout.findViewById(R.id.recycler_view);
+        databaseClass=DatabaseClass.getDatabase(getContext());
         if(getArguments()!=null) {
             username = getArguments().getString("UserName");
             userrelation = getArguments().getString("UserRelation");
+            Toast.makeText(getActivity(), "username="+username+" "+"userrelation="+userrelation, Toast.LENGTH_SHORT).show();
             if (username == null || userrelation == null) {
                 Toast.makeText(getActivity(), "No reminder set", Toast.LENGTH_SHORT).show();
             } else {
-                //Logic to show in Recycler View.
+                setReminderAdapter();
             }
         }
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +142,7 @@ public class fragment_set_reminder extends Fragment {
                  set=dialog.findViewById(R.id.button_set);
 
 
-                    dialog.show();
+
                     final int y,mm,dd,h,min;
                     Calendar ca=Calendar.getInstance();
                     y=ca.get(Calendar.YEAR);
@@ -150,39 +173,33 @@ public class fragment_set_reminder extends Fragment {
                 set.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
                         if (r.getSelectedItemPosition() > 0) {
-                          // get selected item value
-                            if(getArguments()==null) {
-                                userrelation = String.valueOf(r.getSelectedItem());
-                                //item-->firebase?
-                                reference = database.getReference("Users Family Data");
-                                reference.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        for (DataSnapshot i : snapshot.getChildren()) {
-                                            StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                                            if (obj != null) {
-                                                String fetched_username = obj.getName();
-                                                String fetched_Relation = obj.getRelation_with_user();
-                                                if (fetched_Relation != null) {
-                                                    if (userrelation.equals(fetched_Relation)) {
-                                                        username = fetched_username;
-                                                    }
-                                                }
+                             String relation=r.getSelectedItem().toString();
+                             String message=m.getText().toString().trim();
+                            if(message.isEmpty()){
+                                Toast.makeText(getActivity(), "Please, type message.", Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                if(d.getText().toString().isEmpty() || t.getText().toString().isEmpty()){
+                                    Toast.makeText(getActivity(), "Please,select date and time for reminder.", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    EntityClass entityClass = new EntityClass();
+                                    String value = ("Relation: "+relation+"\nMessage: "+m.getText().toString().trim());
+                                    String date = (d.getText().toString().trim());
+                                    String time = (t.getText().toString().trim());
+                                    Toast.makeText(getActivity(), "values="+value+"date="+date+"time="+time, Toast.LENGTH_SHORT).show();
+                                    entityClass.setEventdate(date);
+                                    entityClass.setEventname(value);
+                                    entityClass.setEventtime(time);
+                                    databaseClass.evenDao().insertAll(entityClass);
+                                    setAlarm(value, date, time);
+                                    setReminderAdapter();
+                                    dialog.dismiss();
 
-                                            }
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
+                                }
                             }
 
-                                //logic for setting the alarm with username as name and userelation as relation.
 
 
                         } else {
@@ -193,11 +210,14 @@ public class fragment_set_reminder extends Fragment {
                         }
 
                     }
+
+
                 });
+
+                dialog.show();
             }
 
         });
-
 
 
         return  mylayout;
@@ -212,7 +232,65 @@ public class fragment_set_reminder extends Fragment {
     TimePickerDialog.OnTimeSetListener lt=new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-            t.setText(hourOfDay+":"+minute);
+            timeToNotify=hourOfDay+ ":" +minute;
+            t.setText(FormatTime(hourOfDay,minute));
+
         }
     };
+
+    public String FormatTime(int hourOfDay, int minute) {
+        String time="";
+        String formattedMinute;
+
+        if(minute/10==0)
+            formattedMinute="0"+minute;
+        else
+            formattedMinute=""+minute;
+        if(hourOfDay==0)
+            time="12"+":"+formattedMinute+"AM";
+        else if(hourOfDay<12)
+            time=hourOfDay+":"+formattedMinute+"AM";
+        else if(hourOfDay==12)
+            time="12"+":"+formattedMinute+"PM";
+        else{
+            int temp=hourOfDay-12;
+            time=temp+":"+formattedMinute+"PM";
+        }
+      return time;
+    }
+
+    private void setReminderAdapter(){
+        List<EntityClass> classList=databaseClass.evenDao().getAllData();
+        reminderAdapter=new ReminderAdapter(getContext(),classList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+        recyclerView.setAdapter(reminderAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setReminderAdapter();
+    }
+
+    private void setAlarm(String event, String date, String time){
+        AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getActivity().getApplicationContext(), AlarmBroadcast.class);
+        intent.putExtra("event", event);
+        intent.putExtra("time", date);
+        intent.putExtra("date", time);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        String dateandtime = date + " " + timeToNotify;
+        Toast.makeText(getActivity(), "date and time="+dateandtime, Toast.LENGTH_SHORT).show();
+        DateFormat formatter = new SimpleDateFormat("d/M/yyyy hh:mm", Locale.ENGLISH);
+        try {
+
+            Date date1 = formatter.parse(dateandtime);
+            am.set(AlarmManager.RTC_WAKEUP, date1.getTime(), pendingIntent);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

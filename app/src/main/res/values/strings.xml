@@ -100,13 +100,13 @@
     <string name="Carrots">Carrots are high in beta-carotene and other nutrients with anti-inflammatory properties</string>
     <string name="Collard_greens">Collard greens including cabbage and broccoli are a “neutral” food they pose no known risk of triggering a Migraine attack.It is extremely high in magnesium.</string>
 
-   <!--migraine don'ts-->
+    <!--migraine don'ts-->
     <string name="Nuts_mig">Nuts like almonds, peanuts, and many other nuts and seeds contain tyramine.But not all migraine sufferers are sensitive to nuts.</string>
     <string name="red_wine">Red wine is the most commonly-reported trigger as it contains a lot of histamine.</string>
     <string name="Cheeses">Aged Cheeses like blue cheese, brie, cheddar, swiss, feta, mozzarella, and most common migraine trigger as it contains tyramine.</string>
     <string name="Excessive_Coffee">Excessive caffeine consumption can trigger migraines.People who consume too much caffeine can increases their risk of experiencing caffeine withdrawal symptoms when they stop consuming it, including anxiety and headache.</string>
 
-   <!--migraine medication-->
+    <!--migraine medication-->
     <string name="migraine_med">Drugs That Stop Migraine Headaches(Abortive drugs)\n1)ibuprofen\n2)aspirin\n3)acetaminophen\n4)naproxen\n\nNausea Drugs for Migraines\n1)chlorpromazine\n2)prochlorperazine\n3)metoclopramide hydrochloride</string>
 
     <!--thyroid do's-->
@@ -114,7 +114,7 @@
     <string name="selenium">Selenium helps “activate” thyroid hormones.Selenium-rich foods includes Brazil nuts, tuna, sardines, eggs, and legumes.</string>
     <string name="Zinc">Zinc helps the body “activate” thyroid hormones.Zinc-rich foods includes oysters and other shellfish, beef, and chicken.</string>
 
-   <!--thyroid don'ts-->
+    <!--thyroid don'ts-->
     <string name="Soy">Soy also called isoflavones increase a person risk for hypothyroidism.Foods With Soy,includes Edamame, Tofu, and Miso </string>
     <string name="Cruciferous">Cruciferous vegetables, such as broccoli and cabbage may interfere with the production of thyroid hormone if you have an iodine deficiency.</string>
     <string name="Gluten">Gluten a protein found in foods processed from wheat, barley, rye, and other grains may hamper absorption of thyroid hormone replacement medication.</string>
@@ -124,21 +124,21 @@
     <!--thyroid medicine-->
     <string name="thyroid_med">Hypothyroidism medications:\n\n1)levothyroxine (Levoxyl, Synthroid)\n2)T4 and triiodothyronine (T3)\n3)Tapazole (methimazole)\n4)Propylthiouracil (PTU)</string>
 
-   <!--cholesterol dos-->
+    <!--cholesterol dos-->
     <string name="Legumes">Legumes that includes beans, peas and lentils contain a lot of fiber, minerals and protein that can lower your risk of heart disease.</string>
     <string name="avocados">Avocados is a nutrient-dense fruit which is a rich source of monounsaturated fats and fiber that lowers cholesterol.</string>
     <string name="nuts">Nuts especially Almonds and Walnuts are very high in monounsaturated fats.Walnut is also rich in omega-3,associated with heart health.</string>
     <string name="Grains">Whole Grains especially Oats and Barley lower heart disease risk by 20% and promote heart health.</string>
     <string name="Cocoa">Dark Chocolate and Cocoa protect the “bad” LDL cholesterol in your blood from oxidation, which is a key cause of heart disease.</string>
     <string name="Soy_chol">Soy foods like Soybeans are a type of legume that may be beneficial for heart health.It reduces “bad” LDL and increases “good” HDL cholesterol.</string>
-  
+
     <!--cholesterol don'ts-->
     <string name="Cheese">Cheese provides 27 mg of cholesterol and must be avoided.</string>
     <string name="fried">Fried Foods have high-cholesterol and should be avoided whenever possible.It can contain trans fats, which increase heart disease risk.</string>
     <string name="Desserts">Cookies,cakes,ice cream,and other sweets are unhealthy foods that tend to be high in cholesterol, as well as added sugars, unhealthy fats and calories.</string>
     <string name="Shellfish">Shellfish including clams, crab and shrimp are high in cholesterol and must be avoided.</string>
 
-   <!--medicine cholesterol-->
+    <!--medicine cholesterol-->
     <string name="chol_med">Cholesterol medications/drugs:\n\n1)Atorvastatin (Lipitor)\n2)Lovastatin (Altoprev)\n3)Ezetimibe (Zetia)\n4)Alirocumab (Praluent)\n5)Bempedoic acid (Nexletol)\n6)Colestipol (Colestid)\n6)Ezetimibe-simvastatin (Vytorin)\n7)Amlodipine-atorvastatin (Caduet)</string>
 
     <!--dos conjunctivitis-->
@@ -146,7 +146,7 @@
     <string name="vitaminA">Vitamin A like milk, curds, butter, carrots, pumpkins, green leafy vegetables, tomatoes, mangoes and papayas  have been found valuable in the treatment of conjunctivitis. </string>
     <string name="vitaminB2">Foods rich in vitamin B2 are green leafy vegetables, milk, almonds, citrus fruits, bananas and tomatoes are valuable in the treatment of conjunctivitis.</string>
     <string name="fruit">Fresh fruit diet consisting of apples, oranges, pears, grapes, pineapples and grapefruits should be taken.</string>
-    
+
     <!--dont conjunctivitis-->
     <string name="Bananas">Bananas should not be taken in fruit diet in conjunctivitis.</string>
     <string name="starchySugary">Excessive intake of starchy and sugary foods in the form of white bread,refined cereals,potatoes,puddings,pastry,sugar and jams,which cause the general catarrhal condition as well as conjunctivitis. </string>
@@ -165,7 +165,7 @@
     <string name="zinc_supplements">Addition of zinc or zinc supplements also help in reducing the severity and duration of diarrhoea episode. Some good food sources of zinc are curd, rice, rajmah, spinach, garlic and fruits.</string>
     <string name="Sabudana">Sabudana is also a great source of starch.It  is a good semi-liquid food option helping bind the water in the intestine and controlling the frequency of diarrhoea.</string>
     <string name="potato">Boiling and immediate cooling of potato helps develop resistant starch, which improves water and electrolyte absorption helping to control the diarrhoea.</string>
-    
+
     <!--dosnt diarrhea-->
     <string name="Diary">Avoid milk,paneer and sweetened milk products like kheer,sweets made from milk.They are concentrated sources of energy which may be difficult for the intestine to digest and absorb, creating a new condition like osmotic diarrhoea.</string>
     <string name="spicy_food">Avoid spicy food as they irritate the small intestine.Instead curd rice, khichdi, kadhi-rice etc. are some good options.</string>
@@ -330,14 +330,14 @@
         <item>Having muscle weakness and tremors</item>
         <item>Gaining weight without eating much</item>//hypo thyroid
         <item>Experiencing forgetfulness</item>
-        <item>Abnormal heart rhythms (arrhythmias) either too fast or too slow.</item>//congential heart disease
+        <item>Abnormal heart rhythms (arrhythmias) either too fast or too slow.</item>//congential
+        heart disease
         <item>A bluish tint to the skin, lips, and fingernails</item>
         <item>Urinate (pee) a lot, often at night</item>
         <item>Black/ Red spots on the body without any skincare</item>//RA Factor
 
 
         //---Age specific
-
 
 
     </string-array>

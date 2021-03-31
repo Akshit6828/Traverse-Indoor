@@ -48,8 +48,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="372dp"
-        android:layout_height="371dp"
+        android:layout_width="342dp"
+        android:layout_height="358dp"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
