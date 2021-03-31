@@ -1,62 +1,58 @@
 package com.akshit.genedetectionapp;
 
-import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.akshit.genedetectionapp.Database.EntityClass;
+
 import java.util.List;
 
-public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyViewHolder> {
-    String relation[],contact[],date[],time[],message[];
-    Activity activity;
+public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ViewHolder> {
+    Context context;
+    List<EntityClass> entityClasses;
 
-    ReminderAdapter(String relation[],String contact[],String date[],String time[],String message[],Activity activity){
-        this.activity=activity;
-        this.contact=contact;
-        this.relation=relation;
-        this.date=date;
-        this.time=time;
-        this.message=message;
+    public ReminderAdapter(Context context, List<EntityClass> entityClasses) {
+        this.context = context;
+        this.entityClasses = entityClasses;
     }
-
 
     @NonNull
     @Override
-    public ReminderAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mylayout=activity.getLayoutInflater().inflate(R.layout.custom_layout,parent,false);
-        MyViewHolder holder=new MyViewHolder(mylayout);
-        return holder;
+    public ReminderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.listings_row, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.rel.setText(relation[position]);
-        holder.con.setText(contact[position]);
-        holder.dat.setText(date[position]);
-        holder.tim.setText(time[position]);
-        holder.msg.setText(message[position]);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        holder.eventText.setText(entityClasses.get(position).getEventname());
+        holder.timeAndDateText.setText(entityClasses.get(position).getEventdate() + " " + entityClasses.get(position).getEventtime());
     }
 
     @Override
     public int getItemCount() {
-        return contact.length;
+        return entityClasses.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
-       TextView rel,con,dat,tim,msg;
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.rel=itemView.findViewById(R.id.relation_value);
-            this.con=itemView.findViewById(R.id.contact_value);
-            this.dat=itemView.findViewById(R.id.date_value);
-            this.tim=itemView.findViewById(R.id.time_value);
-            this.msg=itemView.findViewById(R.id.msg_value);
+    class ViewHolder extends RecyclerView.ViewHolder{
+        private TextView eventText, timeAndDateText;
+        private LinearLayout toplayout;
 
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            eventText = (TextView) itemView.findViewById(R.id.event);
+            timeAndDateText = (TextView) itemView.findViewById(R.id.time_and_date);
+            toplayout = (LinearLayout) itemView.findViewById(R.id.toplayout);
         }
+
+
     }
 }
