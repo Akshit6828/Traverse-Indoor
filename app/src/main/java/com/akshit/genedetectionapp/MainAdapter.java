@@ -19,11 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.lang.reflect.Array;
 import java.nio.file.attribute.UserPrincipalLookupService;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     String [] all_Array_list;
-    public  ArrayList<String> selected_symptoms;
+   // public static  ArrayList<String> selected_symptoms;
     int number;
      public MainAdapter(String [] all_disease_arraylist,int number) {
            this.all_Array_list = all_disease_arraylist;
@@ -35,7 +37,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public MainAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.match_symptoms_single_layout,parent,false);
-       selected_symptoms= new ArrayList<>();
+
        return new ViewHolder(view);
     }
 
@@ -43,6 +45,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final MainAdapter.ViewHolder holder, int position) {
         String symptom=all_Array_list[position];
+     /*if (Match_Symptoms.selected_symptoms.contains(symptom)){
+          holder.checkedTextView.setChecked(true);
+      }*/
+
         holder.checkedTextView.setText(symptom);
         switch (number) {
             case 1: holder.checkedTextView.setChecked(Match_Symptoms.matched_symptoms_user1.contains(symptom));
@@ -79,9 +85,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                                 Match_Symptoms.matched_symptoms_user1.remove(holder.checkedTextView.getText().toString());
                             break;
                         case 2:
-                            if(holder.checkedTextView.isChecked())
+                            if(holder.checkedTextView.isChecked()){
                             Match_Symptoms.matched_symptoms_user2.add(holder.checkedTextView.getText().toString());
-                            else
+                          // Logic for Preserving the matched symptoms.
+                                //  Match_Symptoms.selected_symptoms.add(holder.checkedTextView.getText().toString());
+                            }else
                                 Match_Symptoms.matched_symptoms_user2.remove(holder.checkedTextView.getText().toString());
                             break;
                         case 3 :
@@ -147,14 +155,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 @Override
                 public void onClick(View view) {
                        // Match_Symptoms obj= new Match_Symptoms();
-
-                            //if(checkedTextView.isChecked()){
-                              //  Match_Symptoms.matched_symptoms_user.add(checkedTextView.getText().toString());
-                                //  obj.matched_symptoms_user.add(checkedTextView.getText().toString());
-                                Bundle args= new Bundle();
-//                        args.putStringArrayList("MainAdapter Selected Symptoms",selected_symptoms);
-//                        obj.setArguments(args);
-                 //   }
+                    checkedTextView.setChecked(!checkedTextView.isChecked());
+                            if(checkedTextView.isChecked()){
+                               // Match_Symptoms.selected_symptoms.add(checkedTextView.getText().toString());
+                   }
                 }
             });
         }

@@ -31,6 +31,7 @@ public class Match_Symptoms extends Fragment {
     RecyclerView.Adapter adapter,adapter2;
     int sentno;
     RecyclerView.LayoutManager layoutManager,layoutManager2;
+    //public  static  ArrayList<String> selected_symptoms;
     public  static  ArrayList<String> matched_symptoms_user1;
     public  static  ArrayList<String> matched_symptoms_user2;
     public  static  ArrayList<String> matched_symptoms_user3;
@@ -72,6 +73,7 @@ public class Match_Symptoms extends Fragment {
         matched_symptoms_user7=new ArrayList<>();
         matched_symptoms_user8=new ArrayList<>();
         matched_symptoms_user9=new ArrayList<>();
+        //selected_symptoms= new ArrayList<>();-- reserved for preserving the matched symptoms.
     }
 
     @Override
@@ -93,7 +95,7 @@ public class Match_Symptoms extends Fragment {
                 case "Paternal Grand Father": sentno = 1;
                     break;
                 case "Paternal Grand Mother": sentno = 2;
-                    Toast.makeText(getActivity(), "currltn!=null with sent no=2", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getActivity(), "currltn!=null with sent no=2", Toast.LENGTH_SHORT).show();
                     break;
                 case "Maternal Grand Father": sentno = 3;
                     break;

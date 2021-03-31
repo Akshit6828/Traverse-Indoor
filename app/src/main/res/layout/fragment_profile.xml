@@ -1,132 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_profile"
-    android:background="@drawable/design">
+    android:background="@drawable/profile_user"
+    tools:context=".fragment_profile">
 
     <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
-    <!-- Circular Image View  -->
-        <de.hdodenhof.circleimageview.CircleImageView
-
-            android:id="@+id/profile_image"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="100dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/username"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#040303"/>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="250dp"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="#070707"
-            android:text="Name: "
-            android:id="@+id/name"/>
-
-        <TextView
-            android:id="@+id/name_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="250dp"
-            android:textStyle="bold"
-            android:textColor="#070707"
-            android:layout_toRightOf="@id/name"
-            android:textSize="25dp"
-            android:text="None"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="140dp"
-            android:layout_marginTop="10dp"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="#070707"
-            android:text="Age: "
-            android:layout_below="@+id/name"
-            android:id="@+id/age"/>
-
-        <TextView
-            android:id="@+id/age_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textColor="#070707"
-            android:layout_below="@+id/name_value"
-            android:layout_toRightOf="@id/age"
-            android:textSize="25dp"
-            android:text="None"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="10dp"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="#070707"
-            android:text="Phone: "
-            android:layout_below="@+id/age"
-            android:id="@+id/phone"/>
-
-        <TextView
-            android:id="@+id/phone_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textColor="#070707"
-            android:layout_below="@+id/age_value"
-            android:layout_toRightOf="@id/phone"
-            android:textSize="25dp"
-            android:text="None"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="10dp"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="#070707"
-            android:text="Blood Group: "
-            android:layout_below="@+id/phone"
-            android:id="@+id/blood"/>
-
-        <TextView
-            android:id="@+id/blood_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textColor="#070707"
-            android:layout_below="@+id/phone_value"
-            android:layout_toRightOf="@id/blood"
-            android:textSize="25dp"
-            android:text="None"/>
+        <!-- Circular Image View  -->
 
 
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/profile_image"
+        android:layout_width="205dp"
+        android:layout_height="162dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="164dp"
+        android:src="@drawable/username"
+        app:civ_border_color="#040303"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="313dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/black_border"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Name: "
+        android:textColor="#00020B"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/profile_image"
+        app:layout_constraintStart_toStartOf="@+id/profile_image"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="313dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/black_border"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Age: "
+        android:textColor="#0B0104"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="313dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/age"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/black_border"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Phone: "
+        android:textColor="#120107"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/age"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/age"
+        app:layout_constraintTop_toBottomOf="@+id/age" />
+
+    <TextView
+        android:id="@+id/blood"
+        android:layout_width="313dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/phone"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/black_border"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Blood Group: "
+        android:textColor="#130107"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/phone"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/phone"
+        app:layout_constraintTop_toBottomOf="@+id/phone"
+        app:layout_constraintVertical_bias="0.024" />
 
 
-    </RelativeLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

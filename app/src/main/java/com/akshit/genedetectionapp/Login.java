@@ -1,9 +1,5 @@
 package com.akshit.genedetectionapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,12 +9,16 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Login extends AppCompatActivity {
@@ -47,6 +48,29 @@ public class Login extends AppCompatActivity {
     int flag=0;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+
+    public static ArrayList<Double> grandfather1;
+    public static ArrayList<Double> grandmother1;
+    public static  ArrayList<Double>  grandfather2;
+    public static ArrayList<Double> grandmother2;
+    public static  ArrayList<Double> dad;
+    public static ArrayList<Double> mom;
+    public static ArrayList<Double> me;
+    public static ArrayList<Double> child1female;
+    public static ArrayList<Double> child2male;
+
+
+
+    public static ArrayList<Double> percentage_gf1;
+    public static ArrayList<Double> percentage_gf2;
+    public static ArrayList<Double> percentage_gm2;
+    public static ArrayList<Double> percentage_gm1;
+    public static ArrayList<Double> percentage_dad;
+    public static ArrayList<Double> percentage_mom;
+    public static ArrayList<Double> percentage_me;
+    public static ArrayList<Double> percentage_child1female;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +78,17 @@ public class Login extends AppCompatActivity {
         database=FirebaseDatabase.getInstance();
         reference=database.getReference("Users_Database_1");
         progressBar=findViewById(R.id.progressbar);
+
+        grandfather1=new ArrayList<>();
+        grandfather2=new ArrayList<>();
+        grandmother1=new ArrayList<>();
+        grandmother2=new ArrayList<>();
+        dad=new ArrayList<>();
+        mom=new ArrayList<>();
+        me=new ArrayList<>();
+        child1female=new ArrayList<>();
+        child2male=new ArrayList<>();
+
 
         //Local Shared Preference Details.
         preferences=getSharedPreferences("Local_Details",Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
@@ -82,11 +117,15 @@ public class Login extends AppCompatActivity {
                             for (DataSnapshot i : dataSnapshot.getChildren()) {
                                 StoringUserDetails obj = i.getValue(StoringUserDetails.class);
                                 String phoneindb = obj.getPhone_number();
+                                int age=obj.getAge();
+                                String bloodgroup=obj.getBloodgroup();
                                 if (phoneindb.equals(phonenumber)) {
                                     flag = 1;
                                     nameofuser = obj.getName();
                                     editor.putString("username_key",nameofuser);
                                     editor.putString("userphone_in_sharedpreference",phonenumber);
+                                    editor.putInt("Age_user",age);
+                                    editor.putString("Bloodgroup_user",bloodgroup);
                                     editor.commit();
                                     //Toast.makeText(Login.this, "User Confirmed and Name of User is "+nameofuser, Toast.LENGTH_SHORT).show();
                                     phonenumber = e1.getText().toString();
