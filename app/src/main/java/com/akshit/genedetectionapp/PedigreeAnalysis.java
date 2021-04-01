@@ -2,15 +2,10 @@ package com.akshit.genedetectionapp;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,15 +19,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.CustomDialogProfileListener {
@@ -55,6 +54,10 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
     FirebaseDatabase database;
     DatabaseReference reference;
     ArrayList<String> stringArrayList;
+    ArrayList<Double> default_zero;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
     public PedigreeAnalysis() {
         // mStackLevel=0;
 
@@ -165,6 +168,8 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
             }
         });
+        preferences=getActivity().getSharedPreferences("Local_Details", Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
+        editor=preferences.edit();
 
         im1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -441,8 +446,10 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                             StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
                             if (obj != null) {
                                 String relation_with_user = obj.getRelation_with_user();
+
                                 if (relation_with_user != null) {
                                     if (relation_with_user.equals("Self")) {
+                                        fetched_gender=obj.getGender();
                                                 if(fetched_gender.equals("Male")) {
                                                   im7.setBackground(null);
                                                   im7.setBackgroundResource(R.drawable.male);
@@ -456,6 +463,8 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                                         fetched_gender = obj.getGender();
                                         fetched_relation = relation_with_user;
                                         showCustomDialog(fetched_name, fetched_gender, fetched_relation, fetched_dob);
+                                        editor.putString("Gender_KEY",fetched_gender);
+                                        editor.commit();
                                         flag=1;
                                         break;
                                     }
@@ -827,6 +836,8 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                 Bundle args = new Bundle();
                 args.putString("UserRelation", relation_with_user);
                 args.putString("UserName", name_of_current_profile);
+                args.putInt("SentNo_Key", 11);
+
                 obj.setArguments(args);
 
                 getActivity().getSupportFragmentManager().
@@ -847,11 +858,31 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                 Bundle args = new Bundle();
                 args.putString("UserRelation", relation_with_user);
                 args.putString("UserName", name_of_current_profile);
+                args.putInt("SentNo_Key", 11);
                 obj.setArguments(args);
-
                 getActivity().getSupportFragmentManager().
                         beginTransaction().
-                        replace(R.id.fragment_container,obj).addToBackStack(backstackname).commit();
+                                       replace(R.id.fragment_container,obj).
+                        addToBackStack(backstackname).commit();
+
+//                if(relation_with_user!=null){
+//                    switch (relation_with_user){
+//                        case "Paternal Grand Father":
+//                            Integer[] img_disease ={R.drawable.diabetes2,R.drawable.migraine2,R.drawable.hyper_thyriod_png,R.drawable.hypo_thyriod,R.drawable.congential_heart_png,R.drawable.thalesemia_png,R.drawable.ra_png};
+//                            String [] diseases ={"Diabetes","Migrane","Hyper Thyroid","Hypo Thyroid","Congenital Heart Disease","Thalassemia","Rheumatoid Arthritis"};
+//                            default_zero=new ArrayList<Double>(Arrays.asList(0.00,0.00,0.00,0.00,0.00,0.00,0.00));
+//                            if(Login.percentage_gf1_expected.size()>0&&Login.percentage_gf1.size()>0){
+//                                preventive_measures.recyclerView3.setAdapter(new Results_Adapter(Login.percentage_gf1_expected,Login.percentage_gf1,img_disease,diseases));
+//
+//
+//                            }
+//                            else{
+//                                Toast.makeText(getActivity(), "Symptoms Not selected...Please select symptoms first", Toast.LENGTH_SHORT).show();
+//                            }
+//                            break;
+//                    }
+//                }
+
 
                 dialog.dismiss();
             }
@@ -860,14 +891,58 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
             @Override
             public void onClick(View view) {
                 String backstackname="PedigreeAnalyis";
-                preventive_measures obj= new preventive_measures();
-                Bundle args = new Bundle();
-                args.putString("UserRelation", relation_with_user);
-                args.putString("UserName", name_of_current_profile);
-                obj.setArguments(args);
-                getActivity().getSupportFragmentManager().
-                        beginTransaction().
-                        replace(R.id.fragment_container,obj).addToBackStack(backstackname).commit();
+
+
+                if(relation_with_user!=null){
+                    preventive_measures obj = new preventive_measures();
+                    Bundle args = new Bundle();
+                    args.putString("UserRelation", relation_with_user);
+                    args.putString("UserName", name_of_current_profile);
+                    switch (relation_with_user){
+                        case "Paternal Grand Father":
+                        args.putInt("SentNo_Key", 1);
+                        obj.setArguments(args);
+                        break;
+                        case "Paternal Grand Mother":
+                            args.putInt("SentNo_Key", 12);
+                            obj.setArguments(args);
+                            break;
+                        case "Maternal Grand Father":
+                            args.putInt("SentNo_Key", 13);
+                            obj.setArguments(args);
+
+                            break;
+                        case"Maternal Grand Mother":
+                            args.putInt("SentNo_Key", 14);
+                            obj.setArguments(args);
+                            break;
+                        case"Father":
+                            args.putInt("SentNo_Key", 15);
+                            obj.setArguments(args);
+                            break;
+                        case"Mother":
+                            args.putInt("SentNo_Key", 16);
+                            obj.setArguments(args);
+                            break;
+                        case"Self":
+                            args.putInt("SentNo_Key", 17);
+                            obj.setArguments(args);
+                            break;
+                        case"Child 1 Female":
+                            args.putInt("SentNo_Key", 18);
+                            obj.setArguments(args);
+                            break;
+                        case"Child 2 Male":
+                            args.putInt("SentNo_Key", 19);
+                            obj.setArguments(args);
+                            break;
+
+                    }
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
+                }
+
                 dialog.dismiss();
             }
         });

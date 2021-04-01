@@ -99,7 +99,7 @@ public class Match_Symptoms extends Fragment {
                     break;
                 case "Maternal Grand Father": sentno = 3;
                     break;
-                case "Maternal Grand Mother3": sentno = 4;
+                case "Maternal Grand Mother": sentno = 4;
                     break;
                 case "Father":sentno = 5;
                     break;
@@ -133,7 +133,6 @@ public class Match_Symptoms extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "button clicked ", Toast.LENGTH_SHORT).show();
                 preventive_measures obj= new preventive_measures();
                 Bundle args= new Bundle();
                 String backstack="PedigreeAnalysis";

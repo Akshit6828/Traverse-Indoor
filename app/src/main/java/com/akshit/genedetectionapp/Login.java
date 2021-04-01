@@ -62,13 +62,23 @@ public class Login extends AppCompatActivity {
 
 
     public static ArrayList<Double> percentage_gf1;
+    public static ArrayList<Double> percentage_gf1_expected;
     public static ArrayList<Double> percentage_gf2;
+    public static ArrayList<Double> percentage_gf2_expected;
     public static ArrayList<Double> percentage_gm2;
+    public static ArrayList<Double> percentage_gm2_expected;
     public static ArrayList<Double> percentage_gm1;
+    public static ArrayList<Double> percentage_gm1_expected;
     public static ArrayList<Double> percentage_dad;
+    public static ArrayList<Double> percentage_dad_expected;
     public static ArrayList<Double> percentage_mom;
+    public static ArrayList<Double> percentage_mom_expected;
     public static ArrayList<Double> percentage_me;
+    public static ArrayList<Double> percentage_me_expected;
     public static ArrayList<Double> percentage_child1female;
+    public static ArrayList<Double> percentage_child1female_expected;
+    public static ArrayList<Double> percentage_child2male;
+    public static ArrayList<Double> percentage_child2male_expected;
 
 
     @Override

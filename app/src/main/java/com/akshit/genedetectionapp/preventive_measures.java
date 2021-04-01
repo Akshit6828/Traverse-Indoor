@@ -1,13 +1,20 @@
 package com.akshit.genedetectionapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.LoginFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
@@ -39,7 +46,16 @@ public class preventive_measures extends Fragment {
     List<String> rheumatoid_arthritis;
     private int rheumatoid_arthritis_count;
     private int no_match;
-
+    Integer[] img_disease ={R.drawable.diabetes2,R.drawable.migraine2,R.drawable.hyper_thyriod_png,R.drawable.hypo_thyriod,R.drawable.congential_heart_png,R.drawable.thalesemia_png,R.drawable.ra_png};
+    String [] diseases ={"Diabetes","Migrane","Hyper Thyroid","Hypo Thyroid","Congenital Heart Disease","Thalassemia","Rheumatoid Arthritis"};
+    public static RecyclerView recyclerView3;
+    public RecyclerView.Adapter adapter3;
+    public RecyclerView.LayoutManager layoutManager3;
+    Button preventmeasures;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+    String gender_me;
+    ArrayList<Double> default_zero;
 
 
 
@@ -75,6 +91,12 @@ public class preventive_measures extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_preventive_measures, container, false);
        //selected_symptoms=new ArrayList<>();
+        recyclerView3 =v.findViewById(R.id.recyclerView3);
+        preventmeasures=v.findViewById(R.id.button_preventive_measures);
+        default_zero=new ArrayList<Double>(Arrays.asList(0.00,0.00,0.00,0.00,0.00,0.00,0.00));
+
+        layoutManager3= new LinearLayoutManager(getActivity());
+        recyclerView3.setLayoutManager(layoutManager3);
 
         diabetes= Arrays.asList(getResources().getStringArray(R.array.diabetes_symptoms));
         migrane= Arrays.asList(getResources().getStringArray(R.array.migrane_symptoms));
@@ -84,155 +106,329 @@ public class preventive_measures extends Fragment {
         thalassemia= Arrays.asList(getResources().getStringArray(R.array.thalassemia_symptoms));
         rheumatoid_arthritis= Arrays.asList(getResources().getStringArray(R.array.rheumatoid_arthritis_symptoms));
 
+        preferences=getActivity().getSharedPreferences("Local_Details", Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
+        editor=preferences.edit();
+        gender_me=preferences.getString("Gender_KEY","Not Specified");
+
        if(getArguments()!=null) {
-           int user_no=getArguments().getInt("SentNo_Key");
-           Toast.makeText(getActivity(), "Preventive_Measure  Args is +ve with userno = "+user_no, Toast.LENGTH_SHORT).show();
+
+
+           int user_no = getArguments().getInt("SentNo_Key");
+           if(user_no>=0&&user_no<=9){
            switch (user_no) {
                case 0:
                    Toast.makeText(getActivity(), "No Disease Found..!", Toast.LENGTH_SHORT).show();
                    break;
                case 1:
-                   Toast.makeText(getActivity(), "Symptoms founded for 1st person", Toast.LENGTH_SHORT).show();
+                   //Toast.makeText(getActivity(), "Symptoms founded for 1st person", Toast.LENGTH_SHORT).show();
                    Login.grandfather1 = checkProbability(Match_Symptoms.matched_symptoms_user1);
-                   Login.percentage_gf1=new ArrayList<>();
-                   for(int i = 0; i< Login.grandfather1.size(); i++){
-                       Login.percentage_gf1.add(0.0);
-                       Login.percentage_gf1.add(Login.grandfather1.get(i));
-                   }
-                   for(double d:Login.percentage_gf1){
-                       Toast.makeText(getActivity(), "%gf1 for userid"+user_no+" is"+d, Toast.LENGTH_SHORT).show();
-                   }
+                   Login.percentage_gf1 = new ArrayList<>();
+                   Login.percentage_gf1 = Login.grandfather1;
+                   Login.percentage_gf1_expected = default_zero;
+                   adapter3 = new Results_Adapter(default_zero, Login.percentage_gf1, img_disease, diseases);
+                   recyclerView3.setAdapter(adapter3);
                    break;
                case 2:
-                   Toast.makeText(getActivity(), "Symptoms founded for 2nd person", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getActivity(), "Symptoms founded for 2nd person", Toast.LENGTH_SHORT).show();
                    Login.grandmother1 = checkProbability(Match_Symptoms.matched_symptoms_user2);
-                  // Toast.makeText(getActivity(), "size of returnedis "+grandmother1.size(), Toast.LENGTH_SHORT).show();
                    Login.percentage_gm1 = new ArrayList<>();
-                   for(int i=0;i<Login.grandmother1.size();i++){
-                       Login.percentage_gm1.add(0.0);
-                       Login.percentage_gm1.add(Login.grandmother1.get(i));
-                   }
-                   for(double d:Login.grandmother1){
-                       Toast.makeText(getActivity(), "gm1 is for userid"+user_no+" is "+d, Toast.LENGTH_SHORT).show();
-                   }
-
+                   Login.percentage_gm1 = Login.grandmother1;
+                   Login.percentage_gm1_expected = default_zero;
+                   adapter3 = new Results_Adapter(default_zero, Login.percentage_gm1, img_disease, diseases);
+                   recyclerView3.setAdapter(adapter3);
                    break;
                case 3:
-                   Toast.makeText(getActivity(), "Symptoms founded for 3rd person", Toast.LENGTH_SHORT).show();
+                   //  Toast.makeText(getActivity(), "Symptoms founded for 3rd person", Toast.LENGTH_SHORT).show();
                    Login.grandfather2 = checkProbability(Match_Symptoms.matched_symptoms_user3);
                    Login.percentage_gf2 = new ArrayList<>();
+                   Login.percentage_gf2 = Login.grandfather2;
+                   Login.percentage_gf2_expected = default_zero;
 
-                   for(int i=0;i<Login.grandfather2.size();i++){
-                       Login.percentage_gf2.add(0.0);
-                       Login.percentage_gf2.add(Login.grandfather2.get(i));
-                   }
+                   adapter3 = new Results_Adapter(default_zero, Login.percentage_gf2, img_disease, diseases);
+                   recyclerView3.setAdapter(adapter3);
                    break;
                case 4:
-                   Toast.makeText(getActivity(), "Symptoms found for 4th person ", Toast.LENGTH_SHORT).show();
+                   //  Toast.makeText(getActivity(), "Symptoms found for 4th person ", Toast.LENGTH_SHORT).show();
                    Login.grandmother2 = checkProbability(Match_Symptoms.matched_symptoms_user4);
                    Login.percentage_gm2 = new ArrayList<>();
-                   for(int i=0;i<Login.grandmother2.size();i++){
-                       Login.percentage_gm2.add(0.0);
-                       Login.percentage_gm2.add(Login.grandmother2.get(i));
-                   }
-                   for(int i=0;i<Login.percentage_gm2.size();i++){
-                       Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
-                   }
+                   Login.percentage_gm2 = Login.grandmother2;
+                   Login.percentage_gm2_expected = default_zero;
+
+                   adapter3 = new Results_Adapter(default_zero, Login.percentage_gm2, img_disease, diseases);
+                   recyclerView3.setAdapter(adapter3);
                    break;
                case 5:
-                   Toast.makeText(getActivity(), "Symptoms found for 5th person ", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getActivity(), "Symptoms found for 5th person ", Toast.LENGTH_SHORT).show();
                    Login.dad = checkProbability(Match_Symptoms.matched_symptoms_user5);
-//                   if (Login.grandfather1.isEmpty())
-//                       Login.grandfather1 = checkProbability(Match_Symptoms.matched_symptoms_user1);
-//                   if (Login.grandmother1.isEmpty())
-//                       Login.grandmother1 = checkProbability(Match_Symptoms.matched_symptoms_user2);
-                   //Returned percentage is in (Disease1_expected,Disease1_actual,Disease2_expected,Disease2_actual
-                   Login.percentage_dad=new ArrayList<>();
-                   Toast.makeText(getActivity(), "dad and mom size arr is "+Login.grandfather1.size()+" --"+Login.grandmother1.size(), Toast.LENGTH_SHORT).show();
-                   if(Login.grandfather1.size()>0&&Login.grandmother1.size()>0) {
-                       Login.percentage_dad = tellPercentage(Login.dad, Login.grandfather1, Login.grandmother1, 5);
+
+                   Login.percentage_dad = new ArrayList<>();
+                   //********Checking Parents data is filled or not..
+                   if (Login.grandfather1 != null && Login.grandmother1 != null) {
+                       // Toast.makeText(getActivity(), "dad and mom size arr is "+Login.grandfather1.size()+" --"+Login.grandmother1.size(), Toast.LENGTH_SHORT).show();
+                       if (Login.grandfather1.size() > 0 && Login.grandmother1.size() > 0) {
+                           Login.percentage_dad_expected = tell_Expected(Login.grandfather1, Login.grandmother1);
+                           //  Login.percentage_dad = tellPercentage(Login.dad, Login.grandfather1, Login.grandmother1, 5);
+                           adapter3 = new Results_Adapter(Login.percentage_dad_expected, Login.dad, img_disease, diseases);
+                           recyclerView3.setAdapter(adapter3);
+                       } else
+                           Toast.makeText(getActivity(), "Please Refill his/her Parents Data Again", Toast.LENGTH_SHORT).show();
+
+//                   for(int i=0;i<Login.percentage_dad.size();i++){
+//                       Toast.makeText(getActivity(), "% dad alternate is "+Login.percentage_dad.get(i), Toast.LENGTH_SHORT).show();
+//                   }
+                   } else {
+                       Toast.makeText(getActivity(), "Please Add Both of his/her Parents Data First", Toast.LENGTH_SHORT).show();
                    }
-                   else
-                       Toast.makeText(getActivity(), "Size of Login.Grandfather is null", Toast.LENGTH_SHORT).show();
+
                    break;
                case 6:
-                   Toast.makeText(getActivity(), "Symptoms found for 6th", Toast.LENGTH_SHORT).show();
+                   //Toast.makeText(getActivity(), "Symptoms found for 6th", Toast.LENGTH_SHORT).show();
                    Login.mom = checkProbability(Match_Symptoms.matched_symptoms_user6);
-                  Login.percentage_mom=new ArrayList<>();
-//                   if (Login.grandfather2.isEmpty())
-//                       Login.grandfather2 = checkProbability(Match_Symptoms.matched_symptoms_user3);
-//                   if (Login.grandmother2.isEmpty())
-//                       Login.grandmother2 = checkProbability(Match_Symptoms.matched_symptoms_user4);
-                   Login.percentage_mom = tellPercentage(Login.mom, Login.grandfather2, Login.grandmother2, 6);
+                   Login.percentage_mom = new ArrayList<>();
+
+                   if (Login.grandfather2 != null && Login.grandmother2 != null) {
+                     //  Toast.makeText(getActivity(), "dad and mom size arr is " + Login.grandfather2.size() + " --" + Login.grandmother2.size(), Toast.LENGTH_SHORT).show();
+                       if (Login.grandfather2.size() > 0 && Login.grandmother2.size() > 0) {
+                           Login.percentage_mom_expected = tell_Expected(Login.grandfather2, Login.grandmother2);
+                           //Login.percentage_mom = tellPercentage(Login.mom, Login.grandfather2, Login.grandmother2, 6);
+                           adapter3 = new Results_Adapter(Login.percentage_mom_expected, Login.mom, img_disease, diseases);
+                           recyclerView3.setAdapter(adapter3);
+                       } else
+                           Toast.makeText(getActivity(), "Please Refill his/her Parents Data Again", Toast.LENGTH_SHORT).show();
+
+                   } else {
+                       Toast.makeText(getActivity(), "Please Add Both of his/her Parents Data First", Toast.LENGTH_SHORT).show();
+                   }
+
+
                    break;
                case 7:
-                   Toast.makeText(getActivity(), "Symptoms found for 7th", Toast.LENGTH_SHORT).show();
-                   Login.me = checkProbability(Match_Symptoms.matched_symptoms_user6);
-//                   if (Login.dad.isEmpty())
-//                       Login.dad = checkProbability(Match_Symptoms.matched_symptoms_user5);
-//                   if (Login.mom.isEmpty())
-//                       Login.mom = checkProbability(Match_Symptoms.matched_symptoms_user7);
-                   Login.percentage_me = tellPercentage(Login.me, Login.dad, Login.mom, 7);
+                   // Toast.makeText(getActivity(), "Symptoms found for 7th", Toast.LENGTH_SHORT).show();
+                   Login.me = checkProbability(Match_Symptoms.matched_symptoms_user7);
+                   Login.percentage_me = new ArrayList<>();
+                   if (Login.dad != null && Login.mom != null) {
+                       //   Toast.makeText(getActivity(), "dad and mom size arr is "+Login.dad.size()+" --"+Login.mom.size(), Toast.LENGTH_SHORT).show();
+                       if (Login.dad.size() > 0 && Login.mom.size() > 0) {
+                           Login.percentage_me_expected = tell_Expected(Login.dad, Login.mom);
+                           // Login.percentage_me= tellPercentage(Login.me, Login.dad, Login.mom, 7);
+                           adapter3 = new Results_Adapter(Login.percentage_me_expected, Login.me, img_disease, diseases);
+                           recyclerView3.setAdapter(adapter3);
+                       } else
+                           Toast.makeText(getActivity(), "Please Refill his/her Parents Data Again", Toast.LENGTH_SHORT).show();
 
+                   } else {
+                       Toast.makeText(getActivity(), "Please Add Both of his/her Parents Data First", Toast.LENGTH_SHORT).show();
+                   }
                    break;
                case 8:
 
                    if (Match_Symptoms.matched_symptoms_user8.size() <= 0) {
-                       if (Login.me.isEmpty())
-                           Login.me = checkProbability(Match_Symptoms.matched_symptoms_user7);
-                       Login.percentage_child1female = tellPercentage(null, Login.me, null, 8);
+                       // Toast.makeText(getActivity(), "Symptoms found for 8th", Toast.LENGTH_SHORT).show();
+                       Login.percentage_child1female = new ArrayList<>();
+                       if (Login.me != null) {
+                           // Toast.makeText(getActivity(), "Size of Alone me is "+Login.me.size(), Toast.LENGTH_SHORT).show();
+                           if (Login.me.size() > 0) {
+                               Login.child1female = checkProbability(Match_Symptoms.matched_symptoms_user8);
+                               if (gender_me != null) {
+                                   if (gender_me.equals("Male")) {
+                                       // Login.percentage_child1female= tellPercentage(Login.child1female,Login.me,null,8);
+                                       Login.percentage_child1female_expected = tell_Expected(Login.me, null);
+                                       adapter3 = new Results_Adapter(Login.percentage_child1female_expected, Login.child1female, img_disease, diseases);
+                                       recyclerView3.setAdapter(adapter3);
+                                   } else if (gender_me.equals("Female")) {
+                                       //Login.percentage_child1female= tellPercentage(Login.child1female,null,Login.me,8);
+                                       Login.percentage_child1female_expected = tell_Expected(null, Login.me);
+                                       adapter3 = new Results_Adapter(Login.percentage_child1female_expected, Login.child1female, img_disease, diseases);
+                                       recyclerView3.setAdapter(adapter3);
+                                   } else {
+                                       Toast.makeText(getActivity(), "Your Gender is not specified for you.\n We Recommend you to fill your profile Either Male or Female for Tracing out the children Patterns Easily!", Toast.LENGTH_SHORT).show();
+                                   }
+                               }
 
+                           }
+                       } else {
+                           Toast.makeText(getActivity(), "Please Add his/her Parent(s) Data First", Toast.LENGTH_SHORT).show();
+                       }
                    } else {
-                       Login.percentage_child1female = checkProbability(Match_Symptoms.matched_symptoms_user8);
-                       if (Login.me.isEmpty())
-                           Login.me = checkProbability(Match_Symptoms.matched_symptoms_user7);
-                       //Here Single parent probability is expected and actual symptoms of child is actual returned symptom.
-                       ArrayList<Double> child1female_percentage = tellPercentage(Login.child1female, Login.me);
+                       //----if the child is not born.Thus, his symptoms are not selected.
+                       if (Login.me != null) {
+                           Login.child1female = checkProbability(Match_Symptoms.matched_symptoms_user8);
+                           if (Login.me.size() > 0) {
+                               //Login.percentage_child1female = tellPercentage(Login.child1female);
+                               if (gender_me.equals("Father"))
+                                   Login.percentage_child1female_expected = tell_Expected(Login.me, null);
+                               else if (gender_me.equals("Mother"))
+                                   Login.percentage_child1female_expected = tell_Expected(null, Login.me);
+                               else
+                                   Toast.makeText(getActivity(), "Your Gender is not specified for you.\n We Recommend you to fill your profile Either Male or Female for Tracing out the children Patterns Easily!", Toast.LENGTH_SHORT).show();
+
+                               adapter3 = new Results_Adapter(Login.percentage_child1female_expected, default_zero, img_disease, diseases);
+                               recyclerView3.setAdapter(adapter3);
+                           } else {
+                               Toast.makeText(getActivity(), "Please fill his/ her Parent Data Again.", Toast.LENGTH_SHORT).show();
+                           }
+                       } else {
+                           Toast.makeText(getActivity(), "Please Fill his/her Parent Data First..", Toast.LENGTH_SHORT).show();
+                       }
+
                    }
-                   Toast.makeText(getActivity(), "Symptoms found for 8th", Toast.LENGTH_SHORT).show();
                    break;
                case 9:
-                   Toast.makeText(getActivity(), "Symptoms found for 9th", Toast.LENGTH_SHORT).show();
                    if (Match_Symptoms.matched_symptoms_user9.size() <= 0) {
-                       if (Login.me.isEmpty())
-                           Login.me = checkProbability(Match_Symptoms.matched_symptoms_user7);
-                       ArrayList<Double> percentage_child2_by_me = tellPercentage(null, Login.me, null, 9);
+                       //  Toast.makeText(getActivity(), "Symptoms found for 9th", Toast.LENGTH_SHORT).show();
+                       Login.percentage_child2male = new ArrayList<>();
+                       if (Login.me != null) {
+                           //  Toast.makeText(getActivity(), "Size of Alone me is "+Login.me.size(), Toast.LENGTH_SHORT).show();
+                           if (Login.me.size() > 0) {
+                               Login.child2male = checkProbability(Match_Symptoms.matched_symptoms_user9);
+                               if (gender_me != null) {
+                                   if (gender_me.equals("Male")) {
+                                       Login.percentage_child2male_expected = tell_Expected(Login.me, null);
+                                       adapter3 = new Results_Adapter(Login.percentage_child2male_expected, Login.percentage_child2male, img_disease, diseases);
+                                       recyclerView3.setAdapter(adapter3);
+                                   } else if (gender_me.equals("Female")) {
+                                       Login.percentage_child2male_expected = tell_Expected(null, Login.me);
+                                       adapter3 = new Results_Adapter(Login.percentage_child2male_expected, Login.percentage_child2male, img_disease, diseases);
+                                       recyclerView3.setAdapter(adapter3);
+                                   } else {
+                                       Toast.makeText(getActivity(), "Your Gender is not specified for you.\n We Recommend you to fill your profile Either Male or Female for Tracing out the children Patterns Easily!", Toast.LENGTH_SHORT).show();
+                                   }
+                               }
+
+                           }
+                       } else {
+                           Toast.makeText(getActivity(), "Please Add his/her Parent(s) Data First", Toast.LENGTH_SHORT).show();
+                       }
                    } else {
-                       Login.child2male = checkProbability(Match_Symptoms.matched_symptoms_user9);
-                       if (Login.me.isEmpty())
-                           Login.me = checkProbability(Match_Symptoms.matched_symptoms_user7);
-                       //Here Single parent probability is expected and actual symptoms of child is actual returned symptom.
-                       ArrayList<Double> child1female_percentage = tellPercentage(Login.child2male, Login.me);
+                       //----if the child is not born.Thus, his symptoms are not selected.
+                       if (Login.me != null) {
+                           Login.child2male = checkProbability(Match_Symptoms.matched_symptoms_user9);
+                           if (Login.me.size() > 0) {
+                               // Login.percentage_child2male = tellPercentage(Login.child2male);
+                               if (gender_me.equals("Male"))
+                                   Login.percentage_child2male_expected = tell_Expected(Login.me, null);
+                               else if (gender_me.equals("Female"))
+                                   Login.percentage_child2male_expected = tell_Expected(null, Login.me);
+                               else
+                                   Toast.makeText(getActivity(), "Your Gender is not specified for you.\n We Recommend you to fill your profile Either Male or Female for Tracing out the children Patterns Easily!", Toast.LENGTH_SHORT).show();
+                               adapter3 = new Results_Adapter(Login.percentage_child2male_expected, default_zero, img_disease, diseases);
+                               recyclerView3.setAdapter(adapter3);
+                           } else {
+                               Toast.makeText(getActivity(), "Please fill his/ her Parent Data Again.", Toast.LENGTH_SHORT).show();
+                           }
+                       } else {
+                           Toast.makeText(getActivity(), "Please Fill his/her Parent Data First..", Toast.LENGTH_SHORT).show();
+                       }
+
                    }
-                   Toast.makeText(getActivity(), "Symptoms found for 8th", Toast.LENGTH_SHORT).show();
                    break;
 
+           }
+       }
+           else{
+               switch (user_no) {
+                   case 11: {
+                       adapter3 = new Results_Adapter(default_zero, Login.percentage_gf1, img_disease, diseases);
+                       recyclerView3.setAdapter(adapter3);
+                       break;
+                   }
+                   case 12: {
+                       adapter3 = new Results_Adapter(default_zero, Login.percentage_gm1, img_disease, diseases);
+                       recyclerView3.setAdapter(adapter3);
+                       break;
+                   }
+                   case 13:
+
+                       adapter3 = new Results_Adapter(default_zero, Login.percentage_gf2, img_disease, diseases);
+                       recyclerView3.setAdapter(adapter3);
+                       break;
+                   case 14:
+
+                       adapter3 = new Results_Adapter(default_zero, Login.percentage_gm2, img_disease, diseases);
+                       recyclerView3.setAdapter(adapter3);
+                       break;
+                   case 15:
+                       adapter3 = new Results_Adapter(Login.percentage_dad_expected, Login.dad, img_disease, diseases);
+                       recyclerView3.setAdapter(adapter3);
+                       break;
+                   case 16:
+                       adapter3 = new Results_Adapter(Login.percentage_mom_expected, Login.mom, img_disease, diseases);
+                       recyclerView3.setAdapter(adapter3);
+                       break;
+                   case 17:
+                       adapter3 = new Results_Adapter(Login.percentage_me_expected, Login.me, img_disease, diseases);
+                       recyclerView3.setAdapter(adapter3);
+                       break;
+                   case 18:
+                       adapter3 = new Results_Adapter(Login.percentage_child1female_expected, Login.child1female, img_disease, diseases);
+                       recyclerView3.setAdapter(adapter3);
+                       break;
+                   case 19:
+                       adapter3 = new Results_Adapter(Login.percentage_child2male_expected, Login.percentage_child2male, img_disease, diseases);
+                       recyclerView3.setAdapter(adapter3);
+                       break;
+
+
+               }
            }
 
        }
 
        //Connecting to UI...........
 
-
-
-
+        preventmeasures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String  backstack="PedigreeAnalysis";
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container,new fragment_medication()).
+                        addToBackStack(backstack).
+                        commit();
+            }
+        });
 
 
 
 
         return  v;
     }
+    private ArrayList<Double> tell_Expected(ArrayList<Double> father,ArrayList<Double> mother){
+
+        ArrayList<Double> percentage_ArrayList = new ArrayList<Double>();
+        DecimalFormat df = new DecimalFormat("0.00");
+        String expected;
+
+        if(father!=null&&mother!=null) {
+            for (int i = 0; i < 7; i++) {
+                expected = df.format((father.get(i) + mother.get(i)) / 2.0);
+                percentage_ArrayList.add(Double.parseDouble(expected));
+            }
+        }
+        else if(father!=null&&mother==null){
+            for (int i = 0; i < 7; i++) {
+                expected = df.format(father.get(i)  / 2.0);
+                percentage_ArrayList.add(Double.parseDouble(expected));
+            }
+
+        }
+        else if(father==null&&mother!=null){
+            for (int i = 0; i < 7; i++) {
+                expected = df.format(mother.get(i)  / 2.0);
+                percentage_ArrayList.add(Double.parseDouble(expected));
+            }
+        }
+        return percentage_ArrayList;
+    }
     //*****************OVERLOADED tellPercentage 2 (For case of Child if not Born)***************************************
 
-    private ArrayList<Double> tellPercentage(ArrayList<Double> child, ArrayList<Double> me) {
-        double expected;
-        double minechance;
+    private ArrayList<Double> tellPercentage( ArrayList<Double> me) {
+        String expected;
+        String minechance;
         ArrayList<Double> percentage_ArrayList = new ArrayList<Double>();
+        DecimalFormat df = new DecimalFormat("0.00");
         for(int i=0;i<7;i++) {
-        expected=me.get(i)/2.0;
-        minechance=child.get(i);
-        percentage_ArrayList.add(expected);
-        percentage_ArrayList.add(minechance);
+        expected=df.format((me.get(i)/2.0));
+        percentage_ArrayList.add(Double.parseDouble(expected));
         }
         return  percentage_ArrayList;
     }
@@ -245,38 +441,37 @@ public class preventive_measures extends Fragment {
         //*********formating decimal value upto 2 decimals
         DecimalFormat df = new DecimalFormat("0.00");
 
-        if(user_no==5){
+        if(user_no>=5&&user_no<=7){
             for (int i = 0; i < 7; i++) {
-                Toast.makeText(getActivity(), "fat(i) = " + Login.grandfather1.get(i), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "moth(i) = " + Login.grandmother1.get(i), Toast.LENGTH_SHORT).show();
-                expected = df.format((Login.grandfather1.get(i) + Login.grandmother1.get(i)) / 2.0);
-                Toast.makeText(getActivity(), "expected to be added is " + expected, Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(getActivity(), "fat(i) = " + father.get(i), Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(getActivity(), "moth(i) = " + mother.get(i), Toast.LENGTH_SHORT).show();
+                expected = df.format((father.get(i) + mother.get(i)) / 2.0);
+              //  Toast.makeText(getActivity(), "expected to be added is " + expected, Toast.LENGTH_SHORT).show();
                 minechance = df.format(self.get(i));
-                Toast.makeText(getActivity(), "minechance too be add is" + minechance, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(), "minechance too be add is" + minechance, Toast.LENGTH_SHORT).show();
                 percentage_ArrayList.add(Double.parseDouble(expected));
                 percentage_ArrayList.add(Double.parseDouble(minechance));
             }
         }
         else if(user_no>7){
-            if(Login.me==null&&mother!=null) {
+            if(Login.me!=null&&mother==null) {
                 for(int i=0;i<7;i++) {
-                    minechance=df.format((mother.get(i)/2.0));
+                    expected=df.format((father.get(i)/2.0));
+                    minechance=df.format((self.get(i)));
+                    percentage_ArrayList.add(Double.parseDouble(expected));
                     percentage_ArrayList.add(Double.parseDouble(minechance));
                 }
             }
-                    else if(Login.me==null&&father!=null) {
+            else if(Login.me!=null&&father==null) {
                         for(int i=0;i<7;i++) {
-                        minechance=df.format((father.get(i)/2.0));
-                        percentage_ArrayList.add(Double.parseDouble(minechance));
+                            expected=df.format((mother.get(i)/2.0));
+                            minechance=df.format((self.get(i)));
+                            percentage_ArrayList.add(Double.parseDouble(expected));
+                            percentage_ArrayList.add(Double.parseDouble(minechance));
                         }
                 }
         }
         int ind=0;
-        for(double d:percentage_ArrayList){
-
-            Toast.makeText(getActivity(), "Returned per_Al at index  ind =  "+ind+" is  "+d, Toast.LENGTH_SHORT).show();
-        ind++;
-        }
         return percentage_ArrayList;
     }
 
@@ -320,16 +515,6 @@ public class preventive_measures extends Fragment {
             per=df.format((rheumatoid_arthritis_count/5.0)*100);//7.
         return_values.add(Double.parseDouble(per));
 
-/*for(int j=0;j<return_values.size();j++){
-    Toast.makeText(getActivity(), "return_values called and val is"+return_values.get(j), Toast.LENGTH_SHORT).show();
-}*/
-//            Toast.makeText(getActivity(), "Diabitic Count = " +diabetes_count, Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(), "Migrane Count = " +migrane_count, Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(), "hypothyriod Count = " +hypothyriod_count ,Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(), "hyper Count = " +hyperthyriod_count, Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(), " thala Count = " +thalassemia_count, Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(), "congential Count = " +congenital_heart_disease_count, Toast.LENGTH_SHORT).show();
-//            Toast.makeText(getActivity(), " RA Count = " +rheumatoid_arthritis_count, Toast.LENGTH_SHORT).show();
         return return_values;
     }
 

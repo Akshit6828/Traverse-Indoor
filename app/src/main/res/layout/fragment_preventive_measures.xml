@@ -4,53 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
     tools:context=".preventive_measures">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="476dp"
-        android:layout_height="334dp"
-        android:text="Expected Values"
-        app:layout_constraintBottom_toTopOf="@+id/textView27"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29"
-        app:layout_constraintVertical_bias="0.54" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView3"
+        android:layout_width="match_parent"
+        android:layout_height="566dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_preventive_measures"
+        app:layout_constraintEnd_toEndOf="@+id/textView27"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="@+id/textView27"
+        app:layout_constraintTop_toBottomOf="@+id/textView27"
+        app:layout_constraintVertical_bias="0.424" />
 
     <TextView
         android:id="@+id/textView27"
-        android:layout_width="474dp"
-        android:layout_height="325dp"
-        android:layout_marginBottom="120dp"
-        android:text="Actual Values(Based on you symptoms)"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="#011E1B"
+        android:gravity="center"
+        android:text="Predective Results \n Based On Pattern Matching"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView29"
-        android:layout_width="354dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="28dp"
-        android:text="These values are predicted based on symptos "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button_preventive_measures"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Check Preventive Measures"
+        android:background="@drawable/container_bg"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Find Preventive Measures"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView27"
-        app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toStartOf="@+id/textView27" />
-
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView3"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
