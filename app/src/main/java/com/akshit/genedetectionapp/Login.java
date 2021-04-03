@@ -26,6 +26,7 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -59,7 +60,8 @@ public class Login extends AppCompatActivity {
     public static ArrayList<Double> child1female;
     public static ArrayList<Double> child2male;
 
-
+    private PhoneAuthProvider.ForceResendingToken force_ResendingToken;
+    private FirebaseAuth firebaseAuth;
 
     public static ArrayList<Double> percentage_gf1;
     public static ArrayList<Double> percentage_gf1_expected;
@@ -107,7 +109,7 @@ public class Login extends AppCompatActivity {
         b2=findViewById(R.id.button2);
         e1=findViewById(R.id.e1);
         e2=findViewById(R.id.e2);
-
+        firebaseAuth=FirebaseAuth.getInstance();
         b1.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -141,11 +143,11 @@ public class Login extends AppCompatActivity {
                                     phonenumber = e1.getText().toString();
                                     progressBar.setVisibility(View.VISIBLE);
 
-                                    //sendVerificationCodeToUser(phonenumber); ------- uncomment it to send sms verification .......
-                                     Intent ji=new Intent(Login.this,MainPage.class);
-                                    ji.putExtra("username",nameofuser);
-                                    startActivity(ji);
-                                    finish();
+                                    sendVerificationCodeToUser(phonenumber);// ------- uncomment it to send sms verification .......
+//                                     Intent ji=new Intent(Login.this,MainPage.class);
+//                                    ji.putExtra("username",nameofuser);
+//                                    startActivity(ji);
+//                                    finish();
                                 }
                             }
                             if (flag == 0) {
@@ -218,15 +220,15 @@ public class Login extends AppCompatActivity {
 
 
 
-    private String sendVerificationCodeToUser(String phonenumber) {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-              "+91" +phonenumber,        // Phone number to verify
-                60,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                (Activity) TaskExecutors.MAIN_THREAD,               // Activity (for callback binding)
-                mCallbacks);        // OnVerificationStateChangedCallbacks
-
-       return verificationCodeBySystem;
+    private void sendVerificationCodeToUser(String phonenumber) {
+        phonenumber="+91"+phonenumber;
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(firebaseAuth)
+                .setPhoneNumber(phonenumber)
+                .setTimeout(60L,TimeUnit.SECONDS)
+                .setActivity(this)
+                .setCallbacks(mCallbacks)
+                .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
 
     }
     private  PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -260,7 +262,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void signInByTheUser(PhoneAuthCredential credential) {
-        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+        //FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -270,6 +272,7 @@ public class Login extends AppCompatActivity {
                             Intent i = new Intent(Login.this,MainPage.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);
+                            Toast.makeText(Login.this, "Verification Successful", Toast.LENGTH_SHORT).show();
                         finish();
                         }
                         else
