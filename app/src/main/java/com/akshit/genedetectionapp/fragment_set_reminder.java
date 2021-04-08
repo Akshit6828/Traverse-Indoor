@@ -121,7 +121,7 @@ public class fragment_set_reminder extends Fragment {
         if(getArguments()!=null) {
             username = getArguments().getString("UserName");
             userrelation = getArguments().getString("UserRelation");
-            Toast.makeText(getActivity(), "username="+username+" "+"userrelation="+userrelation, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "username="+username+" "+"userrelation="+userrelation, Toast.LENGTH_SHORT).show();
             if (username == null || userrelation == null) {
                 Toast.makeText(getActivity(), "No reminder set", Toast.LENGTH_SHORT).show();
             } else {
@@ -185,15 +185,17 @@ public class fragment_set_reminder extends Fragment {
                                 }
                                 else {
                                     EntityClass entityClass = new EntityClass();
-                                    String value = ("Relation: "+relation+"\nMessage: "+m.getText().toString().trim());
+                                    String text=m.getText().toString().trim();
+                                    String value = ("Relation: "+relation+"\nMessage: "+text);
                                     String date = (d.getText().toString().trim());
                                     String time = (t.getText().toString().trim());
-                                    Toast.makeText(getActivity(), "values="+value+"date="+date+"time="+time, Toast.LENGTH_SHORT).show();
+                                    setAlarm(relation,text, date, time);
+                                   // Toast.makeText(getActivity(), "values="+value+"date="+date+"time="+time, Toast.LENGTH_SHORT).show();
                                     entityClass.setEventdate(date);
                                     entityClass.setEventname(value);
                                     entityClass.setEventtime(time);
                                     databaseClass.evenDao().insertAll(entityClass);
-                                    setAlarm(value, date, time);
+                                    setAlarm(relation,value, date, time);
                                     setReminderAdapter();
                                     dialog.dismiss();
 
@@ -272,15 +274,16 @@ public class fragment_set_reminder extends Fragment {
         setReminderAdapter();
     }
 
-    private void setAlarm(String event, String date, String time){
+    private void setAlarm(String relation,String text, String date, String time) {
         AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getActivity().getApplicationContext(), AlarmBroadcast.class);
-        intent.putExtra("event", event);
+        intent.putExtra("relation", relation);
+        intent.putExtra("event", text);
         intent.putExtra("time", date);
         intent.putExtra("date", time);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
         String dateandtime = date + " " + timeToNotify;
-        Toast.makeText(getActivity(), "date and time="+dateandtime, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "date and time="+dateandtime, Toast.LENGTH_SHORT).show();
         DateFormat formatter = new SimpleDateFormat("d/M/yyyy hh:mm", Locale.ENGLISH);
         try {
 
@@ -290,7 +293,6 @@ public class fragment_set_reminder extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
 
 }
