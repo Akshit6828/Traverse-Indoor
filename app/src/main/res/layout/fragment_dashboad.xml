@@ -58,6 +58,7 @@
             android:layout_marginTop="175dp">
 
             <LinearLayout
+                android:layout_marginTop="2dp"
                 android:id="@+id/allsublayouts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,6 +69,44 @@
                     android:layout_width="210dp"
                     android:layout_height="100dp"
                     android:layout_marginLeft="170dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/googlesearch"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center_horizontal"
+                            android:text="Predective\nAnalysis"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:padding="8dp"
+                            android:src="@drawable/yourfamilytree"></ImageView>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <!---SECOND LAYOUT STARTS-->
+                <LinearLayout
+                    android:id="@+id/layout2"
+                    android:layout_width="210dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/search_gene"
                     android:orientation="horizontal"
@@ -100,44 +139,8 @@
 
                     </LinearLayout>
                 </LinearLayout>
-                <!---SECOND LAYOUT STARTS-->
-                <LinearLayout
-                    android:id="@+id/layout2"
-                    android:layout_width="210dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/googlesearch"
-                    android:orientation="horizontal"
-                    android:padding="4dp">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="15dp"
-                            android:gravity="center_horizontal"
-                            android:text="Pedigree\nAnalysis"
-                            android:textAlignment="center"
-                            android:textColor="#FFFFFF"
-                            android:textSize="22dp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="2dp"
-                            android:padding="8dp"
-                            android:src="@drawable/yourfamilytree"></ImageView>
-
-                    </LinearLayout>
-                </LinearLayout>
                 <!--THIRD LAYOUT STARTS-->
                 <LinearLayout
                     android:id="@+id/layout3"

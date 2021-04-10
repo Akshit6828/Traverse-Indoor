@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Login extends AppCompatActivity {
-    EditText e1,e2;
+    EditText e1,e2,e3;
     Button b1,b2;
     String phonenumber="";
     ProgressBar progressBar;
@@ -47,8 +48,10 @@ public class Login extends AppCompatActivity {
     DatabaseReference reference;
     String nameofuser="";
     int flag=0;
+    String county_code;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+
 
     public static ArrayList<Double> grandfather1;
     public static ArrayList<Double> grandmother1;
@@ -60,8 +63,8 @@ public class Login extends AppCompatActivity {
     public static ArrayList<Double> child1female;
     public static ArrayList<Double> child2male;
 
-    private PhoneAuthProvider.ForceResendingToken force_ResendingToken;
     private FirebaseAuth firebaseAuth;
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     public static ArrayList<Double> percentage_gf1;
     public static ArrayList<Double> percentage_gf1_expected;
@@ -101,6 +104,15 @@ public class Login extends AppCompatActivity {
         child1female=new ArrayList<>();
         child2male=new ArrayList<>();
 
+        Login.percentage_gf1 = new ArrayList<>();
+        Login.percentage_gm1 = new ArrayList<>();
+        Login.percentage_gf2 = new ArrayList<>();
+        Login.percentage_gm2 = new ArrayList<>();
+        Login.percentage_dad = new ArrayList<>();
+        Login.percentage_mom = new ArrayList<>();
+        Login.percentage_me = new ArrayList<>();
+        Login.percentage_child1female = new ArrayList<>();
+        Login.percentage_child2male = new ArrayList<>();
 
         //Local Shared Preference Details.
         preferences=getSharedPreferences("Local_Details",Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
@@ -109,7 +121,10 @@ public class Login extends AppCompatActivity {
         b2=findViewById(R.id.button2);
         e1=findViewById(R.id.e1);
         e2=findViewById(R.id.e2);
-        firebaseAuth=FirebaseAuth.getInstance();
+        e3=findViewById(R.id.county_code);
+       firebaseAuth=FirebaseAuth.getInstance();
+
+
         b1.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -118,10 +133,14 @@ public class Login extends AppCompatActivity {
 
                 if (e1.getText().toString().isEmpty())
                     e1.setError("Field Required");
+                if(e3.getText().toString().isEmpty())
+                    e3.setError("Field Required");
                 else {
+
                     //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);----
                     //startActivity(i);//--------------------
                     phonenumber = e1.getText().toString();
+                     county_code = e3.getText().toString();
                     //************************************************************************Confirming phone number from Database****************************************
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -138,6 +157,7 @@ public class Login extends AppCompatActivity {
                                     editor.putString("userphone_in_sharedpreference",phonenumber);
                                     editor.putInt("Age_user",age);
                                     editor.putString("Bloodgroup_user",bloodgroup);
+                                    editor.putString("Child_Key",i.getKey());
                                     editor.commit();
                                     //Toast.makeText(Login.this, "User Confirmed and Name of User is "+nameofuser, Toast.LENGTH_SHORT).show();
                                     phonenumber = e1.getText().toString();
@@ -148,6 +168,7 @@ public class Login extends AppCompatActivity {
 //                                    ji.putExtra("username",nameofuser);
 //                                    startActivity(ji);
 //                                    finish();
+
                                 }
                             }
                             if (flag == 0) {
@@ -160,6 +181,7 @@ public class Login extends AppCompatActivity {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(Login.this, "Database Error Occurred.", Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -175,6 +197,31 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+        mCallbacks  = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            @Override
+            public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                verificationCodeBySystem =s;
+            }
+
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+                String code=phoneAuthCredential.getSmsCode();
+                if(code!=null){
+                    progressBar.setVisibility(View.INVISIBLE);
+                    verifyCode(code);
+                }
+            }
+
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+                progressBar.setVisibility(View.INVISIBLE);
+              //----------------  Toast.makeText(Login.this, "Verification Failed because: \n"+e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,6 +232,7 @@ public class Login extends AppCompatActivity {
 
 
     }
+
 
     private void showCustomDialog() {
         AlertDialog.Builder builder= new AlertDialog.Builder(Login.this);
@@ -221,7 +269,7 @@ public class Login extends AppCompatActivity {
 
 
     private void sendVerificationCodeToUser(String phonenumber) {
-        phonenumber="+91"+phonenumber;
+        phonenumber= "+91"+phonenumber;
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(firebaseAuth)
                 .setPhoneNumber(phonenumber)
                 .setTimeout(60L,TimeUnit.SECONDS)
@@ -231,29 +279,7 @@ public class Login extends AppCompatActivity {
         PhoneAuthProvider.verifyPhoneNumber(options);
 
     }
-    private  PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-        @Override
-        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-            super.onCodeSent(s, forceResendingToken);
-            verificationCodeBySystem =s;
-        }
-
-        @Override
-        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-        String code=phoneAuthCredential.getSmsCode();
-        if(code!=null){
-            progressBar.setVisibility(View.INVISIBLE);
-            verifyCode(code);
-        }
-        }
-
-        @Override
-        public void onVerificationFailed(FirebaseException e) {
-            progressBar.setVisibility(View.INVISIBLE);
-            Toast.makeText(Login.this, "Verification Failed", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     private void verifyCode(String codeByUser) {
 
@@ -262,7 +288,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void signInByTheUser(PhoneAuthCredential credential) {
-        //FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+    //  firebaseAuth=FirebaseAuth.getInstance();
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -270,9 +296,13 @@ public class Login extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Intent i = new Intent(Login.this,MainPage.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                       // i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);
-                            Toast.makeText(Login.this, "Verification Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Verification Successful", Toast.LENGTH_SHORT).show();
+                      /* reference=null;
+                       firebaseAuth=null;
+                       mCallbacks=null;*/
+
                         finish();
                         }
                         else
@@ -284,4 +314,12 @@ public class Login extends AppCompatActivity {
                 });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        /*Toast.makeText(this, "On Destroy() called...", Toast.LENGTH_SHORT).show();
+        reference=null;
+        firebaseAuth=null;
+        mCallbacks=null;*/
+    }
 }

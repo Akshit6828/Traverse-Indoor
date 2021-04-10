@@ -277,13 +277,13 @@
         <item>Feel very tired</item>
         <item>Have very dry skin</item>
         <item>Have sores that heal slowly</item>
-        <item>Have more infections than usual</item>
+        <item>Have more infections than usual</item>//8
 
         //Migrane
         <item>Constipation</item>
         <item>Much Food cravings when mind is not stable</item>
         <item>Increased thirst and urination during severe headache</item>
-        <item>Frequent yawning while not able to sleep during headache</item>
+        <item>Frequent yawning while not able to sleep during headache</item>//12
 
         //Hyper thyroid Symptoms…
         <item>Experiencing anxiety, irritability, and nervousness</item>
@@ -291,19 +291,19 @@
         <item>Having an enlarged thyroid gland or a goiter</item>
         <item>Experiencing irregular menstrual periods or having your menstrual cycle stop</item>
         <item>Feeling sensitive to heat</item>
-        <item>Having vision problems or eye irritation</item>
+        <item>Having vision problems or eye irritation</item>//18
 
         //Hypo thyroid Symptoms…
         <item>Feeling tired (fatigue) with doing a little work</item>
         <item>Having frequent and heavy menstrual periods</item>
         <item>Having dry and coarse hair</item>
         <item>Having a hoarse voice</item>
-        <item>Experiencing an intolerance to cold temperatures</item>
+        <item>Experiencing an intolerance to cold temperatures</item>//23
 
         //Congenital heart disease…
         <item>Shortness of breath</item>
         <item>Tiring quickly upon exertion</item>
-        <item>Swelling of body tissue or organs (edema)</item>
+        <item>Swelling of body tissue or organs (edema)</item>//26
 
         //Thalesemia disease…
         <item>Fatigue after doing work</item>
@@ -312,34 +312,47 @@
         <item>Facial bone deformities</item>
         <item>Slow growth</item>
         <item>Abdominal swelling</item>
-        <item>Dark urine(Normally)</item>
+        <item>Dark urine(Normally)</item>//33
 
         //rheumatoid_arthritis…
         <item>Tender, warm, swollen joints</item>
         <item>Joint stiffness is usually worse in the mornings and after inactivity</item>
         <item>Fatigue, fever, and loss of appetite</item>
-        <item>Eyes redness</item>
+        <item>Eyes redness</item>//37
 
 
     </string-array>
     <string-array name="not_common_symptoms">
         //-----Disease specific for 25-30 below:
-        <item>Neck stiffness</item>//Diabetes
+        //Diabetes****************
+        <item>Neck stiffness</item>
         <item>Have numb or tingling hands or feet</item>
-        <item>Mood changes, from depression to euphoria(Getting Sudden Excited)</item>//migrane
-        <item>Losing weight without giving efforts</item>//hyper thyroid
+
+        //migrane********************
+        <item>Mood changes, from depression to euphoria(Getting Sudden Excited)</item>
+
+        //hyper thyroid******
+        <item>Losing weight without giving efforts</item>
         <item>Having muscle weakness and tremors</item>
-        <item>Gaining weight without eating much</item>//hypo thyroid
+
+        //hypo thyroid******************
+        <item>Gaining weight without eating much</item>
         <item>Experiencing forgetfulness</item>
-        <item>Abnormal heart rhythms (arrhythmias) either too fast or too slow.</item>//congential
-        heart disease
+
+        //congential heart disease *************
+        <item>Abnormal heart rhythms (arrhythmias) either too fast or too slow.</item>
         <item>A bluish tint to the skin, lips, and fingernails</item>
+
+        //**Diabetes
         <item>Urinate (pee) a lot, often at night</item>
-        <item>Black/ Red spots on the body without any skincare</item>//RA Factor
+
+        //RA Factor***************************
+        <item>Black/ Red spots on the body without any skincare</item>
+
+
     </string-array>
     <!-- Diseases Symptoms Array List Ends-->
 
-    <string name="about_app">
-        Genetic disease are something which are caused by the occurrence of mutations in the genetic material of the individual. An Android App that reads the sequenced DNA of all biological species and detects the imprints of the the nucleotides present in it i.e...detecting the genetic mutational change from of a sequenced DNA. It acts as a mini feasible tool for the genetic researchers and for the biotech field. It also helps to analyze the probability of disease in the next generation based on the concept of pedigree analysis which even a person from non- bio background can even understand. This gives the detailed information even in the bar graph to check and compare quantity of the proteins present in ones DNA Also with this it will be more helpful for the people to understand the implications and probability of the diseases specially in the embryonic condition through which technologies like GENE THERAPY could be implemented at the right time. Even after the birth the Implications of the Disease could be minimized having known the prior THIS PROJECT WAS PRESENTED AT ALL INDIA VPEC-2020 AND GOT SELECTED IN TOP 5 IN THE GRAND FINALE ROUND COMPETING AMONG 445 PROJECTS.
-    </string>
+    <string name="about_app">Genetic disease are something which are caused by the occurrence of mutations in the genetic material of the individual. An Android App that reads the sequenced DNA of all biological species and detects the imprints of the the nucleotides present in it i.e…detecting the genetic mutational change from of a sequenced DNA. It acts as a mini feasible tool for the genetic researchers and for the bio-tech field.
+        It also helps to analyze the probability of disease in the next generation based on the concept of pedigree analysis which even a person from non- bio background can even understand. This gives the detailed information even in the bar graph to check and compare quantity of the proteins present in ones DNA Also with this it will be more helpful for the people to understand the implications and probability of the diseases specially in the embryonic condition through which technologies like GENE THERAPY could be implemented at the right time. Even after the birth the Implications of the Disease could be minimized having known the prior probability.</string>
 </resources>

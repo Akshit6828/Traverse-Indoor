@@ -1,5 +1,6 @@
 package com.akshit.genedetectionapp;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -7,6 +8,11 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
@@ -15,6 +21,11 @@ import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 
 public class AlarmBroadcast extends BroadcastReceiver {
+
+    Activity context;
+    public AlarmBroadcast(Activity context){
+        this.context=context;
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -40,7 +51,21 @@ public class AlarmBroadcast extends BroadcastReceiver {
         contentView.setOnClickPendingIntent(R.id.flashButton, pendingSwitchIntent);
        // contentView.setTextViewText(R.id.message, text);
        // contentView.setTextViewText(R.id.date, date);
-        mBuilder.setSmallIcon(R.drawable.ic_baseline_alarm_24);
+        /*//------For setting light for Notification...
+        mBuilder.setLights(Color.YELLOW,200,200);
+        mBuilder.setContentTitle("Reminder !");
+        //-----For setting popup notification ringtone
+        Uri sound_rui= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        mBuilder.setSound(sound_rui);
+        //mBuilder.setSmallIcon(R.drawable.ic_baseline_alarm_24);
+        long [] vibrate={100,500,100,500};
+        mBuilder.setVibrate(vibrate);
+
+
+        //---Setting Family Icon to Notification
+        mBuilder.setSmallIcon(R.drawable.ic_family);
+        //Bitmap large_icon= BitmapFactory.decodeResource(getResources(),R.drawable.geneicon);
+       // mBuilder.setLargeIcon(large_icon);*/
         mBuilder.setAutoCancel(true);
         mBuilder.setOngoing(true);
         mBuilder.setPriority(Notification.PRIORITY_HIGH);

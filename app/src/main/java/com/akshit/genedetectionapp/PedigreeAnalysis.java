@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
-public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.CustomDialogProfileListener {
+public class PedigreeAnalysis extends Fragment  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,17 +47,19 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
     private ImageButton im1,im2,im3,im4,im5,im6,im7,im8,im9;
     EditText input_name, input_gender,input_DOB;
     Dialog dialog,dialog_input;
+    static boolean firsttime;
     TextView relation_user;
     public  String fetched_name,fetched_dob,fetched_relation,fetched_gender;
     int year,month,day;
     int flag=0;
     boolean ans;
     FirebaseDatabase database;
-    DatabaseReference reference;
+    DatabaseReference reference,reference_user;
     ArrayList<String> stringArrayList;
     ArrayList<Double> default_zero;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    int done=0;
 
     public PedigreeAnalysis() {
         // mStackLevel=0;
@@ -79,6 +82,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        firsttime=false;
     }
 
     @Override
@@ -112,9 +116,17 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         im9=mylayout.findViewById(R.id.ib9);
 
         database=FirebaseDatabase.getInstance();
-        reference=database.getReference("Users Family Data");
-        stringArrayList  = new ArrayList<String>();
+        preferences=getActivity().getSharedPreferences("Local_Details", Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
+        editor=preferences.edit();
 
+        final String name_of_current_user=preferences.getString("username_key","User");
+        String child_user=preferences.getString("Child_Key",null);
+
+        reference=database.getReference("Users_Database_1").child(child_user).child(name_of_current_user).child("Users Family Data");
+        stringArrayList  = new ArrayList<String>();
+        if(!firsttime)
+        //----------------Toast.makeText(getActivity(), "Please wait a little for Activity to Load..", Toast.LENGTH_SHORT).show();
+        firsttime=true;
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -168,8 +180,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
             }
         });
-        preferences=getActivity().getSharedPreferences("Local_Details", Context.MODE_PRIVATE);//Mode private as with it the file can only be accessed using calling application
-        editor=preferences.edit();
+
 
         im1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -603,9 +614,8 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         dialog_input= new Dialog(getActivity());
         //Setting the content view for input dialog.
         dialog_input.setContentView(R.layout.custom_dialog_profile_input);
-        database=FirebaseDatabase.getInstance();
         dialog_input.setCanceledOnTouchOutside(true);
-        reference=database.getReference("Users Family Data");
+
         //Adjusting the Dialog width and height...
         dialog_input.getWindow()
                 .setLayout(WindowManager.LayoutParams.MATCH_PARENT,
@@ -620,6 +630,18 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
         fetched_relation=relation;
         relation_user.setText(fetched_relation);
+        if(fetched_relation.equals("Paternal Grand Father")||fetched_relation.equals("Maternal Grand Father")||fetched_relation.equals("Father")||fetched_relation.equals("Child 2 Male")) {
+            //input_gender.setBackground(null);
+            input_gender.setInputType(0);
+            input_gender.setEnabled(false);
+            input_gender.setText("Male");
+        }
+        else if(fetched_relation.equals("Paternal Grand Mother")||fetched_relation.equals("Maternal Grand Mother")||fetched_relation.equals("Mother")) {
+           // input_gender.setBackground(null);
+            input_gender.setInputType(0);
+            input_gender.setEnabled(false);
+            input_gender.setText("Female");
+        }
 
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -643,7 +665,6 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                 String final_name=input_name.getText().toString();
                 String final_dob=input_DOB.getText().toString();
                 String final_gender=input_gender.getText().toString();
-                reference=database.getReference("Users Family Data");
                 //Storing Details in Firebase.
                 StoringUserFamilyData storingUserFamilyData = new StoringUserFamilyData();
                 storingUserFamilyData.setName(final_name);
@@ -680,7 +701,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                         im6.setBackgroundResource(R.drawable.femalepng);
                         break;
                     case "Self":
-                        if (final_gender.equals("Male")) {
+                        if (final_gender.equals("Male") ||final_gender.equals("male")) {
                             im7.setBackground(null);
                             im7.setBackgroundResource(R.drawable.male);
                             break;
@@ -715,6 +736,10 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         if(dialog_input!=null){
             dialog_input.dismiss();
         }
+        if(dialog!=null){
+            dialog.dismiss();
+            dialog=null;
+        }
         dialog= new Dialog(getActivity());
         dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.cutom_dialog_profile);
@@ -739,7 +764,7 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
 
         if(gender_user!=null){
             Uri imgUri;
-            if(gender_user.equals("Female")){
+            if(gender_user.equals("Female")||gender_user.equals("female")){
                 imgUri = Uri.parse("android.resource://com.akshit.genedetectionapp/" + R.drawable.mother);
             }
             else{
@@ -836,7 +861,6 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
                 Bundle args = new Bundle();
                 args.putString("UserRelation", relation_with_user);
                 args.putString("UserName", name_of_current_profile);
-                args.putInt("SentNo_Key", 11);
 
                 obj.setArguments(args);
 
@@ -852,106 +876,24 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
         l3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String backstackname="PedigreeAnalyis";
-                //Code for Preventive Measures for fragment and dismissing the dialog.
-                preventive_measures obj= new preventive_measures();
-                Bundle args = new Bundle();
-                args.putString("UserRelation", relation_with_user);
-                args.putString("UserName", name_of_current_profile);
-                args.putInt("SentNo_Key", 11);
-                obj.setArguments(args);
-                getActivity().getSupportFragmentManager().
-                        beginTransaction().
-                                       replace(R.id.fragment_container,obj).
-                        addToBackStack(backstackname).commit();
-
-//                if(relation_with_user!=null){
-//                    switch (relation_with_user){
-//                        case "Paternal Grand Father":
-//                            Integer[] img_disease ={R.drawable.diabetes2,R.drawable.migraine2,R.drawable.hyper_thyriod_png,R.drawable.hypo_thyriod,R.drawable.congential_heart_png,R.drawable.thalesemia_png,R.drawable.ra_png};
-//                            String [] diseases ={"Diabetes","Migrane","Hyper Thyroid","Hypo Thyroid","Congenital Heart Disease","Thalassemia","Rheumatoid Arthritis"};
-//                            default_zero=new ArrayList<Double>(Arrays.asList(0.00,0.00,0.00,0.00,0.00,0.00,0.00));
-//                            if(Login.percentage_gf1_expected.size()>0&&Login.percentage_gf1.size()>0){
-//                                preventive_measures.recyclerView3.setAdapter(new Results_Adapter(Login.percentage_gf1_expected,Login.percentage_gf1,img_disease,diseases));
-//
-//
-//                            }
-//                            else{
-//                                Toast.makeText(getActivity(), "Symptoms Not selected...Please select symptoms first", Toast.LENGTH_SHORT).show();
-//                            }
-//                            break;
-//                    }
-//                }
-
-
+                if(relation_with_user!=null){
+                    preventiveMeasuresCheck(relation_with_user,name_of_current_profile);
+                }
                 dialog.dismiss();
             }
         });
         tvpreventive_measures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String backstackname="PedigreeAnalyis";
-
-
                 if(relation_with_user!=null){
-                    preventive_measures obj = new preventive_measures();
-                    Bundle args = new Bundle();
-                    args.putString("UserRelation", relation_with_user);
-                    args.putString("UserName", name_of_current_profile);
-                    switch (relation_with_user){
-                        case "Paternal Grand Father":
-                        args.putInt("SentNo_Key", 1);
-                        obj.setArguments(args);
-                        break;
-                        case "Paternal Grand Mother":
-                            args.putInt("SentNo_Key", 12);
-                            obj.setArguments(args);
-                            break;
-                        case "Maternal Grand Father":
-                            args.putInt("SentNo_Key", 13);
-                            obj.setArguments(args);
-
-                            break;
-                        case"Maternal Grand Mother":
-                            args.putInt("SentNo_Key", 14);
-                            obj.setArguments(args);
-                            break;
-                        case"Father":
-                            args.putInt("SentNo_Key", 15);
-                            obj.setArguments(args);
-                            break;
-                        case"Mother":
-                            args.putInt("SentNo_Key", 16);
-                            obj.setArguments(args);
-                            break;
-                        case"Self":
-                            args.putInt("SentNo_Key", 17);
-                            obj.setArguments(args);
-                            break;
-                        case"Child 1 Female":
-                            args.putInt("SentNo_Key", 18);
-                            obj.setArguments(args);
-                            break;
-                        case"Child 2 Male":
-                            args.putInt("SentNo_Key", 19);
-                            obj.setArguments(args);
-                            break;
-
-                    }
-                    getActivity().getSupportFragmentManager().
-                            beginTransaction().
-                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
+                    preventiveMeasuresCheck(relation_with_user,name_of_current_profile);
                 }
-
                 dialog.dismiss();
             }
         });
         dialog.show();
 
     }
-
-
-
 
     DatePickerDialog.OnDateSetListener listenerdob = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -964,161 +906,122 @@ public class PedigreeAnalysis extends Fragment implements CustomDialogProfile.Cu
     };
 
 
-
-    //---Checking Database Value Existence in Firebase........
-    boolean checkReferencePresentInFirebase(final String relation) {
-
-        /*referenceinner.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue()!=null) {
-                    for (DataSnapshot i : dataSnapshot.getChildren()) {
-                        StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                        String relation_with_user = obj.getRelation_with_user();
-                        if(relation_with_user!=null) {
-                            if (relation_with_user.equals(relation)) {
-                                Toast.makeText(getActivity(), "rel with user is true and " + relation_with_user + " is the reltation found", Toast.LENGTH_SHORT).show();
-                                ans =true;
-                                break;
-                            }
-                            else{
-                                Toast.makeText(getActivity(), "rel not equall"+relation_with_user, Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-                        else
-                            ans=false;
-                    }
+    public void preventiveMeasuresCheck(String relation_with_user,String name_of_current_profile){
+        String backstackname="PedigreeAnalyis";
+        preventive_measures obj = new preventive_measures();
+        Bundle args = new Bundle();
+        args.putString("UserRelation", relation_with_user);
+        args.putString("UserName", name_of_current_profile);
+        switch (relation_with_user){
+            case "Paternal Grand Father":
+                if(Login.percentage_gf1!=null&&Login.percentage_gf1.size()>0) {
+                    args.putInt("SentNo_Key", 11);
+                    obj.setArguments(args);
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
                 }
                 else{
-                    ans=false;
+                    Toast.makeText(getActivity(), "Please fill the symptoms first..", Toast.LENGTH_SHORT).show();
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-       /* reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                StoringUserFamilyData obj= new StoringUserFamilyData();
-                if (dataSnapshot.getValue() != null) {
-                    dataSnapshot.getValue(obj.getRelation_with_user()).toString();
-                    if(dataSnapshot.getValue().toString().equals(relation)){
-                        Toast.makeText(getActivity(), "Value fetched is "+dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
-                        ans[0] = true;
-                    }
-                    else{
-                        Toast.makeText(getActivity(), "Value isnt fetched which isnt equall"+dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
-                    }
-
-
-
-                } else {
-
-                    ans[0] = false;
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-        /*referenceinner.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue()!=null) {
-                    for (DataSnapshot i : dataSnapshot.getChildren()) {
-                        StoringUserFamilyData obj = i.getValue(StoringUserFamilyData.class);
-                        String relation_with_user = obj.getRelation_with_user();
-                        if(relation_with_user!=null) {
-                            if (relation_with_user.equals(relation)) {
-                                Toast.makeText(getActivity(), "rel with user is true and " + relation_with_user + " is the reltation found", Toast.LENGTH_SHORT).show();
-                                ans =true;
-                                break;
-                            }
-                            else{
-                                Toast.makeText(getActivity(), "rel not equall"+relation_with_user, Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-                        else
-                            ans=false;
-                    }
+                break;
+            case "Paternal Grand Mother":
+                if(Login.percentage_gm1!=null&&Login.percentage_gm1.size()>0) {
+                    args.putInt("SentNo_Key", 12);
+                    obj.setArguments(args);
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
                 }
                 else{
-                    ans=false;
+                    Toast.makeText(getActivity(), "Please match the symptoms first...", Toast.LENGTH_SHORT).show();
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-      //  Toast.makeText(getActivity(), "Return val ="+ans, Toast.LENGTH_SHORT).show();
-        //return ans;*/
-
-
-        if(reference.child("Users Family Data")!=null){
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot i:dataSnapshot.getChildren()){
-                        StoringUserFamilyData obj=i.getValue(StoringUserFamilyData.class);
-                        String rel_is_there=obj.getRelation_with_user();
-                        if(rel_is_there!=null){
-                            if(rel_is_there.equals(relation)) {
-                                ans = true;
-                                Toast.makeText(getActivity(), "yes ="+rel_is_there, Toast.LENGTH_SHORT).show();
-                                break;
-                            }
-                            else{
-                                Toast.makeText(getActivity(), "not equall", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-//                    if(snapshot.getChildren().equals(relation)){
-//                        ans=true;
-//                        Toast.makeText(getActivity(), "YES DB has "+relation+"\n as a child", Toast.LENGTH_SHORT).show();
-//                    }
-                        else {
-                            ans=false;
-                            Toast.makeText(getActivity(), "Not it doesnt have"+relation, Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                break;
+            case "Maternal Grand Father":
+                if(Login.percentage_gf2!=null&&Login.percentage_gf2.size()>0) {
+                    args.putInt("SentNo_Key", 13);
+                    obj.setArguments(args);
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
                 }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                else{
+                    Toast.makeText(getActivity(), "Please Match the Symptoms first...", Toast.LENGTH_SHORT).show();
                 }
-            });
+                break;
+
+
+            case"Maternal Grand Mother":
+                if(Login.percentage_gm2!=null&&Login.percentage_gm2.size()>0) {
+                    args.putInt("SentNo_Key", 14);
+                    obj.setArguments(args);
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
+                }
+                else{
+                    Toast.makeText(getActivity(), "Please Match the Symptoms first...", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case"Father":
+                if(Login.percentage_dad!=null&&Login.percentage_dad.size()>0) {
+                    args.putInt("SentNo_Key", 15);
+                    obj.setArguments(args);
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
+                }
+                else{
+                    Toast.makeText(getActivity(), "Please match symptoms first...", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case"Mother":
+                if(Login.percentage_mom!=null&&Login.percentage_mom.size()>0) {
+                    args.putInt("SentNo_Key", 16);
+                    obj.setArguments(args);
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
+                }
+                else{
+                    Toast.makeText(getActivity(), "Please Match Symptoms first...", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case"Self":
+                if(Login.percentage_me!=null&&Login.percentage_me.size()>0) {
+                    args.putInt("SentNo_Key", 17);
+                    obj.setArguments(args);
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
+                }
+                else
+                    Toast.makeText(getActivity(), "Please Match Symptoms first...", Toast.LENGTH_SHORT).show();
+                break;
+            case"Child 1 Female":
+                if(Login.percentage_child1female!=null&&Login.percentage_child1female.size()>0) {
+                    args.putInt("SentNo_Key", 18);
+                    obj.setArguments(args);
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
+                }
+                else
+                    Toast.makeText(getActivity(), "Please Match Symptoms first...", Toast.LENGTH_SHORT).show();
+                break;
+            case"Child 2 Male":
+                if(Login.percentage_child2male!=null&&Login.percentage_child2male.size()>0) {
+                    args.putInt("SentNo_Key", 19);
+                    obj.setArguments(args);
+                    getActivity().getSupportFragmentManager().
+                            beginTransaction().
+                            replace(R.id.fragment_container, obj).addToBackStack(backstackname).commit();
+                }
+                else
+                    Toast.makeText(getActivity(), "Please Match Symptoms first...", Toast.LENGTH_SHORT).show();
+                break;
+
         }
-        else
-            ans=false;
-
-        Toast.makeText(getActivity(), "return value is "+ans, Toast.LENGTH_SHORT).show();
-        return  ans;
-
-
-    }
-
-
-
-
-    @Override
-    public void applyTexts(String name, String dob, String gender, String relation) {
-        Toast.makeText(getActivity(), "Details fetched in Pedigree are :"+name+"\n"+dob+"\n"+gender+"\n"+relation, Toast.LENGTH_SHORT).show();
-       /* fetched_dob= dob;
-        fetched_gender=gender;
-        fetched_name=name;
-        fetched_relation=relation;*/
-
     }
 }
 

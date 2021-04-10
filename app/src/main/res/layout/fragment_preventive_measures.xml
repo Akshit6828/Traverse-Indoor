@@ -14,10 +14,10 @@
         android:layout_height="566dp"
         app:layout_constraintBottom_toTopOf="@+id/button_preventive_measures"
         app:layout_constraintEnd_toEndOf="@+id/textView27"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView27"
         app:layout_constraintTop_toBottomOf="@+id/textView27"
-        app:layout_constraintVertical_bias="0.424" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView27"
@@ -41,11 +41,30 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/container_bg"
+        android:foregroundGravity="center"
+        android:gravity="center_horizontal"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         android:text="Find Preventive Measures"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recyclerView3"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toStartOf="@+id/recyclerView3" />
+
+    <Button
+        android:id="@+id/close_preventive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/container_bg"
+        android:foregroundGravity="center"
+        android:gravity="center_horizontal"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Close"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_preventive_measures"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         b1=findViewById(R.id.b1);
         t1=findViewById(R.id.tv1);
 
-
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

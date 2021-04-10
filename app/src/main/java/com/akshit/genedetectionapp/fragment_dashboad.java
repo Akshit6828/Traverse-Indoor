@@ -88,26 +88,25 @@ public class fragment_dashboad extends Fragment {
         l1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getActivity(),NucleotideBlast.class);
-                startActivity(i);
+                getActivity().getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container,new PedigreeAnalysis()).commit();
             }
         });
         l2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent i= new Intent(getActivity(),Familytree.class);
-                startActivity(i);*/
-                //Removing a fragment
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new PedigreeAnalysis()).commit();
-
+                Intent i= new Intent(getActivity(),NucleotideBlast.class);
+                startActivity(i);
             }
         });
         l3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String backstack="PedigreeAnalysis";
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new fragment_medication()).addToBackStack(backstack).commit();
+                getActivity().getSupportFragmentManager().
+                        beginTransaction().
+                        replace(R.id.fragment_container,new fragment_medication()).addToBackStack(backstack).commit();
                 //Intent i= new Intent(getActivity(),GoogleSearchPage.class);
                 //startActivity(i);
 
