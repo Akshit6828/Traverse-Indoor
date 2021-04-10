@@ -9,10 +9,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -104,6 +106,12 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
                         editor.putString("logout_key", message);
                         editor.commit();
                         flag = 1;
+                        //clear cache
+                        if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
+                            ((ActivityManager) MainPage.this.getSystemService(ACTIVITY_SERVICE))
+                                    .clearApplicationUserData();
+                            return;
+                        }
                         Intent intent=new Intent(MainPage.this,MainActivity.class);
                         startActivity(intent);
                         finish();
