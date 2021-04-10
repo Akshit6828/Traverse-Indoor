@@ -1,6 +1,5 @@
 package com.akshit.genedetectionapp;
 
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,11 +7,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
@@ -22,11 +16,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 public class AlarmBroadcast extends BroadcastReceiver {
-
-    Activity context;
-    public AlarmBroadcast(Activity context){
-        this.context=context;
-    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -51,9 +40,6 @@ public class AlarmBroadcast extends BroadcastReceiver {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "notify_001");
 
         PendingIntent pendingSwitchIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-
-        contentView.setOnClickPendingIntent(R.id.flashButton, pendingSwitchIntent);
-       
         mBuilder.setSmallIcon(R.drawable.geneicon);
         mBuilder.setContentText("Traverse Indoor");
         mBuilder.setContentText("Reminder");
