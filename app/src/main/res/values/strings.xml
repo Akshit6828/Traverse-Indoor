@@ -355,4 +355,5 @@
 
     <string name="about_app">Genetic disease are something which are caused by the occurrence of mutations in the genetic material of the individual. An Android App that reads the sequenced DNA of all biological species and detects the imprints of the the nucleotides present in it i.e…detecting the genetic mutational change from of a sequenced DNA. It acts as a mini feasible tool for the genetic researchers and for the bio-tech field.
         It also helps to analyze the probability of disease in the next generation based on the concept of pedigree analysis which even a person from non- bio background can even understand. This gives the detailed information even in the bar graph to check and compare quantity of the proteins present in ones DNA Also with this it will be more helpful for the people to understand the implications and probability of the diseases specially in the embryonic condition through which technologies like GENE THERAPY could be implemented at the right time. Even after the birth the Implications of the Disease could be minimized having known the prior probability.</string>
+
 </resources>
