@@ -13,4 +13,6 @@ public interface EventDao {
 
     @Query("SELECT * FROM myTable")
     List<EntityClass> getAllData();
+
+    //interface
 }

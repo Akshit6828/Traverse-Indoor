@@ -41,5 +41,5 @@ public class EntityClass {
         this.eventdate = eventdate;
     }
 
-
+//getter setter
 }
