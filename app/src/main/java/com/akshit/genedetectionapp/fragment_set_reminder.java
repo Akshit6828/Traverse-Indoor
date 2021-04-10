@@ -197,6 +197,9 @@ public class fragment_set_reminder extends Fragment {
                                     databaseClass.evenDao().insertAll(entityClass);
                                     setAlarm(relation,value, date, time);
                                     setReminderAdapter();
+
+
+
                                     dialog.dismiss();
 
                                 }

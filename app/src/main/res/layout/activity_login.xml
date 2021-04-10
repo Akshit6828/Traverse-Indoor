@@ -24,21 +24,20 @@
 
     <EditText
         android:id="@+id/e1"
-        android:layout_width="280dp"
+        android:layout_width="218dp"
         android:layout_height="41dp"
+        android:layout_marginStart="12dp"
         android:ems="10"
-        android:hint="Phone Number"
+        android:hint="10-digit Phone Number"
         android:inputType="number|textPersonName"
         android:textColor="#070000"
         android:textColorHighlight="#120000"
         android:textColorHint="#580B0000"
         android:textColorLink="#130101"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.404"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/e2"
+        app:layout_constraintStart_toEndOf="@+id/county_code"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="0.843" />
 
     <EditText
         android:id="@+id/e2"
@@ -103,4 +102,17 @@
         app:layout_constraintStart_toEndOf="@+id/b1"
         app:layout_constraintTop_toBottomOf="@+id/progressbar"
         app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/county_code"
+        android:layout_width="71dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="44dp"
+        android:ems="10"
+        android:hint="+91"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/e1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/e1"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
