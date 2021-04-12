@@ -125,7 +125,7 @@ public class PedigreeAnalysis extends Fragment  {
         reference=database.getReference("Users_Database_1").child(child_user).child(name_of_current_user).child("Users Family Data");
         stringArrayList  = new ArrayList<String>();
         if(!firsttime)
-        //----------------Toast.makeText(getActivity(), "Please wait a little for Activity to Load..", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Please wait a little for Activity to Load..", Toast.LENGTH_SHORT).show();
         firsttime=true;
         reference.addValueEventListener(new ValueEventListener() {
             @Override
