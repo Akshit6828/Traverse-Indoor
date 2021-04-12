@@ -217,7 +217,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onVerificationFailed(FirebaseException e) {
                 progressBar.setVisibility(View.INVISIBLE);
-              //----------------  Toast.makeText(Login.this, "Verification Failed because: \n"+e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+              Toast.makeText(Login.this, "Verification Failed because: \n"+e.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -269,7 +269,7 @@ public class Login extends AppCompatActivity {
 
 
     private void sendVerificationCodeToUser(String phonenumber) {
-        phonenumber= "+91"+phonenumber;
+        phonenumber= county_code+phonenumber;
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(firebaseAuth)
                 .setPhoneNumber(phonenumber)
                 .setTimeout(60L,TimeUnit.SECONDS)
