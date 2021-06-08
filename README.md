@@ -1,4 +1,4 @@
-This repository contains the Gene Reader App Codebase.
+## This repository contains the Gene Reader App Codebase.
 
 ### Inspiration Behind the Project:
 The inspiration behind this project is  **GOAL 3**  of [17 United Nations Sustainable Development][17 UN Goals]   `Good Health and Well-Being` aiming that Good health is essential for sustainable development.   
