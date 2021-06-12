@@ -9,7 +9,7 @@ The inspiration behind this project is  **GOAL 3**  of [17 United Nations Sustai
 * We aim to giving information to people genetic makeup using [NCBI Blast][NCBI Blast] to list the nucleodites patterns found using matching algorithm.
 * We also aim to help our users to `set reminders for their parents and grandparents` living far from them to take medicine or to visit a doctor for regular checkups.
 * We also aim to help people to know to what extent they are probable to have some most common genetic diseases like `diabetes, thyroid, migraine, congenital heart disease, thalassemia, and rheumatoid arthritis`that their ancestors might have and are passed to them based on the symptoms they have. 
-> NOTE: Data is collected from [Official Indian Goverment Website][GOV DATA] .
+> NOTE: Disease Statistics Data for project is collected from [Official Indian Goverment Website][GOV DATA] .
 
 * We also aim to make people aware of some `offline do’s and don'ts for some common most prevaling diseases` and what medication they should follow.
 
