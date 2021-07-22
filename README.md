@@ -2,7 +2,45 @@
 
 #### Watch a short `2 Min` Video of Project with Explanation(Recommended): 🔗<a href="https://youtu.be/grEA2S86fxA" target="_blank">Click Here.</a>
 #### Watch full working Video of Project(No explanation): 🔗<a href="https://youtu.be/-OCHKP7xxXE" target="_blank">Click Here.</a>
-### Inspiration Behind the Project:
+
+<h2> ScreenShots</h2>
+
+### 1. Login and Registration:
+
+<table>
+        <tr> 
+        <td><img src = "screenshots/opening_screen.png"  width="180"></td>
+        <td><img src = "screenshots/register_user.png" width="180"></td>
+        <td><img src = "screenshots/dashboard.png" width="180"></td>
+        </tr>
+</table>
+
+### 2. Main Featues for Gene Reading and Disease Detection:
+
+<table>
+        <tr> 
+        <td><img src = "screenshots/family_tree.png"  width="180"></td>
+        <td><img src = "screenshots/user_profile.png"  width="180"></td>
+        <td><img src = "screenshots/results_matching_symptoms.png" width="180"></td>
+        <td><img src = "screenshots/ncbi_result_all.png" width="180"></td>
+        <td><img src = "screenshots/ncbi_result.png" width="180"></td>
+        </tr>
+</table>
+
+### 3. Remedies and Medications  and Family Reminders:
+
+
+<table>
+        <tr> 
+        <td><img src = "screenshots/offline_diseases.png"  width="180"></td>
+        <td><img src = "screenshots/medications.png" width="180"></td>
+        <td><img src = "screenshots/remedies_1.png" width="180"></td>
+        <td><img src = "screenshots/reminders.png" width="180"></td>
+        </tr>
+</table>
+
+
+## Inspiration Behind the Project:
 The inspiration behind this project is  **GOAL 3**  of [17 United Nations Sustainable Development][17 UN Goals]   `Good Health and Well-Being` aiming that Good health is essential for sustainable development.   
  
 * Our parent’s most precious gift is our **GENETIC MAKE-UP**, so its important to take good care of it. As of today most of the older and some younger generations are suffering from genetic diseases like `diabetes, thyroid, migraine, blood pressure, heart diseases` and many more that they are least aware of it. So, it is important to make them aware of how prone they are to certain diseases and what precautions they can take to curb it from getting worsen.
@@ -15,14 +53,14 @@ The inspiration behind this project is  **GOAL 3**  of [17 United Nations Sustai
 
 * We also aim to make people aware of some `offline do’s and don'ts for some common most prevaling diseases` and what medication they should follow.
 
-### How we aim at solving the Solution:
+## How we aim at solving the Solution:
 * Providing the user facility to genetic makeup(nucleotides specifically) in their DNA through their **RAW DNA DATA** samples and by performing BLAST operation. We have also provided Google Search within the application for the user to know more about certain proteins found in their DNA sample.
 * Providing features of `Predective Analysis` of Family tree through which users may know genetic diseases they have inherited from their ancestors and how probable their next generation is to any specific disease.
 * Providing features of `Match Symptoms` is to help our users to recognize, to what extent they are prone to certain common diseases based on the symptoms they observe. The probability, that a trait is inherited, is shown as the expected value while the true value for a particular trait is shown as the actual value within the application.
 * Providing features of `Set Reminder`, helps our users to set reminders for their parents or grandparents living far from them and even for themselves to take medicine or to visit a doctor for regular checkups. It also provides functionality to call or message on receiving the reminder.
 * Providing features of `Common Diseases Remidies and Medications` for the user to make them aware of some do’s and don'ts related to some common diseases and what medication they should take at that time.
 
-This project is maintained by [@Akshit6828][Maintained] with Love. ❤️
+This project is maintained by [@Akshit6828][Maintained] with ❤️.
 
 [17 UN Goals]:https://sdgs.un.org/goals
 [NCBI Blast]:https://www.ncbi.nlm.nih.gov/
