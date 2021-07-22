@@ -22,12 +22,11 @@
         <td><img src = "screenshots/family_tree.png"  width="180"></td>
         <td><img src = "screenshots/user_profile.png"  width="180"></td>
         <td><img src = "screenshots/results_matching_symptoms.png" width="180"></td>
-        <td><img src = "screenshots/ncbi_result_all.png" width="180"></td>
         <td><img src = "screenshots/ncbi_result.png" width="180"></td>
         </tr>
 </table>
 
-### 3. Remedies and Medications  and Family Reminders:
+### 3. Offline Remedies, Medications  and Family Reminders Feature:
 
 
 <table>
