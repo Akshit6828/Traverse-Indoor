@@ -5,7 +5,9 @@
 
 * [Screenshots](#screenshots)
 * [Inspiration Behind the Project](#inspiration-behind-the-project)
-* [How we aim at solving the Solution](how-we-aim-at-solving-the-solution)
+* [Targets](#targets)
+* [Featues](#features)
+* [How we aim at solving the Solution](#how-we-aim-at-solving-the-solution)
 
 
 <h2>ScreenShots</h2>
@@ -49,13 +51,31 @@ The inspiration behind this project is  **GOAL 3**  of [17 United Nations Sustai
  
 * Our parent’s most precious gift is our **GENETIC MAKE-UP**, so its important to take good care of it. As of today most of the older and some younger generations are suffering from genetic diseases like `diabetes, thyroid, migraine, blood pressure, heart diseases` and many more that they are least aware of it. So, it is important to make them aware of how prone they are to certain diseases and what precautions they can take to curb it from getting worsen.
 * Today there is a large population including all age groups taking medicines on a regular basis for some or the other genetic or infectious diseases. So, taking medicines **punctually** is very important as many of us often forget to take or give medicines on time. This inspired us to include the feature of `Setting Reminders` in our applications that can notify our users and help them take good care of themselves as well as those around them.
-## TARGETS:
+
+
+## Targets:
 * We aim to giving information to people genetic makeup using [NCBI Blast][NCBI Blast] to list the nucleodites patterns found using matching algorithm.
 * We also aim to help our users to `set reminders for their parents and grandparents` living far from them to take medicine or to visit a doctor for regular checkups.
 * We also aim to help people to know to what extent they are probable to have some most common genetic diseases like `diabetes, thyroid, migraine, congenital heart disease, thalassemia, and rheumatoid arthritis`that their ancestors might have and are passed to them based on the symptoms they have. 
 > NOTE: Disease Statistics Data for project is collected from [Official Indian Goverment Website][GOV DATA] .
 
 * We also aim to make people aware of some `offline do’s and don'ts for some common most prevaling diseases` and what medication they should follow.
+
+
+## Features:
+
+#### 1. PREDECTIVE - ANALYSIS:
+- [x]  The user may get detailed analysis of **expected values** and **actual values** of the traits based on prediction from the older generation.
+- [x]  It is also possible to predict the future generation possibility upto 50% based on single parent predicted data.
+#### 2. BLAST OPERATION:
+- [x] The user can have detailed analysis of the DNA providing information about the proteins and mutations occurred in DNA.
+- [x] The in app google search can be used to query the users doubts.
+#### 3. COMMON OFFLINE MEDICATIONS:
+- [x] The user is provided some common remedies and medication based on diseases predicted. 
+- [x] It also includes other common diseases apart from genetic diseases like flu, asthma, conjunctivitis etc.
+#### 4. FAMILY REMINDERS:
+- [x] The user can set reminders for their family members which will help the user to keep his family members updated for daily tasks such as eating medicine on time, doctor appointments etc.
+
 
 ## How we aim at solving the Solution:
 * Providing the user facility to genetic makeup(nucleotides specifically) in their DNA through their **RAW DNA DATA** samples and by performing BLAST operation. We have also provided Google Search within the application for the user to know more about certain proteins found in their DNA sample.
