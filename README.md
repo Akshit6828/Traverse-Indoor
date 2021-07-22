@@ -3,7 +3,12 @@
 #### Watch a short `2 Min` Video of Project with Explanation(Recommended): 🔗<a href="https://youtu.be/grEA2S86fxA" target="_blank">Click Here.</a>
 #### Watch full working Video of Project(No explanation): 🔗<a href="https://youtu.be/-OCHKP7xxXE" target="_blank">Click Here.</a>
 
-<h2> ScreenShots</h2>
+* [Screenshots](#screenshots)
+* [Inspiration Behind the Project](#inspiration-behind-the-project)
+* [How we aim at solving the Solution](how-we-aim-at-solving-the-solution)
+
+
+<h2>ScreenShots</h2>
 
 ### 1. Login and Registration:
 
