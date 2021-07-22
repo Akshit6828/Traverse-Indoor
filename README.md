@@ -6,7 +6,7 @@
 * [Screenshots](#screenshots)
 * [Inspiration Behind the Project](#inspiration-behind-the-project)
 * [Targets](#targets)
-* [Featues](#features)
+* [Features](#features)
 * [How we aim at solving the Solution](#how-we-aim-at-solving-the-solution)
 
 
