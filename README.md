@@ -84,11 +84,12 @@ The inspiration behind this project is  **GOAL 3**  of [17 United Nations Sustai
 * Providing features of `Set Reminder`, helps our users to set reminders for their parents or grandparents living far from them and even for themselves to take medicine or to visit a doctor for regular checkups. It also provides functionality to call or message on receiving the reminder.
 * Providing features of `Common Diseases Remidies and Medications` for the user to make them aware of some do’s and don'ts related to some common diseases and what medication they should take at that time.
 
-This project is maintained by [@Akshit6828][Maintained] with ❤️.
+This project is maintained by [@Akshit6828][Maintained1] and [@Amisha328][Maintained2] with ❤️.
 
 [17 UN Goals]:https://sdgs.un.org/goals
 [NCBI Blast]:https://www.ncbi.nlm.nih.gov/
 [GOV DATA]:https://data.gov.in/
 [Youtube_Video]: https://youtu.be/grEA2S86fxA
 [Youtube_Video2]: https://youtu.be/-OCHKP7xxXE
-[Maintained]:https://github.com/Akshit6828
+[Maintained1]:https://github.com/Akshit6828
+[Maintained2]:https://github.com/Amisha328
