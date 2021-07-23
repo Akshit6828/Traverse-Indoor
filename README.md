@@ -3,21 +3,25 @@
 #### Watch a short `2 Min` Video of Project with Explanation(Recommended): 🔗<a href="https://youtu.be/grEA2S86fxA" target="_blank">Click Here.</a>
 #### Watch full working Video of Project(No explanation): 🔗<a href="https://youtu.be/-OCHKP7xxXE" target="_blank">Click Here.</a>
 
-* [Screenshots](#screenshots)
-* [Inspiration Behind the Project](#inspiration-behind-the-project)
-* [Targets](#targets)
-* [Features](#features)
-* [How we aim at solving the Solution](#how-we-aim-at-solving-the-solution)
+- [Inspiration Behind the Project:](#inspiration-behind-the-project)
+- [Targets:](#targets)
+- [Features:](#features)
+    - [1. PREDECTIVE - ANALYSIS:](#1-predective---analysis)
+    - [2. BLAST OPERATION:](#2-blast-operation)
+    - [3. COMMON OFFLINE MEDICATIONS:](#3-common-offline-medications)
+    - [4. FAMILY REMINDERS:](#4-family-reminders)
+- [How we aim at solving the Solution:](#how-we-aim-at-solving-the-solution)
 
 
 <h2>ScreenShots</h2>
 
-### 1. Login and Registration:
+### 1. Registration/ Login and Dashboard:
 
 <table>
         <tr> 
         <td><img src = "screenshots/opening_screen.png"  width="180"></td>
         <td><img src = "screenshots/register_user.png" width="180"></td>
+        <td><img src = "screenshots/login_screen.png" width="180"></td>
         <td><img src = "screenshots/dashboard.png" width="180"></td>
         </tr>
 </table>
@@ -39,8 +43,8 @@
 <table>
         <tr> 
         <td><img src = "screenshots/offline_diseases.png"  width="180"></td>
-        <td><img src = "screenshots/medications.png" width="180"></td>
         <td><img src = "screenshots/remedies_1.png" width="180"></td>
+        <td><img src = "screenshots/medications.png" width="180"></td>
         <td><img src = "screenshots/reminders.png" width="180"></td>
         </tr>
 </table>
