@@ -6,10 +6,10 @@
 - [Inspiration Behind the Project:](#inspiration-behind-the-project)
 - [Targets:](#targets)
 - [Features:](#features)
-    - [1. Predective - Analysis:](#1-predective---analysis)
-    - [2. NCBI Blast Operation:](#2-blast-operation)
-    - [3. Common Offline Medications:](#3-common-offline-medications)
-    - [4. Family Reminders:](#4-family-reminders)
+    * [1. Predective - Analysis:](#1-predictive---analysis)
+    * [2. Nucleotide Blast Operation(Basic Local Alignment Search Tool):](#2-nucleotide-blast-basic-local-alignment-search-tool-operation)
+    * [3. Offline Medications:](#3-offline-medications)
+    * [4. Family Reminders:](#4-family-reminders)
 - [How we aim at solving the Solution:](#how-we-aim-at-solving-the-solution)
 
 
@@ -68,17 +68,18 @@ The inspiration behind this project is  **GOAL 3**  of [17 United Nations Sustai
 
 ## Features:
 
-#### 1. PREDECTIVE - ANALYSIS:
-- [x]  The user may get detailed analysis of **expected values** and **actual values** of the traits based on prediction from the older generation.
-- [x]  It is also possible to predict the future generation possibility upto 50% based on single parent predicted data.
-#### 2. BLAST OPERATION:
-- [x] The user can have detailed analysis of the DNA providing information about the proteins and mutations occurred in DNA.
-- [x] The in app google search can be used to query the users doubts.
-#### 3. COMMON OFFLINE MEDICATIONS:
+#### 1. PREDICTIVE - ANALYSIS:
+- [x]  The user may get a detailed analysis of expected values and actual values of the traits based on predictions from the older generation.
+- [x]  It is also possible to predict the inherited traits for future generation possibility up to 50% based on single parent predicted data.
+#### 2. NUCLEOTIDE BLAST (Basic Local Alignment Search Tool) Operation:
+- [x] The user can have a detailed analysis of the DNA providing information about the proteins and mutations that occurred in DNA.
+- [x] The in-app google search can be used to query the user's doubts about the predicted results.
+#### 3. OFFLINE MEDICATIONS:
 - [x] The user is provided some common remedies and medication based on diseases predicted. 
-- [x] It also includes other common diseases apart from genetic diseases like flu, asthma, conjunctivitis etc.
+- [x] It also includes other common diseases apart from genetic diseases like flu, asthma, conjunctivitis, etc.
 #### 4. FAMILY REMINDERS:
-- [x] The user can set reminders for their family members which will help the user to keep his family members updated for daily tasks such as eating medicine on time, doctor appointments etc.
+- [x] The user can set reminders for their family members which will help the user to keep his family members updated for daily tasks such as eating medicine on time, doctor appointments, etc.
+- [x] Provides functionality to call or SMS the user by sending the reminder template. 
 
 
 ## How we aim at solving the Solution:
