@@ -6,7 +6,7 @@
 - [Inspiration Behind the Project:](#inspiration-behind-the-project)
 - [Targets:](#targets)
 - [Features:](#features)
-    * [1. Predective - Analysis:](#1-predictive---analysis)
+    * [1. Predictive - Analysis:](#1-predictive---analysis)
     * [2. Nucleotide Blast Operation(Basic Local Alignment Search Tool):](#2-nucleotide-blast-basic-local-alignment-search-tool-operation)
     * [3. Offline Medications:](#3-offline-medications)
     * [4. Family Reminders:](#4-family-reminders)
