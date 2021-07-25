@@ -6,10 +6,10 @@
 - [Inspiration Behind the Project:](#inspiration-behind-the-project)
 - [Targets:](#targets)
 - [Features:](#features)
-    - [1. PREDECTIVE - ANALYSIS:](#1-predective---analysis)
-    - [2. BLAST OPERATION:](#2-blast-operation)
-    - [3. COMMON OFFLINE MEDICATIONS:](#3-common-offline-medications)
-    - [4. FAMILY REMINDERS:](#4-family-reminders)
+    - [1. Predective - Analysis:](#1-predective---analysis)
+    - [2. NCBI Blast Operation:](#2-blast-operation)
+    - [3. Common Offline Medications:](#3-common-offline-medications)
+    - [4. Family Reminders:](#4-family-reminders)
 - [How we aim at solving the Solution:](#how-we-aim-at-solving-the-solution)
 
 
