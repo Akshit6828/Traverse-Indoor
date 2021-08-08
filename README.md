@@ -71,13 +71,15 @@ The inspiration behind this project is  **GOAL 3**  of [17 United Nations Sustai
 
 
 ## Tools and Technology Used in Project:
-#### Technologies: 
+
+#### Technologies:
 ##### Android:
 * Java
 * XML
 ##### Firebase:
 * Firebase Authentication
 * Realtime Database Storage
+
 #### Tools: 
 * Android Studio
 * AdobeXD
