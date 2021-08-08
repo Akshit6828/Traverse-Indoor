@@ -8,6 +8,7 @@
 
 - [Inspiration Behind the Project:](#inspiration-behind-the-project)
 - [Targets:](#targets)
+- [Tools and Technology Used in Project:](#tools-and-technology-used-in-project)
 - [Features:](#features)
     * [1. Predictive - Analysis:](#1-predictive---analysis)
     * [2. Nucleotide Blast Operation(Basic Local Alignment Search Tool):](#2-nucleotide-blast-basic-local-alignment-search-tool-operation)
@@ -68,6 +69,19 @@ The inspiration behind this project is  **GOAL 3**  of [17 United Nations Sustai
 
 * We also aim to make people aware of some `offline do’s and don'ts for some common most prevaling diseases` and what medication they should follow.
 
+
+## Tools and Technology Used in Project:
+#### Technologies: 
+##### Android:
+* Java
+* XML
+##### Firebase:
+* Firebase Authentication
+* Realtime Database Storage
+#### Tools: 
+* Android Studio
+* AdobeXD
+* GitHub
 
 ## Features:
 
