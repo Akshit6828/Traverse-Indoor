@@ -7,15 +7,16 @@
 
 <h2> Table of Contents: </h2>
 
-- [Inspiration Behind the Project:](#inspiration-behind-the-project)
-- [Targets:](#targets)
-- [Tools and Technology Used in Project:](#tools-and-technology-used-in-project)
-- [Features:](#features)
+- [ScreenShots](#screenshots)
+- [Inspiration Behind the Project](#inspiration-behind-the-project)
+- [Targets](#targets)
+- [Tools and Technology Used in Project](#tools-and-technology-used-in-project)
+- [Features](#features)
     * [1. Predictive - Analysis:](#1-predictive---analysis)
     * [2. Nucleotide Blast Operation(Basic Local Alignment Search Tool):](#2-nucleotide-blast-basic-local-alignment-search-tool-operation)
     * [3. Offline Medications:](#3-offline-medications)
     * [4. Family Reminders:](#4-family-reminders)
-- [How we aim at solving the Solution:](#how-we-aim-at-solving-the-solution)
+- [How we aim at solving the Solution](#how-we-aim-at-solving-the-solution)
 
 
 <h2>ScreenShots</h2>
